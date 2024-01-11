@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab 1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/*
+
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #50a14f;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file://uol.le.ac.uk/root/staff/home/w/wocw2/My%20Documents/teaching/23%2024/semester%202/co2114/content/labs/template/markdown-pdf.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><img src="../template/fullwidthredblogUoLlogo.png" alt=""></p>
+<h1 id="co2114br-foundations-in-artificial-intelligence">CO2114<br />Foundations in Artificial Intelligence</h1>
+<h1 id="lab-exercise-1---programming-for-ai">Lab Exercise 1 - Programming for AI</h1>
+<p>This lab will review concepts in programming and software development that will be required throughout the remainder of the course. The aim of this lab worksheet is to act as a reference document for programming concepts in future labs, and ensure that all students have the basic understanding of the techniques that will be used.</p>
+<p>The prerequisites for this lab are an understanding of programming fundamentals and familiarity with the command line. This worksheet will cover:</p>
+<ul>
+<li>Creating and managing a conda environments</li>
+<li>Core data structures in Python</li>
+<li>Object-oriented programming in Python</li>
+</ul>
+<blockquote>
+<p>You may find some, or all, of this lab to be trivial or straightforward. This is a <em>good</em> thing. However, you should work through the worksheet to familiarise yourself with the general format of labs, as well as the particular coding style that is used.</p>
+<p>If you have any questions about how something is written, please do ask a member of the teaching team. We are here to support you.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#creating-and-running-a-python-file">Creating and Running a Python File</a></li>
+<li><a href="#python-data-structures">Python Data Structures</a></li>
+<li><a href="#objected-oriented-programming">Objected Oriented Programming</a></li>
+</ul>
+<h2 id="getting-started">Getting Started</h2>
+<blockquote>
+<p>These labs are based on using Windows, but should work on any operating system with Anaconda installed. File paths may be different.</p>
+</blockquote>
+<h3 id="anaconda">Anaconda</h3>
+<blockquote>
+<p>These instructions should also work with Miniconda, an alternative lightweight installation of the Anaconda distribution</p>
+</blockquote>
+<p>Anaconda is a distribution of the Python programming language that comes integrated with a number of precompiled libraries, and its own package and environment manager, called &quot;conda&quot;. It freely allows the installation and use of packages and libraries via both <code>conda</code> and <code>pip</code>.</p>
+<p>Anaconda is one of the most popular ways to manage Python language environments. We will be using Anaconda for all labs in this module.</p>
+<h4 id="installing-anaconda">Installing Anaconda</h4>
+<blockquote>
+<p><strong>You only need to follow these instructions if you are working on your own computer</strong>. Anaconda is already installed on the lab machines.</p>
+</blockquote>
+<p>The easiest way to get a Python environment up and running is to install Anaconda. It is fairly straightforward to install, but can take some time.</p>
+<ol>
+<li>Download and install the free version of Anaconda from its webpage: <a href="https://www.anaconda.com/download">https://www.anaconda.com/download</a>
+<ul>
+<li>Select the version appropriate for your operating system</li>
+<li>Install Anaconda either using the default settings or customise as appropriate</li>
+</ul>
+</li>
+<li>Once you have installed Anaconda. you will be able to open dedicated terminal called &quot;Anaconda Prompt&quot;. You should use this when using Anaconda.</li>
+</ol>
+<h3 id="environments">Environments</h3>
+<p>Conda environments are special directories that contains a standalone Python environment. It contains specific packages that have installed, and making changes to one environment will not affect others.</p>
+<p>Using conda is a great way to create self-contained development environments with decidated packages and versions. In this module we will create conda environments to complete future labs.</p>
+<h4 id="creating-a-conda-environment">Creating a Conda Environment</h4>
+<p>There are multiple ways to create conda environments.  These include using the <code>conda</code> command-line interface (CLI) and the Anaconda Navigator.</p>
+<p>In this lab, and the rest of the module, we will only look at creating conda environments using the <code>conda</code> CLI in the Anaconda Prompt.</p>
+<p>There are two ways to do this: creating the environment and installing packages manually, or creating the environment from a template file. We will try both to ensure you understand the process for installing packages and creating environments from a template.</p>
+<h5 id="manually-creating-an-environment">Manually Creating an Environment</h5>
+<blockquote>
+<p>These are instructions are for when you don't have an <code>environment.yml</code> file. If you have been provided with an <code>environment.yml</code> file, follow the <a href="#setting-up-a-conda-environment-with-environmentyml">Setting Up a Conda Environment with <code>environment.yml</code></a> instructions.</p>
+</blockquote>
+<p>Full details of the functionality of the <code>conda</code> CLI for managing environments are available in the <a href="https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">conda User Guide</a>. These instructions should get you a working environment environment using the terminal.</p>
+<p>In the following steps, we will name the environment &quot;<code>co2114_demo</code>&quot;, but you are free to name it whatever you think is appropriate. Remember that if you change the name, you should replace mention of <code>co2114_demo</code> with your preferred name.</p>
+<p>To create your environment, in Anaconda Prompt, or Terminal, execute the following line:</p>
+<pre class="hljs"><code><div>&gt; conda create -y --name co2114_demo python=3.11
+</div></code></pre>
+<p>This may take a few minutes, as it downloads and installs the base packages. When it's complete, you should see messages similar to the following:</p>
+<p><img src="img/1/anaconda_installed.png" alt="Anaconda successfully installed"></p>
+<p>Notably, you will see the message</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># To activate this environment, use</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#     $ conda activate co2114_demo</span>
+</div></code></pre>
+<p>This is the instruction for &quot;activating&quot; and environment. If you run that command, you will be in environment.</p>
+<p>Run</p>
+<pre class="hljs"><code><div>&gt; conda activate co2114_demo
+</div></code></pre>
+<p>You will know this has worked because your prompt will now be prefixed by <code>(co2114_demo)</code>, where it previously said <code>(base)</code>.</p>
+<blockquote>
+<p>The <code>base</code> environment is the default Python installation in Anaconda. As general practice, you should avoid installing packages to <code>base</code> and leave it as a clean environment.</p>
+</blockquote>
+<p>If you run <code>python --version</code> you should see the Python version printed.</p>
+<p>We can now install any packages that we want. Lets try installing <code>ipython</code>, <code>numpy</code>, <code>scipy</code>, the interactive Python shell and two Python packages for doing numeric and scientific programming respectively:</p>
+<pre class="hljs"><code><div>&gt; conda install -y ipython numpy scipy
+</div></code></pre>
+<p>Again, this may take a couple of minutes, but you will see it install the appropriate packages. Once it's complete, you will see the status as follows:</p>
+<pre class="hljs"><code><div>Preparing transaction: <span class="hljs-keyword">done</span>
+Verifying transaction: <span class="hljs-keyword">done</span>
+Executing transaction: <span class="hljs-keyword">done</span>
+</div></code></pre>
+<blockquote>
+<p>iPython is an interactive shell for Python. It is useful for experimenting with the Python interpreter in the terminal, as it has more features than the regular <code>python</code> interpreter. We will look at this in the <a href="#ipython">IPython section</a>.</p>
+</blockquote>
+<p>To deactivate a conda environment, simply run the following command</p>
+<pre class="hljs"><code><div>&gt; conda deactivate
+</div></code></pre>
+<p>You will see from the prefix that we are now back in the <code>base</code> environment. Always be sure to <code>activate</code> and <code>deactivate</code> into the appropraite environments when working with conda.</p>
+<h5 id="setting-up-a-conda-environment-with-environmentyml">Setting Up a Conda Environment with <code>environment.yml</code></h5>
+<blockquote>
+<p>You will need to download the <code>lab01.environment.yml</code> file from Blackboard</p>
+<p>The <code>/path/to/lab01.environment.yml</code> expression simply refers to wherever you have downloaded it</p>
+</blockquote>
+<p>As an alternative to manually creating your own environment, it will sometimes be there case where you are provided with a template. These templates are typically saved in <code>environment.yml</code> files, which describe the instructions for packages to be installed. This allows for environments to be exported and shared to ensure a consistent Python environment.</p>
+<p>In these labs, we will make use of these <code>environment.yml</code> files to ensure that Python installations are set up correctly across labs.</p>
+<p>Once you have downloaded the <code>lab01.environment.yml</code> file, you can create the environment using the following command:</p>
+<pre class="hljs"><code><div>&gt; conda env create -f /path/to/lab01.environment.yml
+</div></code></pre>
+<p>This will automatically create and install the environment based on the instructions in the <code>environment.yml</code> file. You can view these files in any text editor. The content of this file is shown below:</p>
+<pre class="hljs"><code><div><span class="hljs-attr">name:</span> <span class="hljs-string">co2114_lab01</span>
+<span class="hljs-attr">dependencies:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">numpy</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">scipy</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">ipython</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">jupyter</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">pip</span>
+</div></code></pre>
+<p>Here we have defined the name of the environment <code>co2114_lab01</code>, and the dependencies, i.e. the packages we want to install. By default, these packages are installed from <code>conda</code>.</p>
+<p>Once the environment is all set up, you will see the following message.</p>
+<pre class="hljs"><code><div>Preparing transaction: <span class="hljs-keyword">done</span>
+Verifying transaction: <span class="hljs-keyword">done</span>
+Executing transaction: <span class="hljs-keyword">done</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># To activate this environment, use</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#     $ conda activate co2114_lab01</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># To deactivate an active environment, use</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment">#     $ conda deactivate</span>
+</div></code></pre>
+<p>You can view the environments you have in your current conda installation by running</p>
+<pre class="hljs"><code><div>&gt; conda env list
+</div></code></pre>
+<p>For example,</p>
+<pre class="hljs"><code><div>(base) &gt; conda env list
+<span class="hljs-comment"># conda environments:</span>
+<span class="hljs-comment">#</span>
+base                  *  C:\Miniconda3
+co2114_demo              C:\Users\wocw2\.conda\envs\co2114_demo
+co2114_lab01             C:\Users\wocw2\.conda\envs\co2114_lab01
+</div></code></pre>
+<p>We will use the <code>conda activate</code> to activate the environment.</p>
+<pre class="hljs"><code><div>&gt; conda activate co2114_lab01
+</div></code></pre>
+<blockquote>
+<p>Remember to use <code>conda deactivate</code> to exit an environment</p>
+</blockquote>
+<h4 id="removing-a-conda-environment">Removing a Conda Environment</h4>
+<blockquote>
+<p><em>&quot;Help, I messed up!&quot;</em></p>
+</blockquote>
+<p>The handy thing about Conda environments is that they act as standalone Python installations. As a keen student, you may occasionally break things in your Python installation or install the wrong packages.</p>
+<p>That's OK! Simply delete the environment and start again.</p>
+<p>To remove an environment, you can run the following command:</p>
+<pre class="hljs"><code><div>&gt; conda remove --name {name} --all
+</div></code></pre>
+<p>Where <code>{name}</code> is the name of the environment. You can view names by running <code>conda env list</code>.</p>
+<p>For example, the following command removes the <code>co2114_demo</code> environment.</p>
+<pre class="hljs"><code><div>&gt; conda remove --name co2114_demo --all
+</div></code></pre>
+<blockquote>
+<p><strong>Make sure you have deactivate the environment you are trying to delete.</strong></p>
+</blockquote>
+<blockquote>
+<p>Another way of removing an environment is just deleting the directory that contains the environment. The path to the environment directory is also listed in <code>conda env list</code>.</p>
+</blockquote>
+<h3 id="alternative-virtualenvpipenv">[Alternative] virtualenv/pipenv</h3>
+<blockquote>
+<p><em>&quot;I like to use a different Python environment manager, not conda, can I still do these labs?&quot;</em></p>
+</blockquote>
+<p>Yes, though support is out of scope for these labs. If you are more comfortable using virtualenv to manage your Python packages, you are free to do so. You can view the <code>enviornment.yaml</code> file to identify which packages need to be installed.</p>
+<h2 id="creating-and-running-a-python-file">Creating and Running a Python file</h2>
+<p>Throughout the module we will use Python files to work on implementations, alongside using notebooks.</p>
+<h3 id="running-scripts">Running scripts</h3>
+<p>You can run a Python file by simply using the <code>python</code> command in your terminal.</p>
+<p>For example, you can download the <code>co2114_lab01.py</code> file from Blackboard. You can run this using the following command:</p>
+<pre class="hljs"><code><div>&gt; python co2114_lab01.py
+</div></code></pre>
+<blockquote>
+<p><strong>You should make sure you have activated the proper conda environment using <code>conda activate co2114_lab01</code></strong>.</p>
+</blockquote>
+<h3 id="importing-packages">Importing packages</h3>
+<p>You can import packages and classes using the <code>import</code> keyword. You can import packages that have been installed using <code>conda</code> or <code>pip</code>, such as <code>numpy</code>, or from files in the current directory. We will see examples of this throughout this and future labs and tutorials.</p>
+<h3 id="ipython">IPython</h3>
+<p>IPython is an command shell that provides an interactive Python terminal. Throughout the lab, you can test concepts and import your code using IPython.</p>
+<p>You can run IPython simply by running the <code>ipython</code> command in your conda environment:</p>
+<pre class="hljs"><code><div>&gt; ipython
+</div></code></pre>
+<p>We can use this as a Python kernel, for example importing packages:</p>
+<pre class="hljs"><code><div>: <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+</div></code></pre>
+<blockquote>
+<p>I will prefix commands in IPython with <code>:</code> for clarity. This means you won't be able to copy multiple lines from this lab, and should type them out manually.</p>
+</blockquote>
+<p>IPython also allows for useful tools such as tab-completing, i.e. pressing tab to finish commands or list options. Try tab-completing the following line:</p>
+<pre class="hljs"><code><div>: np.lin 
+</div></code></pre>
+<h4 id="creating-functions">Creating functions</h4>
+<p>We can also write functions directly in IPython. It will interpet unfinished Python commands and allow you to continue writing on new lines.</p>
+<p>Try defining the following function:</p>
+<pre class="hljs"><code><div>: <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">square</span><span class="hljs-params">(x)</span>:</span>
+:     <span class="hljs-keyword">return</span> x*x
+: 
+</div></code></pre>
+<blockquote>
+<p>Blank lines will be interpreted as the end of a function definition. This is slightly different to writing functions in Python files, where indentation is used to infer structure.</p>
+</blockquote>
+<p>You can evaluate the function, for example:</p>
+<pre class="hljs"><code><div>: square(<span class="hljs-number">-2</span>)
+</div></code></pre>
+<p>It's also possible to run <code>if</code> statements and <code>for</code> loops in IPython, as well as other multi-line commands.</p>
+<h3 id="jupyter">Jupyter</h3>
+<blockquote>
+<p>As you will have seen working on the tutorials, some of the content for this module uses Jupyter notebooks. Jupyter notebooks are built on IPython and allow users to write and execute Python code in a single document.</p>
+</blockquote>
+<p>You can run Jupyter notebooks locally using the command <code>jupyter notebook</code> in your environment.</p>
+<p>This will allow you to run the notebook in the specific version of Python, based on your conda environment.</p>
+<h2 id="python-data-structures">Python Data Structures</h2>
+<blockquote>
+<p><strong>You should use IPython to complete this section of the worksheet</strong></p>
+</blockquote>
+<h3 id="understanding-floats">Understanding Floats</h3>
+<p>When working with numbers in our AI systems, we will often need to work with values that are not integers. However, representing numbers with decimal points is not as straightforward as it seems. How do you contain a number with potentially infinite decimal places within finite memory? The answer is <em>floating point arithmetic</em>. This is how computers deal with calculations between non-integer numbers. You will almost certainly have used used floats when programming.</p>
+<p>There are two common types of float: single- and double-precision. In Java, these are represented by the <code>Float</code> and <code>Double</code> type, respectively. The difference is essentially in the amount of memory each one takes up: single-precision floating point numbers are 32 bits; double-precision floats are 64 bits. A Python <code>float</code> is double-precision. For comparison, a Python <code>int</code> is 32 bits. There are other ways to represent numbers, such as using NumPy.</p>
+<blockquote>
+<p>Understanding <em>how</em> floating point arithmetic works is not important for this course, but you should be aware of how numbers are represented and the potential issues this can cause when developng your artificial intelligence systems.</p>
+</blockquote>
+<p>If you are interested in the theory that drives floating point arithmetic, you can explore the additional material provided on Blackboard.</p>
+<h4 id="bad-maths">Bad Maths</h4>
+<p>Consider the following three lines of code.</p>
+<pre class="hljs"><code><div>: a = <span class="hljs-number">0.1</span>
+: b = <span class="hljs-number">0.2</span>
+: (a+b) == <span class="hljs-number">0.3</span>
+</div></code></pre>
+<p>What do we expect the answer to be? True, of course. If $a = 0.1$ and $b=0.2$, then $a+b = 0.3$. But if we run this code in IPython, we will see that this is not quite the case. Why? What is $a+b$?</p>
+<p>The reason that $0.1 + 0.2 \neq 0.3$ is that nether $0.1$ nor $0.2$ can be represented <em>exactly</em> in binary. This means that when performing calculations with them, there is some rounding that needs to be introduced, resulting in errors in the calculations. While these errors are often very small, they can cause issues with computing logic when checking values.</p>
+<h4 id="accumulating-error">Accumulating Error</h4>
+<p>In this example, we chain together several floating point calculations.</p>
+<pre class="hljs"><code><div>: c = <span class="hljs-number">0.</span>
+: <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
+:    c += <span class="hljs-number">1</span>/<span class="hljs-number">100</span>
+</div></code></pre>
+<p>We expect the value here to be $c=1$, as the sum of $100$ hundredths. However, if you print the value of $c$, you will see that there it is a little over $1$. Executing the same loop but with $1,000$ iterations of <code>c += 1/1000</code> will give a different result, but still not quite 1. Try with $10,000$ iterations, and with $100,000$, and see how the result is never exactly $1$. You can see why this might be a problem when designing AI systems.</p>
+<h4 id="divide-by-zero">Divide by Zero</h4>
+<p>Below is an example of unexpected behaviour as a result of floating point precision. As a rule, division by zero should not be possible: any number divided by zero is undefined. Some languages handle this with exceptions and errors, some with not-a-number (<code>NaN</code>) values.</p>
+<p>By default, Python will raise an <code>ZeroDivisionError</code> exception:</p>
+<pre class="hljs"><code><div>: <span class="hljs-number">2</span>/<span class="hljs-number">0</span>
+ZeroDivisionError
+</div></code></pre>
+<p>However, if we divide by a not-quite-zero value, no exception is raised. Instead, we are returned a value that is unexpected.</p>
+<pre class="hljs"><code><div>: d = <span class="hljs-number">0.1</span> + <span class="hljs-number">0.2</span> - <span class="hljs-number">0.3</span>  <span class="hljs-comment"># this should be 0.0</span>
+: <span class="hljs-number">2</span>/d
+</div></code></pre>
+<p>Without proper handling, issues such as this could have cause havoc with systems.</p>
+<h4 id="exercise-close-enough">Exercise: Close Enough</h4>
+<blockquote>
+<p>If we can't trust our numbers to be accurate, how can we check our results are correct? How might we implement the concept of &quot;close enough&quot;?</p>
+</blockquote>
+<h3 id="built-in-data-structures">Built-in Data Structures</h3>
+<p>There are four built in data structures in Python. These are the building blocks for most, if not all, Python-built systems. Each has its own features and merits, and some will be more familiar than others.</p>
+<p>The four built-in data structures in Python are:</p>
+<ul>
+<li>lists, e.g. <code>[1,2,3,4]</code></li>
+<li>tuples, e.g. <code>(a,b)</code></li>
+<li>sets, e.g. <code>{'a','b','c'}</code></li>
+<li>dictionaries, e.g. <code>{'a':1, 'b':2}</code></li>
+</ul>
+<p>Each data structure has different properties, an overview of which is shown in the table below.
+It indicates whether a data structure is</p>
+<ul>
+<li>ordered, i.e. iterating through it will return the same sequence each time</li>
+<li>indexable, i.e. values can be accessed by some index</li>
+<li>mutable, i.e. it can be changed after it has been created</li>
+<li>and whether it allows duplicates, i.e. if the same value or instance (of an object) can occur more than once</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Ordered</th>
+<th>Indexable</th>
+<th>Mutable</th>
+<th>Allows duplicates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>tuple</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>dict</code></td>
+<td>Yes</td>
+<td>By key</td>
+<td>Yes</td>
+<td>Values only</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>We will cover the basics in the next sections. If you want to read in depth on what you can with the different inbuilt data structures, you can read about it <a href="https://docs.python.org/3.11/tutorial/datastructures.html">in the Python doc tutorial</a>.</p>
+</blockquote>
+<h4 id="lists">Lists</h4>
+<p>Lists are probably the most common data you will encounter when working with Python. They are the most versatile, ensuring order, indexability, and mutablity. A list does not need to contain elements of a single type, and may contain multiple instances of the same value or instance. This versatility gives few inherent guarantees about the data contained within, however.</p>
+<h5 id="indexing">Indexing</h5>
+<p>Lists can be indexed using the <code>[]</code>, with the first element of a list indexed at <code>0</code>. This will be familiar to you from other programming languages.</p>
+<p>In Python, it is also possible to use <strong>negative indexing</strong>, to index from the end of a list. For example, for a list <code>el</code>, while <code>el[0]</code> is the <em>first</em> element; <code>el[-1]</code> is the <em>last</em>. You can keep decrementing to index from the back.</p>
+<p>Try the following operations in <code>ipython</code> to ensure you are familiar with list indexing.</p>
+<pre class="hljs"><code><div>: el = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
+: el[<span class="hljs-number">0</span>]
+: el[<span class="hljs-number">1</span>]
+: el[<span class="hljs-number">-1</span>]
+: el[<span class="hljs-number">-2</span>]
+: el[-len(el)]
+</div></code></pre>
+<blockquote>
+<p>The function <code>len()</code> returns the <em>length</em> (i.e. the number of elements) of a data structure</p>
+</blockquote>
+<p>We can also use indexing to change the value of an element:</p>
+<pre class="hljs"><code><div>: el[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+: el
+</div></code></pre>
+<p>It is also possible to index &quot;slices&quot; of a list, i.e. multiple values within a range of indexes. To slice a list, you use the <code>:</code> with the first and last index of the range you want.</p>
+<p>For example,</p>
+<pre class="hljs"><code><div>: el[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>]
+</div></code></pre>
+<p>As you can see, this has given us the equivalent of <code>[el[1], el[2], el[3]]</code>. By default, if you do not include one, the first index will be <code>0</code>, e.g. <code>el[:4]</code> will give the first four elements of a list. If you don't include a last index, it will include every element to the end of the list, e.g. <code>el[1:]</code> will return all but the first element of the list.</p>
+<p>You can also use negative indexing in this, e.g. <code>el[:-3]</code> returns all but the last three elements of a list. Likewise, you can add no indexes, <code>el[:]</code> which will return a <em>copy</em> of the list <code>el</code>.</p>
+<h5 id="appending-and-concatenating-lists">Appending and concatenating lists</h5>
+<p>Sometimes when we have a list, we want to expand it. Unlike arrays in other languages, we do not need to create a new list when we want to add a value. We can use the <code>append()</code> method to add a new value to the end of a list:</p>
+<pre class="hljs"><code><div>: el.append(<span class="hljs-number">6</span>)
+: el[<span class="hljs-number">-1</span>]
+</div></code></pre>
+<p>If we want to concatenate two lists, we have a few options. The first is to simply iterate through one of them and add each element to the other list:</p>
+<pre class="hljs"><code><div>: a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+: b = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]
+: <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> b:
+:     a.append(b)
+: a
+</div></code></pre>
+<p>This, of course, is quite a naive approach and uses more lines of code than is really necessary.</p>
+<p>If you want to extend an array with the elements of another, you can use the <code>extend()</code> method, which is similar to <code>append()</code> but takes a list (or other iterable data structure) as input.</p>
+<pre class="hljs"><code><div>: a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+: b = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]
+: a.extend(b)
+: a
+</div></code></pre>
+<p>An alternative, if you are creating a new list from two lists, you can use the <code>*</code> operator to &quot;unpack&quot; the lists:</p>
+<pre class="hljs"><code><div>: a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]
+: b = [<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]
+: [*a, *b]
+</div></code></pre>
+<p>This essentially works by indicating with <code>*</code> iterating through elements of the variable when explicitly defining the list.</p>
+<blockquote>
+<p><strong>It's important to familiarise yourself with the <code>*</code> operator for unpacking iterable data structures, as it will appear often in the labs and tutorials.</strong></p>
+</blockquote>
+<blockquote>
+<p><em>It is also possible to concatenate two lists with the <code>+</code> operator, but I don't recommend this because it can become confusing. If you are using NumPy, for example, <code>+</code> will add the values of the lists instead. This is similar to behaviour in other languages.</em></p>
+</blockquote>
+<h5 id="list-comprehension">List Comprehension</h5>
+<p>As we have seen the tutorial, we can create data structures using <code>for</code>. This essentially allows us to create a list (or other data structure) from another iterable data structure.</p>
+<p>Consider the following, where we want to create list of the squares of numbers from 0 to 9:</p>
+<pre class="hljs"><code><div>: el = []
+: <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+:   el.append(i**<span class="hljs-number">2</span>)
+: el
+</div></code></pre>
+<p>Here we have created an empty list and added the elements as we iterate threough the numbers 0-9.</p>
+<blockquote>
+<p>The <code>range()</code> method simply creates an iterable sequence of numbers from 0 to 10 (not including 10). It is commonly used in <code>for</code> loops. If we wanted to turn it into a list object, we need to wrap it in a <code>list</code> constructor, e.g. <code>list(range(10))</code>. Either way, we can iterate through it.</p>
+</blockquote>
+<p>We streamline this by creating it inine using list comprehension:</p>
+<pre class="hljs"><code><div>: el = [i**<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)]
+: el
+</div></code></pre>
+<p>This is an effective way to create new lists based on some function, avoiding <code>for</code> loops. It is also possible nest loops within a list comprehension (and also create lists of lists). See below, the truth table for $P$ and $Q$:</p>
+<pre class="hljs"><code><div>: TF = [<span class="hljs-literal">True</span>, <span class="hljs-literal">False</span>]
+: [p <span class="hljs-keyword">and</span> q <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> TF <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> TF]
+</div></code></pre>
+<h5 id="exercise-do-it-in-reverse">Exercise: Do it in reverse</h5>
+<blockquote>
+<p>Implement a function that takes a list and returns a new list that has the same elements but in reverse.</p>
+</blockquote>
+<h4 id="tuples">Tuples</h4>
+<p>The tuple is another common data structure. Like lists, tuples can be indexed and sliced. They are also ordered. However, unlike lists, tuples are mutable. This means they cannot be changed, and nor can the values within change. It is not possible to add to, or extend a tuple.</p>
+<p>To create a tuple, we use the round brackets <code>(</code> <code>)</code> with elements seperated by a comma. For example:</p>
+<pre class="hljs"><code><div>: t = (<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"a"</span>)
+: t
+</div></code></pre>
+<blockquote>
+<p>A single value or variable in <code>()</code> is not a tuple, unless a <code>,</code> included, e.g. <code>(0,)</code></p>
+</blockquote>
+<p>It is possible to index a tuple to get elements in the same way as <a href="#indexing">indexing lists</a> including negative indexing and slicing. However, it is not possible to change the value of an indexed element.</p>
+<h5 id="packing-and-unpacking">Packing and unpacking</h5>
+<p>In reality, the brackets are optional. Python will be default pack any set of comma separated into a tuple if they are not otherwise specified (e.g. in a <code>set</code> or <code>list</code>).</p>
+<pre class="hljs"><code><div>: t = <span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>
+: t
+</div></code></pre>
+<p>We can also <em>unpack</em> a tuple into variables in the assignment. For example, here we unpack the two variables of <code>t</code> into <code>a</code> and <code>b</code>.</p>
+<pre class="hljs"><code><div>: a, b = t
+: a
+: b
+</div></code></pre>
+<p>It's also possible to pack and define variables in the same expression. For example:</p>
+<pre class="hljs"><code><div>: t = a, b = <span class="hljs-string">"one"</span>, <span class="hljs-string">"two"</span>
+</div></code></pre>
+<blockquote>
+<p>Note that <code>t</code> is only a copy of <code>(a,b)</code> and if we change the values of either <code>a</code> or <code>b</code>, this will <strong>not</strong> change <code>t</code>.</p>
+</blockquote>
+<p>It's also possible to use the <code>*</code> operator to pack or unpack within method inputs or constructors. For example, the following method packs an arbitrary number of inputs into the tuple <code>args</code>.</p>
+<pre class="hljs"><code><div>: <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mymethod</span><span class="hljs-params">(*args)</span>:</span>
+:     print(len(args), args)
+: mymethod(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-string">"a"</span>,<span class="hljs-string">"b"</span>)
+</div></code></pre>
+<h5 id="exercise-tuple-packing">Exercise: Tuple Packing</h5>
+<blockquote>
+<p>What does the following method definition do?</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">doeswhat</span><span class="hljs-params">(a, b, *args)</span>:</span>
+    <span class="hljs-keyword">return</span> [a <span class="hljs-keyword">and</span> b <span class="hljs-keyword">or</span> c <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> args] 
+</div></code></pre>
+<h5 id="zipping">Zipping</h5>
+<p>Sometimes we have multiple iterable data structures, such as lists, that we want to index through. One option is to create an index <code>i</code> the length of the lists and index them when iterating. However, the <code>zip</code> function allows us to index iterate through both at the same time:</p>
+<pre class="hljs"><code><div>: <span class="hljs-keyword">for</span> i,j <span class="hljs-keyword">in</span> zip([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]):
+:     print(i, j, i + j)
+</div></code></pre>
+<p>The method <code>zip</code> creates a sequence of tuples of elements at the same index, which we can unpack in the loop.</p>
+<p>It is possible to assign zipped lists to a variable, essentially resulting in a list of tuples represneting pairs of elements of each list. We can also <em>unzip</em> this by expanding the list again and using zip. The outcome will be a tuple of two lists (our original input), which we unpack to variables <code>a</code> and <code>b</code>.</p>
+<pre class="hljs"><code><div>: el = [*zip([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>])]  <span class="hljs-comment"># unpack output of zip into list </span>
+: el
+: a, b = zip(*el)  <span class="hljs-comment"># unzip el</span>
+: a
+: b
+</div></code></pre>
+<h4 id="sets">Sets</h4>
+<p>We covered the mathematical concept of sets in the tutorial and saw how we can use them in Python.</p>
+<p>Unlike other data structures, Python sets don't allow duplicate elements. The are also unordered and we therefore cannot index them. This is because sets represent a collection, but not a sequence. We can check if an element is part of a set, and perform set operations and relation checks on them, but they are not suitable for cases where we need to index. It is possible, however, to iterate through them, but the order is not predetermined.</p>
+<h5 id="operations">Operations</h5>
+<p>Review this week's tutorial for how Python sets related to their mathematical counterparts. We will recap by exploring a few operations.</p>
+<p>For example, we can take the union of two sets using the <code>|</code> or <code>or</code> operators, which gives us a new set with all elements that are in either set.</p>
+<p>We can also take the intersection using <code>&amp;</code> or <code>and</code>, which gives us the set of values only in both.</p>
+<pre class="hljs"><code><div>: A = {<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>}
+: B = {<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'e'</span>,<span class="hljs-string">'f'</span>}
+: A | B  <span class="hljs-comment"># union (also A or B)</span>
+: A &amp; B  <span class="hljs-comment"># intersection (also A and B)</span>
+</div></code></pre>
+<p>We also saw in the tutorial checks such as subsets and elements. There is a lot of overlap in functionality, for example the <code>in</code> keyword can also be used in tuples and lists to check membership.</p>
+<h5 id="exercise-set-operations">Exercise: Set operations</h5>
+<blockquote>
+<p>What is the functionality of <code>-</code> and <code>^</code> on two sets <code>p</code> and <code>q</code>, e.g. <code>p - q</code> and <code>p ^ q</code>?</p>
+</blockquote>
+<h4 id="dictionarys">Dictionarys</h4>
+<p>The final common data structure in Python is the dictionary, or dict. A dictionary can be thought of as a <em>set</em> of &quot;keys&quot; that map to some value. The keys set exhibits many of the features of a set, essentially they are mutable, and contain only unique elements. Unlike a Python set, however, dictionarys do have order. However this is generally not relied upon in day-to-day use.</p>
+<p>The values that can be contained in a dictionary may be of any time, and do not have to be unique. A dictionary is indexed using its keys. It's not possible to slice or use negative indexes (unless that negative number is a key...) to index a dictionary. Keys can be any <em>hashable</em> type, which includes most objects, as well as tuples, but not lists or sets.</p>
+<p>Dictionaries are created with the <code>{key:value}</code> syntax, for example</p>
+<pre class="hljs"><code><div>: d = {<span class="hljs-string">'a'</span>:<span class="hljs-number">1</span>, <span class="hljs-string">'b'</span>:<span class="hljs-number">2</span>, <span class="hljs-string">'c'</span>:<span class="hljs-number">3</span>}
+: d
+: d[<span class="hljs-string">'a'</span>]
+</div></code></pre>
+<p>Dictionaries are mutable, and you can both change the elements and add new ones by indexing. If the key doesn't exist, indexing and assigning will add new key, value pair.</p>
+<pre class="hljs"><code><div>: d[<span class="hljs-string">'d'</span>] = <span class="hljs-number">3</span>
+</div></code></pre>
+<p>If you try to access (rather than assign to) a key that doesn't exist in the dictionary, an error will be raised.</p>
+<p>To create an empty dictionary, you can use <code>{}</code>, similar to how an empty list <code>[]</code> and empty tuple <code>()</code> are created. To create an empty set, use <code>set()</code>.</p>
+<pre class="hljs"><code><div>: d = {}
+: d[<span class="hljs-string">'a'</span>] = <span class="hljs-number">1</span>
+: d
+</div></code></pre>
+<h5 id="dictionary-comprehension">Dictionary Comprehension</h5>
+<p>Like lists, tuples and sets, it's possible to create a dictionary using the comprehension mechanic.</p>
+<p>As dictionaries require a key and value, this is often achieved using <code>zip</code> to iterate through two iterable data structures. For example, we create a dictionary from a set of keys and list of values.</p>
+<pre class="hljs"><code><div>: {k:v <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> zip({<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>}, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])}
+</div></code></pre>
+<h5 id="iterating">Iterating</h5>
+<p>As we don't have a numeric sequence to access, we must index the list from keys. We can access the set of keys or list of values manually, but this will decouple the two outside of the dictionary.</p>
+<pre class="hljs"><code><div>: set(d.keys())     <span class="hljs-comment"># explicitly convert type</span>
+: list(d.values())  <span class="hljs-comment"># explicitly convert type</span>
+</div></code></pre>
+<p>Assessing these can be useful to see, for example, whether a key already exists, e.g. <code>x in d.keys()</code>.</p>
+<p>To loop through key, value pairs, we need to use <code>d.items()</code> which will iterate through tuples of keys and values (which we can unpack)</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> d.items():
+    print(k, v)
+</div></code></pre>
+<p>If you interate through the dictionary variable directly, you will only recieve the keys e.g.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> d:
+    print(k, d[k])
+</div></code></pre>
+<h5 id="exercise-reversing-key-value-pairs">Exercise: Reversing Key-Value Pairs</h5>
+<blockquote>
+<p>Implement a function that, when given a dictionary, creates a new dictionary where the values are now the keys, and the keys now the values.</p>
+</blockquote>
+<h2 id="objected-oriented-programming">Objected Oriented Programming</h2>
+<blockquote>
+<p><strong>You will use the <code>co2114_lab01.py</code> file and the <code>python</code> command for this part of the worksheet.</strong> You may use IPython and import modules if you prefer.</p>
+</blockquote>
+<p>Object oriented programming is the computer programming paradigm that organises software in a hierarchy of data and objects. Python is a language that supports the use of object object oriented programming.</p>
+<p>Objects are conceptual data structures that have attributes, properties and methods. An instance of an object can have its own internal values, with the type of that instance being a specific &quot;class&quot; of object.</p>
+<blockquote>
+<p>For a extensive tutorial on classes in Python, you can read up on it in the <a href="https://docs.python.org/3.11/tutorial/classes.html">Python docs tutorial</a>.</p>
+</blockquote>
+<h3 id="python-classes">Python Classes</h3>
+<p>Python classes are the template for objects defined in Python. Classes have methods and attributes, and can be instantiated to create objects.</p>
+<p>The core things to remember about using classes in Python are the following concepts:</p>
+<ul>
+<li><code>self</code></li>
+<li><code>__init__()</code></li>
+<li><code>__repr__()</code> (this is arguably less important, but we will make use of it a lot).</li>
+</ul>
+<p>The <code>self</code> keyword is used by an object to reference itself. Because a class may have static attributes and methods, the <code>self</code> keyword is used to tell an object to use its own copy of attributes and methods. This allows it to take on a unique value that can be attached to a variable.</p>
+<p>The <code>__init__()</code> method acts as the constructor. This is called when an object is created, and can be used to set up any specific attributes, including from arguments passed to the constructor.</p>
+<p>The <code>__repr__()</code> is perhaps less common than <code>self</code> and <code>__init__()</code> but is used to define the <em>string representation</em> of a class. It will allow us to return a string representing how we want to view our object, specifying what information is important. This will be called when, e.g. <code>print()</code> is called on our object.</p>
+<p>We define a class in Python using the <code>class</code> keyword, within which we can specify methods and attributes. Consider the definition of a class <code>MyClass</code> below:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>:</span>
+    <span class="hljs-string">"""docstring explaining class"""</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, *args)</span>:</span>
+        <span class="hljs-string">""" constructor """</span>
+        self.args = args  <span class="hljs-comment"># assign input args to object attribute args</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span> -&gt; str:</span>
+        <span class="hljs-string">""" string representation for print() """</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"myclass (<span class="hljs-subst">{self.args}</span>)"</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myfunction</span><span class="hljs-params">(self, value)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+        <span class="hljs-string">""" function to change object, returns nothing """</span>
+        self.value = value  <span class="hljs-comment"># set attribute value as input value</span>
+</div></code></pre>
+<p>Here we have a constructor, defined in <code>__init__</code> that takes in a (arbitrary) number of input arguments, which we assign to the object's attribute <code>args</code>. We use <a href="#packing-and-unpacking">tuple packing</a> to collect the inputs.</p>
+<p>The <code>__repr__</code> method is defined to return a string representation.</p>
+<blockquote>
+<p>We use a format string <code>f&quot;...&quot;</code> which allows us to put variables within a string using the <code>{ }</code> characters, this will evaluate the Python expression in the braces and convert it to a string inside the outer string.</p>
+</blockquote>
+<p>We also define the class method &quot;myfunction&quot; that allows us to assign a value to an abitrary attribute called <code>value</code>. Note that <code>value</code> doesn't need to be defined, or exist before we create it in this method.</p>
+<blockquote>
+<p><strong>In all cases, we include the keyword <code>self</code>, which allows us to access the current object. This should be the first argument in any object method.</strong></p>
+</blockquote>
+<blockquote>
+<p><em>Note also that I am using type identifiers here, e.g. &quot;<code>-&gt; str</code>&quot; to indicate the output type. These are just decorators to explain to the reader what the expected output type <em>should be</em>. They do not enforce type, nor change the behaviour of the method.</em></p>
+</blockquote>
+<p>You can try instantiating the class using <code>MyClass()</code>. In the code below we will create an instance of <code>MyClass</code> with the argument <code>0</code>. Execute the following code and play around with the class attributes.</p>
+<pre class="hljs"><code><div>myclass = MyClass(<span class="hljs-number">0</span>)
+print(myclass)
+print(type(myclass))
+myclass.myfunction(<span class="hljs-number">2</span>)
+print(myclass.value)
+</div></code></pre>
+<blockquote>
+<p><strong>You can impement this class inside <code>co2114_lab01.py</code>, provided on Blackboard. You can write script code in <code>main()</code> or by calling <code>from co2114_lab01 import MyClass</code> in IPython</strong></p>
+</blockquote>
+<h4 id="inheritance">Inheritance</h4>
+<p>One of the main features in Python is the concept of inheritance. This allows classes to be abstracted, and to create special cases of them. Consider the following set of class definitions:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bird</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-params">(Animal)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Duck</span><span class="hljs-params">(Bird)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</div></code></pre>
+<p>Here, we have created a class <code>Animal</code>. We have also created a class <code>Bird</code> that is a <em>subclass</em> of <code>Animal</code>. This means that we can consider that any instance of a <code>Bird</code> is also an <code>Animal</code>, <em>but</em> not every instance of an <code>Animal</code> is a <code>Bird</code>.</p>
+<p>We expand this further by creating a class <code>Dog</code> that also inherits from <code>Animal</code>, and a class <code>Duck</code> that inherits from <code>Bird</code>.</p>
+<p>Using Python, we can create a <code>Dog</code> object and a <code>Duck</code> object and look at their types.</p>
+<pre class="hljs"><code><div>dog = Dog()
+duck = Duck()
+
+print(isinstance(dog, Dog))
+
+print(isinstance(dog, Animal))
+print(isinstance(duck, Animal))
+
+print(isinstance(dog, Bird))
+print(isinstance(duck, Bird))
+</div></code></pre>
+<p>The <code>ininstance()</code> method checks if the first argument is an object that is an instance of the second argument (which is a class type). We can see that the <code>dog</code> is an <code>Animal</code> but not a <code>Bird</code>, and the duck is both an <code>Animal</code> and <code>Bird</code>.</p>
+<blockquote>
+<p><strong>Subclasses by default inherit all methods and attributes of their superclass unless they are explitly overwritten.</strong></p>
+</blockquote>
+<h5 id="calling-super">Calling <code>super()</code></h5>
+<p>When overwriting a method in your subclasses, by default it will not call the equivalent method in the super class. However, it is possible to call methods from the superclass using the <code>super()</code> method.</p>
+<p>See below, an example where we override the constructor in our subclass. We can call the <code>super().__init__()</code> within the <code>__init__()</code> method of the subclass to execute the super constructor too.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SuperClass</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">"Creating object"</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span><span class="hljs-params">(SuperClass)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, args)</span>:</span>
+        <span class="hljs-comment"># [...]</span>
+        super().__init__()
+</div></code></pre>
+<h3 id="exercise-queues-and-stacks">Exercise: Queues and Stacks</h3>
+<p>Consider the following definitions of the data structures &quot;queue&quot; and &quot;stack&quot;.</p>
+<blockquote>
+<p><strong><em>QUEUE</em></strong>
+A queue is a data structure that stores a collection of elements in order. The features of a queue are that you can either <em>push</em> a value to the end of the queue, or <em>pop</em> a value from the front. When <em>pop</em> is called, the value is returned and removed from the queue. This is an example of <em>first in, first out</em> (FIFO).</p>
+</blockquote>
+<blockquote>
+<p><strong><em>STACK</em></strong>
+A stack is a similar data structure to a queue, except that the <em>pop</em> method returns the value at the end of the stack. This is an example of <em>last in, first out</em> (LIFO).</p>
+</blockquote>
+<p>Create two classes, <code>Queue</code> and <code>Stack</code>, that inherit the <code>AbstractDataType</code> class defined below, and implement a queue and stack, respectively.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractDataType</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        self.data = []
+        self._length = <span class="hljs-number">0</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> str(self.data)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">len</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._length
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">push</span><span class="hljs-params">(self, x)</span>:</span>
+        <span class="hljs-built_in">NotImplemented</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pop</span><span class="hljs-params">(self, x)</span>:</span>
+        <span class="hljs-built_in">NotImplemented</span>
+</div></code></pre>
+<p>In the two new classes, <code>Queue</code> and <code>Stack</code>, you will only need to implement to methods <code>push</code> and <code>pop</code>. You should perform testing to ensure your implementations are correct.</p>
+<p>(<strong>Advanced</strong>) Expand the functions of your Queue or Stack such that it can only contain <em>unique</em> values</p>
+
+</body>
+</html>

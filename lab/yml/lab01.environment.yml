@@ -1,0 +1,7 @@
+name: co2114_lab01
+dependencies:
+  - numpy
+  - scipy
+  - ipython
+  - jupyter
+  - pip
