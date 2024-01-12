@@ -7,7 +7,7 @@ import time
 from datetime import datetime
 from collections.abc import *
 
-from .colors import (COLOR_BLACK, COLOR_WHITE)
+import colors
 
 ## GLOBALS
 DEFAULT_FPS:int = 30  # Render frames per second
@@ -66,7 +66,7 @@ class Engine(BaseEngine):
             self.update()  # run main process update
     def _render(self):
         """ Render loop internals """
-        self.screen.fill(COLOR_BLACK)  # write black to buffer
+        self.screen.fill(colors.COLOR_BLACK)  # write black to buffer
         self.render()  # run main render loop
         pygame.display.flip()  # flip buffer
     def update(self):
@@ -111,7 +111,7 @@ class ClockApp(App):
         renderTime = self._font.render(
             self.t.strftime("%H:%M:%S.%f")[:-5],
             True,
-            COLOR_WHITE)
+            colors.COLOR_WHITE)
         rect = renderTime.get_rect()
         self.screen.blit(
             renderTime, 
