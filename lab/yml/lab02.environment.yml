@@ -7,3 +7,5 @@ dependencies:
   - jupyter
   - pip
   - conda-forge::pygame
+  - pip:
+    - "-e git+https://github.com/wilocw/co2114-codebase.git@2024#egg=agent&subdirectory=lab/src/2"

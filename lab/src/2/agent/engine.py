@@ -7,7 +7,11 @@ import time
 from datetime import datetime
 from collections.abc import *
 
-import colors
+if __name__ == "__main__":
+    from agent import colors
+    COLOR_BLACK, COLOR_WHITE = colors.COLOR_BLACK, colors.COLOR_WHITE
+else:
+    from .colors import COLOR_BLACK, COLOR_WHITE
 
 ## GLOBALS
 DEFAULT_FPS:int = 30  # Render frames per second
@@ -19,6 +23,7 @@ class BaseEngine:
         print(f"Creating instance of {self.name}")
         pygame.init()
         self.screen = pygame.display.set_mode(self.size)
+        pygame.display.set_caption(f"{self.name} (co2114)")
         self._font = pygame.font.SysFont(None, 28)  # Default system font
         self._running:bool = True
     @property
@@ -43,7 +48,9 @@ class BaseEngine:
 
 class Engine(BaseEngine):
     """Engine"""
-    def __init__(self, fps:int=DEFAULT_FPS, lps:int=DEFAULT_LPS):
+    def __init__(self, fps:int=DEFAULT_FPS, lps:int=DEFAULT_LPS, dims=None):
+        if dims and isinstance(dims, Iterable) and len(dims)==2:
+            self.size = self.width, self.height = dims
         super().__init__()
         self._framerate:int = fps if isinstance(fps, int) else DEFAULT_FPS
         self._looprate:int = lps if isinstance(lps, int) else DEFAULT_LPS
@@ -66,7 +73,7 @@ class Engine(BaseEngine):
             self.update()  # run main process update
     def _render(self):
         """ Render loop internals """
-        self.screen.fill(colors.COLOR_BLACK)  # write black to buffer
+        self.screen.fill(COLOR_BLACK)  # write black to buffer
         self.render()  # run main render loop
         pygame.display.flip()  # flip buffer
     def update(self):
@@ -111,7 +118,7 @@ class ClockApp(App):
         renderTime = self._font.render(
             self.t.strftime("%H:%M:%S.%f")[:-5],
             True,
-            colors.COLOR_WHITE)
+            COLOR_WHITE)
         rect = renderTime.get_rect()
         self.screen.blit(
             renderTime, 
