@@ -1,0 +1,9 @@
+name: co2114_lab02
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - ipython
+  - jupyter
+  - pip
+  - conda-forge::pygame
