@@ -48,3 +48,19 @@ class RationalAgent(Agent):
         if program is None or not isinstance(program, Callable):
             raise ValueError("No valid program provided")
         self.program = program
+
+
+class ModelBasedAgent(RationalAgent):
+    def __init__(self):
+        super().__init__(self.program)
+
+    def program(self, percepts):
+        raise NotImplementedError
+
+## State
+class State(Thing):
+    def __repr__(self):
+        return self.__class__.__name__
+    
+class Bump(State):
+    pass

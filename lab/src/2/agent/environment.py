@@ -30,9 +30,10 @@ class BaseEnvironment:
         print(f"{self}: Running for {steps} iterations.")
         for i in range(steps):
             if self.is_done:
-                print(f"{self}: Stopping after {i} of {steps} iterations.")
+                print(f"{self}: Simulation complete after {i+1} of {steps} iterations.")
                 return
             self.step()
+        print(f"{self}: Simulation complete after {steps} of {steps} iterations.")
 
 class Environment(BaseEnvironment):
     """ Environment
@@ -61,6 +62,13 @@ class Environment(BaseEnvironment):
         NotImplemented
 
     def add_thing(self, thing:Thing, location=None):
+        if isinstance(thing, type):
+            if issubclass(thing, Thing):
+                thing = thing()
+            else:
+                print(f"{self}: Tried to add {thing} but its not a Thing.")
+                return
+
         if not isinstance(thing, Thing):
             print(f"{self}: Tried to add {thing} but its not a Thing.")
             return
@@ -107,6 +115,7 @@ class XYEnvironment(Environment):
         self.color = self.DEFAULT_BG
         self.width, self.height = width, height
         self.observers = []
+        self.bumped = set()
         self.x_start, self.x_end = 0, width
         self.y_start, self.y_end = 0, height
 
@@ -166,6 +175,11 @@ class XYEnvironment(Environment):
         y = random.randint(self.y_start, self.y_end)
         self.add_thing(thing, (x,y))
 
+    def add_thing(self, thing:Thing, *args, **kwargs):
+        if isinstance(self, Agent):
+            thing.bump = False  # give capacity to be bumped
+        super().add_thing(thing, *args, **kwargs)
+
 class GraphicEnvironment(XYEnvironment):
     def run(self, graphical=True, steps=100, **kwargs):
         if graphical:
@@ -192,6 +206,7 @@ class EnvironmentApp(App):
         self.thing_font = pygame.font.SysFont("segoe-ui-symbol", 28)
         self.counter = -1
         self.steps = steps
+        self._flag = True
         
     def _fit_to_environment(self):
         """ Fit width and height ratios to match environment """
@@ -216,6 +231,9 @@ class EnvironmentApp(App):
         if self.counter < self.steps and not self.environment.is_done:
             self.environment.step()
             self.counter += 1
+        elif self._flag:
+            print(f"{self.environment}: Simulation complete after {self.counter} of {self.steps} iterations.")
+            self._flag = False
     
     def render(self):
         self.screen.fill(self.environment.color)
