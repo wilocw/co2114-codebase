@@ -1,10 +1,13 @@
 """ENVIRONMENT.PY
     This contains code for agent environments
 """
+import warnings
 import math
 import random
-import pygame
 from collections.abc import *
+
+with warnings.catch_warnings(action="ignore"):
+    import pygame
 
 from .engine import App
 from .colors import COLOR_BLACK, COLOR_WHITE

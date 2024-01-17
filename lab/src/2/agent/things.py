@@ -5,6 +5,7 @@ Contains class definitions for some things
 from collections.abc import *
 
 class Thing:
+    """The base class for all things"""
     def __repr__(self):
         return "❓"
 

@@ -1,11 +1,13 @@
 """ENGINE.PY
 This contains the code for the base engine
 """
-
-import pygame
+import warnings
 import time
 from datetime import datetime
 from collections.abc import *
+
+with warnings.catch_warnings(action="ignore"):
+    import pygame
 
 if __name__ == "__main__":
     from agent import colors
@@ -92,6 +94,7 @@ class App(Engine):
 
 
 class EmptyApp(App):
+    """ Dummy Class for testing """
     pass
 
 #######################
