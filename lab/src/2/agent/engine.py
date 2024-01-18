@@ -22,7 +22,7 @@ DEFAULT_LPS:int = 2   # Environment steps per second
 class BaseEngine:
     size = width, height = 600, 400
     def __init__(self):
-        print(f"Creating instance of {self.name}")
+        print(f"Creating instance of {self.name} ({self.__class__.__name__})")
         pygame.init()
         self.screen = pygame.display.set_mode(self.size)
         pygame.display.set_caption(f"{self.name} (co2114)")
@@ -87,10 +87,17 @@ class Engine(BaseEngine):
 
 
 class App(Engine):
+    def __init__(self, *args, name=None, **kwargs):
+        if name is not None:
+            self._name = name
+        super().__init__(*args, **kwargs)
     @classmethod
     def run_default(App):
         app = App()
         app.run()
+    @property
+    def name(self) -> str:
+        return self._name if hasattr(self, "_name") else super().name
 
 
 class EmptyApp(App):

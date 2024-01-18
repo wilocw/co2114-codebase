@@ -30,7 +30,7 @@ class BaseEnvironment:
         print(f"{self}: Running for {steps} iterations.")
         for i in range(steps):
             if self.is_done:
-                print(f"{self}: Simulation complete after {i+1} of {steps} iterations.")
+                print(f"{self}: Simulation complete after {i} of {steps} iterations.")
                 return
             self.step()
         print(f"{self}: Simulation complete after {steps} of {steps} iterations.")
@@ -112,7 +112,8 @@ class XYEnvironment(Environment):
         if width < 1 or height < 1:
             raise ValueError(f"{self}: dimensions must be greater than zero")
         super().__init__()
-        self.color = self.DEFAULT_BG
+        if not hasattr(self, 'color'):
+            self.color = self.DEFAULT_BG
         self.width, self.height = width, height
         self.observers = []
         self.bumped = set()
@@ -166,6 +167,9 @@ class XYEnvironment(Environment):
         else:
             print(f"Tried and failed to add {thing} to environment")
             return
+        
+        if isinstance(self, Agent):
+            thing.bump = False  # give capacity to be bumped
         super().add_thing(thing, location)
 
         assert thing in self.things_at(location)
@@ -175,15 +179,10 @@ class XYEnvironment(Environment):
         y = random.randint(self.y_start, self.y_end)
         self.add_thing(thing, (x,y))
 
-    def add_thing(self, thing:Thing, *args, **kwargs):
-        if isinstance(self, Agent):
-            thing.bump = False  # give capacity to be bumped
-        super().add_thing(thing, *args, **kwargs)
-
 class GraphicEnvironment(XYEnvironment):
     def run(self, graphical=True, steps=100, **kwargs):
         if graphical:
-            EnvironmentApp(self, steps=steps, **kwargs).run()
+            EnvironmentApp(self, steps=steps, name=f"{self}", **kwargs).run()
         else:
             super().run(steps=steps, **kwargs)
 
