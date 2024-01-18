@@ -7,14 +7,19 @@ from agent.environment import *
 from agent.things import *
 from agent.colors import *
 
+from random import choice, choices
+
 ## Write your class definitions here
+
+
+
 
 
 ## 
 def main(graphical=False):
     """ Main method for running script code """
     # write your non-class code here
-    NotImplemented
+    NotImplemented  # remove this line
 
 
 #########################################################

@@ -56,9 +56,7 @@ class EnergeticDog(BlindDog):
         return ((x,y),(self.location))
 
 class ParkEnvironment(GraphicEnvironment):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.color = COLOR_GREEN_GRASS  # export from agent.colors
+    color = COLOR_GREEN_GRASS  # export from agent.colors
 
     def __repr__(self):
         return "🏞️"  # give it a string representation
