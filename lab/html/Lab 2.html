@@ -377,7 +377,7 @@ code {
 }
 
 </style>
-<link rel="stylesheet" href="file://uol.le.ac.uk/root/staff/home/w/wocw2/My%20Documents/teaching/23%2024/semester%202/co2114/content/labs/template/markdown-pdf.css" type="text/css">
+
 <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
@@ -389,6 +389,20 @@ code {
           : 'default'
     });
   </script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config(
+        {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$','$$']],
+                processEscapes: true
+                },
+            messageStyle: "none"
+        });
+</script>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/0/uol_banner_red.png" alt=""></p>
 <h1 id="co2114br-foundations-in-artificial-intelligence">CO2114<br />Foundations in Artificial Intelligence</h1>
 <h1 id="lab-exercise-2---rational-agents">Lab Exercise 2 - Rational Agents</h1>
@@ -420,7 +434,9 @@ code {
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/rational_agent_diagram.png" alt="Rational Agent"></p>
 <p>We define a rational agent as one that selects an <strong>action</strong> to maximise its <strong>performance measure</strong>, given the evidence it has <strong>perceived</strong> and any built-in <strong>knowledge</strong> it has.</p>
 <p>Where we have a <strong>task environment</strong>, which defines the performance, environment, actuators and sensors, the agent has a program that maps percepts to actions:</p>
-<p>$$\text{program}: percepts \mapsto action$$</p>
+<p>$$
+\text{program}: percepts \mapsto action
+$$</p>
 <p>We can imagine a method such as this in Python, where we have defined a function <code>program</code> that recieves some number of <code>percepts</code>, defined by the task environment, processes them and returns an action.</p>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">program</span><span class="hljs-params">(percepts)</span>:</span>
     <span class="hljs-comment"># implementation</span>
@@ -554,7 +570,9 @@ code {
 </div></code></pre>
 <h4 id="agent-program">Agent Program</h4>
 <p>Finally, we must implement the agent <code>program</code>. The behaviour is defined:</p>
-<p>$$\mathrm{program}: percept \mapsto \begin{cases}\text{<code>clean''} &amp; \text{if } percept \text{ is } dirty\\\text{</code>move''} &amp; \text{otherwise}\end{cases}$$</p>
+<p>$$
+\mathrm{program}: percept \mapsto \begin{cases}clean &amp; \text{if } percept \text{ is } dirty\\ move &amp; \text{otherwise}\end{cases}
+$$</p>
 <p>In Python, we can just use a lambda function to defines this. Since <code>percept</code> is either <code>True</code> or <code>False</code> based on whether the location is dirty, the implementation is straightforward.</p>
 <pre class="hljs"><code><div>program = <span class="hljs-keyword">lambda</span> percept: <span class="hljs-string">"clean"</span> <span class="hljs-keyword">if</span> percept <span class="hljs-keyword">else</span> <span class="hljs-string">"move"</span>
 </div></code></pre>
