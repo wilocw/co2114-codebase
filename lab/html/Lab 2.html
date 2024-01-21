@@ -414,13 +414,27 @@ code {
 <li>Recall the basic agent program from Tutorial 2</li>
 <li>Implement an simple reflex agent in an 2D environment</li>
 </ul>
-<h2 id="getting-started">Getting Started</h2>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#1-getting-started">1. Getting Started</a></li>
+<li><a href="#2-recap-robot-vacuum">2. Recap: Robot Vacuum</a></li>
+<li><a href="#3-taking-a-blind-dog-for-a-walk">3. Creating your First Agent</a></li>
+<li><a href="#exercise-model-based-reflex-agent">Exercise:Model-Based Reflex Agent</a></li>
+</ul>
+<h2 id="1-getting-started">1. Getting Started</h2>
 <p>We will be using Anaconda for this lab.</p>
 <p>You should download the <code>lab02.environment.yml</code> and <code>co2114_lab02.py</code> files and run <strong>Anaconda Prompt</strong>.</p>
 <p>You can create the environment using the <code>conda env create</code> command. This may take several minutes.</p>
 <pre class="hljs"><code><div>&gt; conda env create -f lab02.environment.yml
 </div></code></pre>
-<h3 id="testing-the-environment">Testing the Environment</h3>
+<h3 id="contents">Contents</h3>
+<ul>
+<li><a href="#11-testing-the-environment">1.1 Testing the Environment</a></li>
+<li><a href="#12-rational-agents">1.2 Rational Agents</a></li>
+<li><a href="#13-environments">1.3 Environments</a></li>
+<li><a href="#14-simulations">1.4 Simulations</a></li>
+</ul>
+<h3 id="11-testing-the-environment">1.1 Testing the Environment</h3>
 <p>To test that the environment, you can run the script in test-mode. Simply <strong>activate the <code>co2114_lab02</code> environment</strong> and run the script with the <code>--test</code> flag, as below:</p>
 <pre class="hljs"><code><div>&gt; conda activate co2114_lab02
 &gt; python co2114_lab02.py --<span class="hljs-built_in">test</span>
@@ -430,7 +444,7 @@ code {
 <blockquote>
 <p><strong>If you do not see this, you should check your environment and seek assistance.</strong></p>
 </blockquote>
-<h2 id="rational-agents">Rational Agents</h2>
+<h3 id="12-rational-agents">1.2 Rational Agents</h3>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/rational_agent_diagram.png" alt="Rational Agent"></p>
 <p>We define a rational agent as one that selects an <strong>action</strong> to maximise its <strong>performance measure</strong>, given the evidence it has <strong>perceived</strong> and any built-in <strong>knowledge</strong> it has.</p>
 <p>Where we have a <strong>task environment</strong>, which defines the performance, environment, actuators and sensors, the agent has a program that maps percepts to actions:</p>
@@ -455,13 +469,13 @@ $$</p>
 <pre class="hljs"><code><div>: <span class="hljs-keyword">from</span> agent.things <span class="hljs-keyword">import</span> RationalAgent
 : ?RationalAgent
 </div></code></pre>
-<h2 id="environments">Environments</h2>
+<h3 id="13-environments">1.3 Environments</h3>
 <p>The an agent-based AI problem, the enviornment is the external <strong>context</strong> in which an <strong>agent</strong> operates. The environment includes all factors that influence the agent's <strong>percepts</strong> and <strong>actions</strong>.</p>
 <p>In our implementation of the problem, we define an environment has having as set of unique $things$. The environment should also have at least one $agent$, and every $agent$ are $thing$. The environment the set of $agents$, defined:</p>
 <p>$agents = {x \in things,|,x \text{ is } agent}$</p>
 <p>By definition, $agents \subseteq things$. This allows for agents to potentially interact in multi-agent systems, but for now we will focus on single-agent systems.</p>
 <p>The base implementation of <code>Environment</code> is provided in <code>agents</code>, included in the conda environment. You can import it from the <code>environments</code> submodule, e.g.</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">from</span> agent.environments <span class="hljs-keyword">import</span> Environment
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> agent.environment <span class="hljs-keyword">import</span> Environment
 </div></code></pre>
 <p>Every environment should implement the <code>percept</code> function, which defines the <code>percepts</code> provided to a given agent:</p>
 <pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">percept</span><span class="hljs-params">(agent)</span>:</span>
@@ -477,7 +491,7 @@ $$</p>
 <blockquote>
 <p>We will also be using special environment classes <code>XYEnvironment</code> and <code>GraphicEnvironment</code> in this and future labs. These will encode some structure and graphical functionality to the environments respectively.</p>
 </blockquote>
-<h2 id="simulations">Simulations</h2>
+<h3 id="14-simulations">1.4 Simulations</h3>
 <p>We also need our (software) environment to simulate the behaviour of the agent over time. In this section, we will look at how the simulation works. Most of this is implemented in the <code>agent</code> package backend.</p>
 <p>The simulation will run for a defined number of steps, or until the environment considers itself <em>done</em>. In other words, that there is nothing left to simulate. This acts as an early stopping criteria, equivalent to a <em>goal</em>.</p>
 <p>This behaviour is defined in the method <code>is_done()</code>. The method should check the internal state of the environment, and return the condition of whether it considers it <em>done</em>.</p>
@@ -518,13 +532,19 @@ $$</p>
 <li>receive actions</li>
 <li>execute actions</li>
 </ol>
-<h2 id="recap-vacuum">Recap: Vacuum</h2>
+<h2 id="2-recap-robot-vacuum">2. Recap: Robot Vacuum</h2>
 <p>Recall back to our implementation of the robot vacuum from this week's tutorial. We saw a basic implementation of the <code>Environment</code> and <code>RationalAgent</code> code and implemented a robot vacuum on a dirty floor.</p>
 <p>This section will recap that exercise, and demonstrate its implementation to provide you with familiarity with implementing <code>RationalAgent</code>s and <code>Environment</code>s in the <code>agent</code> package.</p>
 <blockquote>
 <p><strong>All of the code for this section is provided in the <code>co2114_lab02.py</code> file.</strong></p>
 </blockquote>
-<h3 id="dirty-floor-environment">Dirty Floor Environment</h3>
+<h3 id="contents">Contents</h3>
+<ul>
+<li><a href="#21-dirty-floor-environment">2.1 Dirty Floor Environment</a></li>
+<li><a href="#22-vacuum-agent">2.2 Vacuum Agent</a></li>
+<li><a href="#23-simulating">2.3 Simulating</a></li>
+</ul>
+<h3 id="21-dirty-floor-environment">2.1 Dirty Floor Environment</h3>
 <p>Recall that our dirty floor is an environment made up of two locations, indexed with <code>0</code> and <code>1</code>, and that a location may be dirty (<code>True</code>) or clean (<code>False</code>). We are implementing a rational agent to clean the floor.</p>
 <p>Our <code>DirtyFloor</code> class inherits from the <code>agents.environment.Environment</code> class, described above. It has a state, <code>floor</code> that is a list with initial state <code>[False, True]</code>, indicating that the floor is <em>clean</em> at location <code>0</code> and <em>dirty</em> at location <code>True</code>.</p>
 <blockquote>
@@ -555,7 +575,7 @@ $$</p>
 </div></code></pre>
 <p>There are two possible actions that the agent can effect, <code>&quot;move&quot;</code>, where the agent <em>moves</em>, and <code>&quot;clean&quot;</code>, where the agent cleans the current location. The effect on the environment is that this location is no longer dirty, so we set <code>is_dirty[location]</code> to <code>False</code>.</p>
 <p>Next we implemented an agent that has a <code>clean</code> and <code>move</code> behaviour.</p>
-<h3 id="vacuum-agent">Vacuum Agent</h3>
+<h3 id="22-vacuum-agent">2.2 Vacuum Agent</h3>
 <p>We defined the vacuum agent to inherit <code>RationalAgent</code>, starting at location <code>0</code>. We must now implement the actuators, which take the form of methods (called from <code>execute_action</code>).</p>
 <h4 id="actuators">Actuators</h4>
 <p>The first behaviour implemented is <code>clean</code>. This is straightforward, just increases the performance measure:</p>
@@ -576,7 +596,7 @@ $$</p>
 <p>In Python, we can just use a lambda function to defines this. Since <code>percept</code> is either <code>True</code> or <code>False</code> based on whether the location is dirty, the implementation is straightforward.</p>
 <pre class="hljs"><code><div>program = <span class="hljs-keyword">lambda</span> percept: <span class="hljs-string">"clean"</span> <span class="hljs-keyword">if</span> percept <span class="hljs-keyword">else</span> <span class="hljs-string">"move"</span>
 </div></code></pre>
-<h3 id="simulating">Simulating</h3>
+<h3 id="23-simulating">2.3 Simulating</h3>
 <p>We set up the environment and add the agent using the <code>add_agent</code> method, as below</p>
 <pre class="hljs"><code><div>environment = DirtyFloor()  <span class="hljs-comment"># create environment</span>
 vacuum = Vacuum(program)  <span class="hljs-comment"># create agent</span>
@@ -601,11 +621,21 @@ Press enter to start simulation
 <blockquote>
 <p><em>Optionally, you can import the <code>run_vacuum_demo</code> method from <code>co2114_lab02.py</code> in <code>ipython</code> and call <code>run_vaccum_demo()</code></em></p>
 </blockquote>
-<h2 id="taking-a-blind-dog-for-a-walk">Taking a Blind Dog for a Walk</h2>
+<h2 id="3-taking-a-blind-dog-for-a-walk">3. Taking a Blind Dog for a Walk</h2>
 <p>In this section, we will create a simple reflex agent.</p>
 <p>We will mimic the behaviour of a <em>blind</em> dog in a park that contains some food and water. The blind dog cannot see, but if there is food or water at its current location, it will eat or drink it, respectively.</p>
 <p>Our blind dog will need the capacity to <em>eat</em>, <em>drink</em> and <em>move</em>. Our environment will need to provide the information of what is at the current location, and remove any food that is eaten or water that has been drunk.</p>
-<h3 id="editing-co2114lab02py">Editing <code>co2114_lab02.py</code></h3>
+<h3 id="contents">Contents</h3>
+<ul>
+<li><a href="#31-editing-co2114_lab02py">3.1 Editting <code>co2114_lab02.py</code></a></li>
+<li><a href="#32-blind-dog">3.2 Blind Dog</a></li>
+<li><a href="#33-park-environment">3.3 Park Environment</a></li>
+<li><a href="#34-revisiting-the-blind-dog">3.4 Revisiting the Blind Dog</a></li>
+<li><a href="#35-simulate-the-environment">3.5 Simulate the Environment</a></li>
+<li><a href="#36-see-it-run">3.6 See It Run</a></li>
+<li><a href="#37-giving-direction">3.7 Giving Direction</a></li>
+</ul>
+<h3 id="31-editing-co2114lab02py">3.1 Editing <code>co2114_lab02.py</code></h3>
 <p>In this exercise, we will be writing code into the <code>co2114_lab02.py</code> file. Open it in your preferred editor (I use Visual Studio Code, installed on the lab machines), and you should see the following:</p>
 <pre class="hljs"><code><div><span class="hljs-keyword">from</span> agent.environment <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">from</span> agent.things <span class="hljs-keyword">import</span> *
@@ -626,7 +656,7 @@ Press enter to start simulation
 <p>There is some other code below this which defines the robot vacuum demo and handles functionality for running the file as a script.</p>
 <p><strong>You should avoid editting below <code>if __name__ == &quot;__main__&quot;</code> unless you are comfortable with what the code is doing</strong></p>
 </blockquote>
-<h3 id="blind-dog">Blind Dog</h3>
+<h3 id="32-blind-dog">3.2 Blind Dog</h3>
 <p>We are defining the functionality our blind dog. Recall that it should be able to move (in a direction), eat and drink.</p>
 <p>We can inherit from the <code>RationalAgent</code> class to define our <code>BlindDog</code>.</p>
 <p>We can add declarations for methods <code>move</code> which takes a <code>direction</code>; <code>eat</code> which takes a <code>thing</code>; and <code>drink</code> which takes a <code>thing</code>. We will leave their behaviour unimplemented for now, and come back after we have designed the environment.</p>
@@ -642,7 +672,7 @@ Press enter to start simulation
         <span class="hljs-title">NotImplemented</span>
 </span></div></code></pre>
 <p>We also inherited from the <code>Dog</code> class from <code>agent.things</code>. This gives it some visual identity: our blind dog is indeed a dog... Some related info is described in the section <a href="#things">Things</a>, below.</p>
-<h3 id="park-environment">Park Environment</h3>
+<h3 id="33-park-environment">3.3 Park Environment</h3>
 <p>The park environment will be defined as a 2-D environment which can contain things, including agents. Initially, we'll define the <code>ParkEnvironment</code> class as a subclass of <code>XYEnvironment</code>. We'll give it a basic string representation, to identify it in the output logs.</p>
 <blockquote>
 <p><strong>Add the following class definition to your Python file <code>co2114_lab02.py</code>.</strong></p>
@@ -803,7 +833,7 @@ Subclasses:     Obstacle, Food, Water, Animal, Agent
             isinstance(thing, Water)
         <span class="hljs-keyword">for</span> thing <span class="hljs-keyword">in</span> self.things)  <span class="hljs-comment"># or if there isn't any Food or Water</span>
 </div></code></pre>
-<h3 id="revisiting-the-blind-dog">Revisiting the Blind Dog</h3>
+<h3 id="34-revisiting-the-blind-dog">3.4 Revisiting the Blind Dog</h3>
 <p>Now we have our <code>ParkEnvironment</code> set up, which defines the percepts sent to the dog and its allowable actions, we can define those behaviours in the <code>BlindDog</code>.</p>
 <h4 id="moving">Moving</h4>
 <p>The first possible actuator action is to <code>move</code>.</p>
@@ -845,7 +875,7 @@ Subclasses:     Obstacle, Food, Water, Animal, Agent
         <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
     <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
 </div></code></pre>
-<h3 id="simulate-the-environment">Simulate the Environment</h3>
+<h3 id="35-simulate-the-environment">3.5 Simulate the Environment</h3>
 <p>Now we have defined the program environment and agent behaviour. We now want to create our simulation.</p>
 <blockquote>
 <p><strong>Put this code in <code>main()</code> of <code>co2114_lab02.py</code> or import your class definitions in IPython</strong></p>
@@ -914,7 +944,7 @@ Press enter to start simulation
 🏞️: Task environment complete. No further actions.
 🏞️: Stopping after 11 of 20 iterations.
 </div></code></pre>
-<h3 id="see-it-run">See It Run</h3>
+<h3 id="36-see-it-run">3.6 See It Run</h3>
 <p>The <code>agent</code> package also has graphical functionality for environments. We can visualise the agent in an <code>XYEnvironment</code>. The <code>GraphicEnvironment</code> is a special case of <code>XYEnvironment</code> that runs the simulation in a GUI window.</p>
 <p>We can provide the graphic functionality by inheriting from <code>GraphicEnvironment</code> instead of <code>XYEnvironment</code>.</p>
 <blockquote>
@@ -936,7 +966,7 @@ Press enter to start simulation
 <blockquote>
 <p>When using the graphical mode, the simulation is slowed down to improve visualisation. You can control the rate of the simulation using the <code>lps</code> (loops per second), passed to <code>run()</code>. By default, it is set to one simulation loop per second (<code>lps=1</code>).</p>
 </blockquote>
-<h2 id="giving-direction">Giving Direction</h2>
+<h3 id="37-giving-direction">3.7 Giving Direction</h3>
 <p>We have now implemented our simple reflex agent, which can eat and drink things in its location, and move forward.</p>
 <p>For the final exercise, you'll implement a model based reflex agent that can move in any direction. To enable this, we have to expand the functionality of the environment and agent.</p>
 <p>First, we'll expand what happens when the <code>move</code> action is executed in the <code>ParkEnvironment</code>. In <code>execute_actions()</code>, within the <code>match action[0]</code> statement, update the <code>&quot;move&quot;</code> case with the following code:</p>
@@ -973,6 +1003,9 @@ Press enter to start simulation
         <span class="hljs-keyword">return</span> ((x,y),(self.location))
 </div></code></pre>
 <h2 id="exercise-model-based-reflex-agent">Exercise: Model-Based Reflex Agent</h2>
+<blockquote>
+<p><strong>You should ensure you have worked through creating your first agent in <a href="#3-taking-a-blind-dog-for-a-walk">Section 3</a></strong></p>
+</blockquote>
 <h3 id="a-a-random-energetic-dog">(a) A random energetic dog</h3>
 <p>Create a new environment instance of the <code>ParkEnvironment</code>, with <code>width=5</code> and <code>height=5</code> (or bigger, if you want), and add some objects randomly, e.g. with <code>environment.add_thing_randomly(Food())</code>:</p>
 <p>For example,</p>
