@@ -5,5 +5,8 @@ dependencies:
   - python=3.11
   - ipython
   - jupyter
+  - matplotlib
   - pip
-  - conda-forge::pygame
+  - pip:
+    - pygame
+    - "-e git+https://github.com/wilocw/co2114-codebase.git@2024#egg=agent&subdirectory=lab/src/2"
