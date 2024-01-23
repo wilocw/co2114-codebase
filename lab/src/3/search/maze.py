@@ -1,5 +1,4 @@
 from collections.abc import Iterable
-import math
 import warnings
 from matplotlib import pyplot as plt
 from collections import deque

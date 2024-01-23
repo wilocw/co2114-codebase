@@ -1,7 +1,10 @@
 from agent import things
 
-Thing, Agent, ModelBasedAgent = (
-    things.Thing, things.Agent, things.ModelBasedAgent)
+Thing, Agent, RationalAgent, ModelBasedAgent = (
+    things.Thing, 
+    things.Agent, 
+    things.RationalAgent,
+    things.ModelBasedAgent)
 
 
 class MazeRunner(Agent):

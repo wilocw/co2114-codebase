@@ -1,6 +1,6 @@
 import math
 
-from agent.things import Thing
+from agent.things import Thing, Agent
 from agent.environment import Environment
 
 

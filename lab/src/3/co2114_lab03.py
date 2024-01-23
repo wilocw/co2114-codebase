@@ -49,6 +49,101 @@ class DepthFirstAgent(BreadthFirstAgent):
         super().__init__()
         self.frontier = stack()
 
+
+def manhattan(a, b):
+    ax, ay = a
+    bx, by = b
+    return abs(bx-ax) + abs(by-ay)
+
+class GreedyInformedAgent(MazeRunner, UtilityBasedAgent):
+    def __init__(self, goal):
+        super().__init__()
+        self.frontier = set()
+        self.visited = set()
+        self.goal = goal
+
+    @property
+    def at_goal(self):
+        success = self.location.is_goal
+        return self.location.is_goal
+    
+    def move_to(self, tile):
+        if tile.is_passable:
+            self.visited.add(self.location)
+            self.location.visited = True
+            self.location = tile
+            utility = self.utility(("",tile))
+            print(f"{self}: visiting {tile} with utility={utility}")
+        return self.at_goal
+    
+    def utility(self, action):
+        node = action[1] 
+        # maximise utility means minimise heuristic
+        return -self.heuristic(node)
+
+
+    def heuristic(self, node):
+        return manhattan(node.location, self.goal.location)
+
+    def update_frontier(self, percepts):
+        for node in percepts:
+            if not node.is_passable:
+                continue
+            if node in self.visited:
+                continue
+            if node in self.frontier:
+                continue
+            if node is self.location:
+                continue
+            self.frontier.add(node)
+            print(f"{self}: adding {node} to frontier")
+
+    def program(self, percepts):
+
+        self.update_frontier(percepts)
+
+        max_u = -1e100  # very low
+        for node in self.frontier:
+            action = ("move", node)
+            u = self.utility(action)
+            if u > max_u:
+                max_u = u
+                next = node
+        self.frontier.remove(next)
+        return ("move", next)  #action
+
+class AStarAgent(GreedyInformedAgent):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.moved = 0
+        self.g_n = dict()
+
+    def move_to(self, node):
+        super().move_to(node)
+        self.moved = self.g_n[node]
+        return self.at_goal
+
+    def update_frontier(self, percepts):
+        for node in percepts:
+            if not node.is_passable:
+                continue
+            if node in self.visited:
+                continue
+            if node in self.frontier:
+                continue
+            if node is self.location:
+                continue
+            self.frontier.add(node)
+            self.g_n[node] = self.moved + 1
+            print(f"{self}: adding {node} to frontier")
+
+    def utility(self, action):
+        node = action[1] 
+        # maximise utility means minimise heuristic
+        astar = self.g_n[node] + self.heuristic(node)
+        return -astar
+
+
 ## 
 def main(graphical=False, maze_preset=0):
     """ Main method for running script code """
@@ -56,9 +151,15 @@ def main(graphical=False, maze_preset=0):
     template = PRESET_MAZES[maze_preset]
     environment = GraphicMaze.from_template(template)
     
+    goal = [tile for tile in environment.maze if tile.is_goal][0]
+
     # agent = BreadthFirstAgent()
-    agent = DepthFirstAgent()
-    environment.add_agent(agent, location=PRESET_STARTS[maze_preset])
+    # agent = DepthFirstAgent()
+    # agent = GreedyInformedAgent(goal)
+    agent = AStarAgent(goal)
+    environment.add_agent(
+        agent, 
+        location=PRESET_STARTS[maze_preset])
 
     if graphical:
         environment.run(graphical=graphical, track_agent=True)
