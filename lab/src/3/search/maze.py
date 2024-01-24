@@ -58,11 +58,6 @@ PRESET_STARTS = {
     4: (15, 0)
 }
 
-class MazeRunner(Agent):
-    def __repr__(self):
-        return "👾"
-
-
 class MazeTile(Node):
     def __init__(self, passable:bool):
         super().__init__()
