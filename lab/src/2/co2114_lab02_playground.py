@@ -144,7 +144,7 @@ class ModelBasedEnergeticDog(EnergeticDog, ModelBasedAgent):
         
 
 ## 
-def main(graphical=False):
+def main(graphical=True):
     """ Main method for running script code """
     # write your non-class code here
     def blind_dog_in_park():
@@ -273,13 +273,12 @@ def run_vacuum_demo():
 ## DO NOT EDIT BELOW THIS LINE                         ##
 ##             UNLESS YOU KNOW WHAT YOU                ##
 ##                       ARE DOING                     ##     
-
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(prog="co2114_lab02")
     parser.add_argument("--test", action="store_true")
     parser.add_argument("-d", "--demo", action="store_true")
-    parser.add_argument("-g", "--graphical", action="store_true")
+    parser.add_argument("-g", "--disable_gui", action="store_true")
     args = parser.parse_args()
     if args.test:
         from agent.engine import ClockApp
@@ -288,4 +287,4 @@ if __name__ == "__main__":
     elif args.demo:
         run_vacuum_demo()
     else:
-        main(args.graphical)
+        main(not args.disable_gui)

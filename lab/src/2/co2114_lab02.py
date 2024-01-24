@@ -7,7 +7,7 @@ from agent.environment import *
 from agent.things import *
 from agent.colors import *
 
-from random import choice, choices
+from random import choices
 
 ## Write your class definitions here
 
@@ -16,7 +16,7 @@ from random import choice, choices
 
 
 ## 
-def main(graphical=False):
+def main(graphical=True):
     """ Main method for running script code """
     # write your non-class code here
     NotImplemented  # remove this line
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="co2114_lab02")
     parser.add_argument("--test", action="store_true")
     parser.add_argument("-d", "--demo", action="store_true")
-    parser.add_argument("-g", "--graphical", action="store_true")
+    parser.add_argument("-g", "--disable_gui", action="store_true")
     args = parser.parse_args()
     if args.test:
         from agent.engine import ClockApp
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     elif args.demo:
         run_vacuum_demo()
     else:
-        main(args.graphical)
+        main(not args.disable_gui)

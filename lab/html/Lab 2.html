@@ -645,7 +645,7 @@ Press enter to start simulation
 
 
 <span class="hljs-comment">## </span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">(graphical=False)</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">(graphical=True)</span>:</span>
     <span class="hljs-string">""" Main method for running script code """</span>
     <span class="hljs-comment"># write your non-class code here</span>
     <span class="hljs-built_in">NotImplemented</span>
@@ -944,6 +944,9 @@ Press enter to start simulation
 🏞️: Task environment complete. No further actions.
 🏞️: Stopping after 11 of 20 iterations.
 </div></code></pre>
+<blockquote>
+<p><em>The command line on the Windows PCs in the David Wilson lab may not have capability to display the emojis fully: you might see <code>�</code> characters instead.</em></p>
+</blockquote>
 <h3 id="36-see-it-run">3.6 See It Run</h3>
 <p>The <code>agent</code> package also has graphical functionality for environments. We can visualise the agent in an <code>XYEnvironment</code>. The <code>GraphicEnvironment</code> is a special case of <code>XYEnvironment</code> that runs the simulation in a GUI window.</p>
 <p>We can provide the graphic functionality by inheriting from <code>GraphicEnvironment</code> instead of <code>XYEnvironment</code>.</p>
@@ -957,10 +960,10 @@ Press enter to start simulation
 <p>Add the <code>graphical=graphical</code> argument to <code>environment.run</code> (where <code>graphical</code> is the variable in <code>main()</code> mentioned before), as below:</p>
 <pre class="hljs"><code><div>environment.run(graphical=graphical)
 </div></code></pre>
-<p>The final step is top run the <code>co2114_lab02</code> script in graphical-mode. Simply add the <code>--graphical</code> flag when running the script:</p>
-<pre class="hljs"><code><div>&gt; python co2114_lab02.py --graphical
+<p>The final step is top run the <code>co2114_lab02</code> script with this new graphical environment.</p>
+<pre class="hljs"><code><div>&gt; python co2114_lab02.py
 </div></code></pre>
-<p><em>You can alternatively use the <code>-g</code> flag</em>.</p>
+<p><em>You can disable the GUI use the <code>-g</code> or <code>--disable_gui</code> flag</em>.</p>
 <p>Alongside the simulation running in the terminal, you should see a window opening, visualising your simulation:</p>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/ParkEnvironment.png" alt="Screenshot of graphical simulation running"></p>
 <blockquote>
@@ -1025,9 +1028,6 @@ environment.add_agent(agent, (<span class="hljs-number">2</span>,<span class="hl
 <blockquote>
 <p>You may want to set the number of simulation steps to a high number, e.g. <code>steps=100</code> to see the random behaviour
 e.g. <code>environment.run(graphical=graphical, steps=100)</code></p>
-</blockquote>
-<blockquote>
-<p><strong>Remember to run the script with the `--graphical`` flag if you want to visualise the simulation</strong></p>
 </blockquote>
 <h3 id="b-a-model-based-energetic-dog">(b) A Model-Based Energetic Dog</h3>
 <blockquote>
