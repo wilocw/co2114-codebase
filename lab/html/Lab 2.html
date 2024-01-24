@@ -1,411 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Lab 2.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-<style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-</style>
-
-<style>
-/*
-
-Atom One Light by Daniel Gamage
-Original One Light Syntax theme from https://github.com/atom/one-light-syntax
-
-base:    #fafafa
-mono-1:  #383a42
-mono-2:  #686b77
-mono-3:  #a0a1a7
-hue-1:   #0184bb
-hue-2:   #4078f2
-hue-3:   #a626a4
-hue-4:   #50a14f
-hue-5:   #e45649
-hue-5-2: #c91243
-hue-6:   #986801
-hue-6-2: #c18401
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #383a42;
-  background: #fafafa;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #a0a1a7;
-  font-style: italic;
-}
-
-.hljs-doctag,
-.hljs-keyword,
-.hljs-formula {
-  color: #a626a4;
-}
-
-.hljs-section,
-.hljs-name,
-.hljs-selector-tag,
-.hljs-deletion,
-.hljs-subst {
-  color: #e45649;
-}
-
-.hljs-literal {
-  color: #0184bb;
-}
-
-.hljs-string,
-.hljs-regexp,
-.hljs-addition,
-.hljs-attribute,
-.hljs-meta-string {
-  color: #50a14f;
-}
-
-.hljs-built_in,
-.hljs-class .hljs-title {
-  color: #c18401;
-}
-
-.hljs-attr,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-type,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-number {
-  color: #986801;
-}
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-link,
-.hljs-meta,
-.hljs-selector-id,
-.hljs-title {
-  color: #4078f2;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-link {
-  text-decoration: underline;
-}
-
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-</head>
-<body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config(
-        {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                displayMath: [['$$','$$']],
-                processEscapes: true
-                },
-            messageStyle: "none"
-        });
-</script>
+<!DOCTYPE html><html><head>
+      <title>Lab 2</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\wocw2\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.11\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/0/uol_banner_red.png" alt=""></p>
-<h1 id="co2114br-foundations-in-artificial-intelligence">CO2114<br />Foundations in Artificial Intelligence</h1>
-<h1 id="lab-exercise-2---rational-agents">Lab Exercise 2 - Rational Agents</h1>
+<h1 id="co2114br-foundations-in-artificial-intelligence">CO2114<br>Foundations in Artificial Intelligence </h1>
+<h1 id="lab-exercise-2---rational-agents">Lab Exercise 2 - Rational Agents </h1>
 <p>This lab will look at implementing rational agents. Agents are a concept that is central to artificial intelligence design. The concept of rational is one that acts to improve its performance.</p>
 <p>In this lab, you will:</p>
 <ul>
@@ -414,218 +35,192 @@ code {
 <li>Recall the basic agent program from Tutorial 2</li>
 <li>Implement an simple reflex agent in an 2D environment</li>
 </ul>
-<h2 id="contents">Contents</h2>
+<h2 id="contents">Contents </h2>
 <ul>
 <li><a href="#1-getting-started">1. Getting Started</a></li>
 <li><a href="#2-recap-robot-vacuum">2. Recap: Robot Vacuum</a></li>
 <li><a href="#3-taking-a-blind-dog-for-a-walk">3. Creating your First Agent</a></li>
 <li><a href="#exercise-model-based-reflex-agent">Exercise:Model-Based Reflex Agent</a></li>
 </ul>
-<h2 id="1-getting-started">1. Getting Started</h2>
+<h2 id="1-getting-started">1. Getting Started </h2>
 <p>We will be using Anaconda for this lab.</p>
 <p>You should download the <code>lab02.environment.yml</code> and <code>co2114_lab02.py</code> files and run <strong>Anaconda Prompt</strong>.</p>
 <p>You can create the environment using the <code>conda env create</code> command. This may take several minutes.</p>
-<pre class="hljs"><code><div>&gt; conda env create -f lab02.environment.yml
-</div></code></pre>
-<h3 id="contents">Contents</h3>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> conda <span class="token function">env</span> create <span class="token parameter variable">-f</span> lab02.environment.yml
+</code></pre><h3 id="contents-1">Contents </h3>
 <ul>
 <li><a href="#11-testing-the-environment">1.1 Testing the Environment</a></li>
 <li><a href="#12-rational-agents">1.2 Rational Agents</a></li>
 <li><a href="#13-environments">1.3 Environments</a></li>
 <li><a href="#14-simulations">1.4 Simulations</a></li>
 </ul>
-<h3 id="11-testing-the-environment">1.1 Testing the Environment</h3>
+<h3 id="11-testing-the-environment">1.1 Testing the Environment </h3>
 <p>To test that the environment, you can run the script in test-mode. Simply <strong>activate the <code>co2114_lab02</code> environment</strong> and run the script with the <code>--test</code> flag, as below:</p>
-<pre class="hljs"><code><div>&gt; conda activate co2114_lab02
-&gt; python co2114_lab02.py --<span class="hljs-built_in">test</span>
-</div></code></pre>
-<p>If everything is working and has been set up properly, you should see a window open, with a clock, like the screenshot below.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> conda activate co2114_lab02
+<span class="token operator">&gt;</span> python co2114_lab02.py <span class="token parameter variable">--test</span>
+</code></pre><p>If everything is working and has been set up properly, you should see a window open, with a clock, like the screenshot below.</p>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/ClockApp.png" alt="Screenshot of ClockApp running"></p>
 <blockquote>
 <p><strong>If you do not see this, you should check your environment and seek assistance.</strong></p>
 </blockquote>
-<h3 id="12-rational-agents">1.2 Rational Agents</h3>
+<h3 id="12-rational-agents">1.2 Rational Agents </h3>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/rational_agent_diagram.png" alt="Rational Agent"></p>
 <p>We define a rational agent as one that selects an <strong>action</strong> to maximise its <strong>performance measure</strong>, given the evidence it has <strong>perceived</strong> and any built-in <strong>knowledge</strong> it has.</p>
 <p>Where we have a <strong>task environment</strong>, which defines the performance, environment, actuators and sensors, the agent has a program that maps percepts to actions:</p>
-<p>$$
-\text{program}: percepts \mapsto action
-$$</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>program</mtext><mo>:</mo><mi>p</mi><mi>e</mi><mi>r</mi><mi>c</mi><mi>e</mi><mi>p</mi><mi>t</mi><mi>s</mi><mo>↦</mo><mi>a</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\text{program}: percepts \mapsto action</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">program</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">erce</span><span class="mord mathnormal">pt</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span></span></span></span></span></p>
 <p>We can imagine a method such as this in Python, where we have defined a function <code>program</code> that recieves some number of <code>percepts</code>, defined by the task environment, processes them and returns an action.</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">program</span><span class="hljs-params">(percepts)</span>:</span>
-    <span class="hljs-comment"># implementation</span>
-    <span class="hljs-keyword">return</span> action
-</div></code></pre>
-<p>The choice of executable actions is limited to those available in the task environment so the environment and agent must be designed in conjunction.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># implementation</span>
+    <span class="token keyword keyword-return">return</span> action
+</code></pre><p>The choice of executable actions is limited to those available in the task environment so the environment and agent must be designed in conjunction.</p>
 <p>We can consider a class representing a <code>RationalAgent</code> such as the one below:</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RationalAgent</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, program)</span>:</span>
-        self.performance = <span class="hljs-number">0</span>
-        self.program = program
-</div></code></pre>
-<p>By default, our rational agent has a <code>program</code> and a <code>performance</code> measure.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">RationalAgent</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> program<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>performance <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>program <span class="token operator">=</span> program
+</code></pre><p>By default, our rational agent has a <code>program</code> and a <code>performance</code> measure.</p>
 <p>In this lab, the code for <code>RationalAgent</code> has already been implemented in the <code>agent</code> library, packaged as part of your conda environment.</p>
 <p>You can view this in IPython (<code>&gt; ipython</code>), using the following commands:</p>
-<pre class="hljs"><code><div>: <span class="hljs-keyword">from</span> agent.things <span class="hljs-keyword">import</span> RationalAgent
-: ?RationalAgent
-</div></code></pre>
-<h3 id="13-environments">1.3 Environments</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token punctuation">:</span> <span class="token keyword keyword-from">from</span> agent<span class="token punctuation">.</span>things <span class="token keyword keyword-import">import</span> RationalAgent
+<span class="token punctuation">:</span> ?RationalAgent
+</code></pre><h3 id="13-environments">1.3 Environments </h3>
 <p>The an agent-based AI problem, the enviornment is the external <strong>context</strong> in which an <strong>agent</strong> operates. The environment includes all factors that influence the agent's <strong>percepts</strong> and <strong>actions</strong>.</p>
-<p>In our implementation of the problem, we define an environment has having as set of unique $things$. The environment should also have at least one $agent$, and every $agent$ are $thing$. The environment the set of $agents$, defined:</p>
-<p>$agents = {x \in things,|,x \text{ is } agent}$</p>
-<p>By definition, $agents \subseteq things$. This allows for agents to potentially interact in multi-agent systems, but for now we will focus on single-agent systems.</p>
+<p>In our implementation of the problem, we define an environment has having as set of unique <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>h</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">things</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">hin</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span></span></span></span>. The environment should also have at least one <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">agent</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span></span></span></span>, and every <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">agent</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span></span></span></span> are <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>h</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">thing</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">hin</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span></span></span></span>. The environment the set of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">agents</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">s</span></span></span></span>, defined:</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>s</mi><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mo>∈</mo><mi>t</mi><mi>h</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>s</mi><mtext> </mtext><mi mathvariant="normal">∣</mi><mtext> </mtext><mi>x</mi><mtext>&nbsp;is&nbsp;</mtext><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">agents = \{x \in things\,|\,x \text{ is } agent\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">hin</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mord text"><span class="mord">&nbsp;is&nbsp;</span></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mclose">}</span></span></span></span></p>
+<p>By definition, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>s</mi><mo>⊆</mo><mi>t</mi><mi>h</mi><mi>i</mi><mi>n</mi><mi>g</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">agents \subseteq things</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mord mathnormal">t</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⊆</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">hin</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span></span></span></span>. This allows for agents to potentially interact in multi-agent systems, but for now we will focus on single-agent systems.</p>
 <p>The base implementation of <code>Environment</code> is provided in <code>agents</code>, included in the conda environment. You can import it from the <code>environments</code> submodule, e.g.</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">from</span> agent.environment <span class="hljs-keyword">import</span> Environment
-</div></code></pre>
-<p>Every environment should implement the <code>percept</code> function, which defines the <code>percepts</code> provided to a given agent:</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">percept</span><span class="hljs-params">(agent)</span>:</span>
-    <span class="hljs-comment"># tell agent what it can perceive</span>
-    <span class="hljs-keyword">return</span> things
-</div></code></pre>
-<p>It should also implement functionality to execute the actions of an agent.</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">execute_action</span><span class="hljs-params">(agent, action)</span>:</span>
-    <span class="hljs-comment"># do action on environment</span>
-</div></code></pre>
-<p>Remember, an agent cannot exist outside an environment, and its actions are constrained by the environment.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> agent<span class="token punctuation">.</span>environment <span class="token keyword keyword-import">import</span> Environment
+</code></pre><p>Every environment should implement the <code>percept</code> function, which defines the <code>percepts</code> provided to a given agent:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">percept</span><span class="token punctuation">(</span>agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># tell agent what it can perceive</span>
+    <span class="token keyword keyword-return">return</span> things
+</code></pre><p>It should also implement functionality to execute the actions of an agent.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">execute_action</span><span class="token punctuation">(</span>agent<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># do action on environment</span>
+</code></pre><p>Remember, an agent cannot exist outside an environment, and its actions are constrained by the environment.</p>
 <p>For any class that inherits from <code>Environment</code>, or any of its abstract subclasses, the <code>percept</code> and <code>execute_action</code> methods need to be implemented.</p>
 <blockquote>
 <p>We will also be using special environment classes <code>XYEnvironment</code> and <code>GraphicEnvironment</code> in this and future labs. These will encode some structure and graphical functionality to the environments respectively.</p>
 </blockquote>
-<h3 id="14-simulations">1.4 Simulations</h3>
+<h3 id="14-simulations">1.4 Simulations </h3>
 <p>We also need our (software) environment to simulate the behaviour of the agent over time. In this section, we will look at how the simulation works. Most of this is implemented in the <code>agent</code> package backend.</p>
 <p>The simulation will run for a defined number of steps, or until the environment considers itself <em>done</em>. In other words, that there is nothing left to simulate. This acts as an early stopping criteria, equivalent to a <em>goal</em>.</p>
 <p>This behaviour is defined in the method <code>is_done()</code>. The method should check the internal state of the environment, and return the condition of whether it considers it <em>done</em>.</p>
-<pre class="hljs"><code><div><span class="hljs-meta">@property</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_done</span><span class="hljs-params">()</span> -&gt; bool:</span>
-    <span class="hljs-comment"># when to stop simulation</span>
-</div></code></pre>
-<blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token decorator annotation punctuation">@property</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">is_done</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">bool</span><span class="token punctuation">:</span>
+    <span class="token comment"># when to stop simulation</span>
+</code></pre><blockquote>
 <p>By default, an environment is done if there are no agents in the system. You should override the method to expand the behaviour of your custom environments, though <code>len(self.agents)==0</code> is a good thing to check in any case.</p>
 </blockquote>
 <p>The decorator <code>@property</code> allows us to treat <code>is_done()</code> as a variable, since it takes no inputs. This allows us to call it without <code>()</code>, e.g. <code>if obj.is_done:</code>. In practice, we use <code>self.is_done</code> to check the state of the environment internally.</p>
 <p>Once you have implemented the <code>is_done</code> behaviour, you can simulate the agent in the environment by calling  <code>environment.run()</code>. This takes in an optional argument, <code>steps</code> (default 100). Calling <code>run()</code> will iteratively simulate the environment until either the total number of steps is reached, or the environment <em>is done</em>.</p>
 <p>The implementation of <code>run</code> looks essentially like this, where we loop through the number of steps and call the <code>step()</code> function unless it <code>is_done</code>.</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(steps)</span>:</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(steps):
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> is_done <span class="hljs-keyword">else</span> step()
-</div></code></pre>
-<p>Within the method <code>step()</code>, the environment performs two core actions:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">run</span><span class="token punctuation">(</span>steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-if">if</span> is_done <span class="token keyword keyword-else">else</span> step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p>Within the method <code>step()</code>, the environment performs two core actions:</p>
 <ul>
 <li>Sending percepts to agents</li>
 <li>Executing the actions of agents</li>
 </ul>
 <p>The code the enables agents to percept calls, for each agent in the environment, the <code>percept()</code> method discussed earlier, and executes the agent program to get the action from the agent. This is added to a dictionary to iterate through later.</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">for</span> agent <span class="hljs-keyword">in</span> agents:
-    percepts = percept(agent)
-    action = agent.program(percepts)
-    actions[agent] = action
-</div></code></pre>
-<p>Note that in the default behaviour, all agents in the system perceive the environment before any of their actions is executed.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> agent <span class="token keyword keyword-in">in</span> agents<span class="token punctuation">:</span>
+    percepts <span class="token operator">=</span> percept<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+    action <span class="token operator">=</span> agent<span class="token punctuation">.</span>program<span class="token punctuation">(</span>percepts<span class="token punctuation">)</span>
+    actions<span class="token punctuation">[</span>agent<span class="token punctuation">]</span> <span class="token operator">=</span> action
+</code></pre><p>Note that in the default behaviour, all agents in the system perceive the environment before any of their actions is executed.</p>
 <p>After all actions are received from the agents, they are executed using the <code>execute_action</code> code described above.</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">for</span> agent, action <span class="hljs-keyword">in</span> actions.items():
-    execute_action(agent, action)
-</div></code></pre>
-<p>This the basic simulation loop of an environment:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> agent<span class="token punctuation">,</span> action <span class="token keyword keyword-in">in</span> actions<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    execute_action<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> action<span class="token punctuation">)</span>
+</code></pre><p>This the basic simulation loop of an environment:</p>
 <ol>
 <li>send percepts</li>
 <li>agent program(s)</li>
 <li>receive actions</li>
 <li>execute actions</li>
 </ol>
-<h2 id="2-recap-robot-vacuum">2. Recap: Robot Vacuum</h2>
+<h2 id="2-recap-robot-vacuum">2. Recap: Robot Vacuum </h2>
 <p>Recall back to our implementation of the robot vacuum from this week's tutorial. We saw a basic implementation of the <code>Environment</code> and <code>RationalAgent</code> code and implemented a robot vacuum on a dirty floor.</p>
 <p>This section will recap that exercise, and demonstrate its implementation to provide you with familiarity with implementing <code>RationalAgent</code>s and <code>Environment</code>s in the <code>agent</code> package.</p>
 <blockquote>
 <p><strong>All of the code for this section is provided in the <code>co2114_lab02.py</code> file.</strong></p>
 </blockquote>
-<h3 id="contents">Contents</h3>
+<h3 id="contents-2">Contents </h3>
 <ul>
 <li><a href="#21-dirty-floor-environment">2.1 Dirty Floor Environment</a></li>
 <li><a href="#22-vacuum-agent">2.2 Vacuum Agent</a></li>
 <li><a href="#23-simulating">2.3 Simulating</a></li>
 </ul>
-<h3 id="21-dirty-floor-environment">2.1 Dirty Floor Environment</h3>
+<h3 id="21-dirty-floor-environment">2.1 Dirty Floor Environment </h3>
 <p>Recall that our dirty floor is an environment made up of two locations, indexed with <code>0</code> and <code>1</code>, and that a location may be dirty (<code>True</code>) or clean (<code>False</code>). We are implementing a rational agent to clean the floor.</p>
 <p>Our <code>DirtyFloor</code> class inherits from the <code>agents.environment.Environment</code> class, described above. It has a state, <code>floor</code> that is a list with initial state <code>[False, True]</code>, indicating that the floor is <em>clean</em> at location <code>0</code> and <em>dirty</em> at location <code>True</code>.</p>
 <blockquote>
 <p>We use a Python <code>list</code> to represent the floor because we want it to be both ordered and mutable</p>
 </blockquote>
 <p>First, we define the state of the environment to be <em>done</em> if there exists no tile that is dirty. In other words, if there are no dirty locations then there is nothing to clean so we are done.</p>
-<pre class="hljs"><code><div>def is_done(self):
-    <span class="hljs-string">""</span><span class="hljs-string">"If no tile is dirty"</span><span class="hljs-string">""</span>
-    <span class="hljs-built_in">return</span> not any(self.is_dirty)
-</div></code></pre>
-<blockquote>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>def is_done<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+    <span class="token string">""</span>"If no tile is dirty<span class="token string">""</span>"
+    <span class="token builtin class-name">return</span> not any<span class="token punctuation">(</span>self.is_dirty<span class="token punctuation">)</span>
+</code></pre><blockquote>
 <p>Recall that we defined a <code>@property</code> <code>is_dirty</code> that simply returns the <code>True</code>/<code>False</code> state of the floor (which is just happens to be the state variable <code>floor</code> in this instance).</p>
 </blockquote>
 <p>We also define the <code>percept</code> sequence, which tells the agent whether it the floor is dirty at the agent's location:</p>
-<pre class="hljs"><code><div>def percept(self, agent):
-    <span class="hljs-string">""</span><span class="hljs-string">" Tell agent if location is dirty "</span><span class="hljs-string">""</span>
-    <span class="hljs-built_in">return</span> self.is_dirty[agent.location] 
-</div></code></pre>
-<p>And we execute the possible actions of the agent:</p>
-<pre class="hljs"><code><div>def execute_action(self, agent, action):
-    <span class="hljs-string">""</span><span class="hljs-string">" Execute and react to actions by agent "</span><span class="hljs-string">""</span>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>def percept<span class="token punctuation">(</span>self, agent<span class="token punctuation">)</span>:
+    <span class="token string">""</span>" Tell agent <span class="token keyword keyword-if">if</span> location is dirty <span class="token string">""</span>"
+    <span class="token builtin class-name">return</span> self.is_dirty<span class="token punctuation">[</span>agent.location<span class="token punctuation">]</span> 
+</code></pre><p>And we execute the possible actions of the agent:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>def execute_action<span class="token punctuation">(</span>self, agent, action<span class="token punctuation">)</span>:
+    <span class="token string">""</span>" Execute and react to actions by agent <span class="token string">""</span>"
     match action:
-        <span class="hljs-keyword">case</span> <span class="hljs-string">"move"</span>:
-            agent.move()
-        <span class="hljs-keyword">case</span> <span class="hljs-string">"clean"</span>:
-            agent.clean()
-            self.is_dirty[agent.location] = False
-</div></code></pre>
-<p>There are two possible actions that the agent can effect, <code>&quot;move&quot;</code>, where the agent <em>moves</em>, and <code>&quot;clean&quot;</code>, where the agent cleans the current location. The effect on the environment is that this location is no longer dirty, so we set <code>is_dirty[location]</code> to <code>False</code>.</p>
+        <span class="token keyword keyword-case">case</span> <span class="token string">"move"</span><span class="token builtin class-name">:</span>
+            agent.move<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-case">case</span> <span class="token string">"clean"</span><span class="token builtin class-name">:</span>
+            agent.clean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            self.is_dirty<span class="token punctuation">[</span>agent.location<span class="token punctuation">]</span> <span class="token operator">=</span> False
+</code></pre><p>There are two possible actions that the agent can effect, <code>"move"</code>, where the agent <em>moves</em>, and <code>"clean"</code>, where the agent cleans the current location. The effect on the environment is that this location is no longer dirty, so we set <code>is_dirty[location]</code> to <code>False</code>.</p>
 <p>Next we implemented an agent that has a <code>clean</code> and <code>move</code> behaviour.</p>
-<h3 id="22-vacuum-agent">2.2 Vacuum Agent</h3>
+<h3 id="22-vacuum-agent">2.2 Vacuum Agent </h3>
 <p>We defined the vacuum agent to inherit <code>RationalAgent</code>, starting at location <code>0</code>. We must now implement the actuators, which take the form of methods (called from <code>execute_action</code>).</p>
-<h4 id="actuators">Actuators</h4>
+<h4 id="actuators">Actuators </h4>
 <p>The first behaviour implemented is <code>clean</code>. This is straightforward, just increases the performance measure:</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clean</span><span class="hljs-params">(self)</span>:</span>  <span class="hljs-comment"># actuator</span>
-    self.performance += <span class="hljs-number">1</span>
-    print(<span class="hljs-string">f"<span class="hljs-subst">{self}</span>: cleaning floor at <span class="hljs-subst">{self.location}</span>"</span>)
-</div></code></pre>
-<p>Next there is the <code>move</code> actuator, which moves the agent to the next location.</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span><span class="hljs-params">(self)</span>:</span>  <span class="hljs-comment"># actuator</span>
-    self.location += <span class="hljs-number">1</span>
-    print(<span class="hljs-string">f"<span class="hljs-subst">{self}</span>: moved to <span class="hljs-subst">{self.location}</span>"</span>)
-</div></code></pre>
-<h4 id="agent-program">Agent Program</h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">clean</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># actuator</span>
+    self<span class="token punctuation">.</span>performance <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: cleaning floor at </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</code></pre><p>Next there is the <code>move</code> actuator, which moves the agent to the next location.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">move</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># actuator</span>
+    self<span class="token punctuation">.</span>location <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: moved to </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</code></pre><h4 id="agent-program">Agent Program </h4>
 <p>Finally, we must implement the agent <code>program</code>. The behaviour is defined:</p>
-<p>$$
-\mathrm{program}: percept \mapsto \begin{cases}clean &amp; \text{if } percept \text{ is } dirty\\ move &amp; \text{otherwise}\end{cases}
-$$</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">m</mi></mrow><mo>:</mo><mi>p</mi><mi>e</mi><mi>r</mi><mi>c</mi><mi>e</mi><mi>p</mi><mi>t</mi><mo>↦</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>c</mi><mi>l</mi><mi>e</mi><mi>a</mi><mi>n</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext>if&nbsp;</mtext><mi>p</mi><mi>e</mi><mi>r</mi><mi>c</mi><mi>e</mi><mi>p</mi><mi>t</mi><mtext>&nbsp;is&nbsp;</mtext><mi>d</mi><mi>i</mi><mi>r</mi><mi>t</mi><mi>y</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>m</mi><mi>o</mi><mi>v</mi><mi>e</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>otherwise</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\mathrm{program}: percept \mapsto \begin{cases}clean &amp; \text{if } percept \text{ is } dirty\\\\ move &amp; \text{otherwise}\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathrm">program</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">erce</span><span class="mord mathnormal">pt</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↦</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:4.32em;vertical-align:-1.91em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35em;"><span style="top:-2.2em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.192em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.316em" style="width:0.8889em" viewBox="0 0 888.89 316" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V316 H384z M384 0 H504 V316 H384z"></path></svg></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em;"><span class="pstrut" style="height:3.15em;"></span><span style="height:0.316em;width:0.8889em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.316em" style="width:0.8889em" viewBox="0 0 888.89 316" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V316 H384z M384 0 H504 V316 H384z"></path></svg></span></span><span style="top:-4.6em;"><span class="pstrut" style="height:3.15em;"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.85em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">an</span></span></span><span style="top:-2.97em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"></span></span><span style="top:-1.53em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.91em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.41em;"><span style="top:-4.41em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">if&nbsp;</span></span><span class="mord mathnormal">p</span><span class="mord mathnormal">erce</span><span class="mord mathnormal">pt</span><span class="mord text"><span class="mord">&nbsp;is&nbsp;</span></span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-1.53em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">otherwise</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.91em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>In Python, we can just use a lambda function to defines this. Since <code>percept</code> is either <code>True</code> or <code>False</code> based on whether the location is dirty, the implementation is straightforward.</p>
-<pre class="hljs"><code><div>program = <span class="hljs-keyword">lambda</span> percept: <span class="hljs-string">"clean"</span> <span class="hljs-keyword">if</span> percept <span class="hljs-keyword">else</span> <span class="hljs-string">"move"</span>
-</div></code></pre>
-<h3 id="23-simulating">2.3 Simulating</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>program <span class="token operator">=</span> <span class="token keyword keyword-lambda">lambda</span> percept<span class="token punctuation">:</span> <span class="token string">"clean"</span> <span class="token keyword keyword-if">if</span> percept <span class="token keyword keyword-else">else</span> <span class="token string">"move"</span>
+</code></pre><h3 id="23-simulating">2.3 Simulating </h3>
 <p>We set up the environment and add the agent using the <code>add_agent</code> method, as below</p>
-<pre class="hljs"><code><div>environment = DirtyFloor()  <span class="hljs-comment"># create environment</span>
-vacuum = Vacuum(program)  <span class="hljs-comment"># create agent</span>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment <span class="token operator">=</span> DirtyFloor<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># create environment</span>
+vacuum <span class="token operator">=</span> Vacuum<span class="token punctuation">(</span>program<span class="token punctuation">)</span>  <span class="token comment"># create agent</span>
 
-environment.add_agent(vacuum)  <span class="hljs-comment"># add agent to environment</span>
-</div></code></pre>
-<p>You can review the <code>run_vacuum_demo()</code> function in <code>co2114_lab.py</code> to see the set up sequence.</p>
+environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>vacuum<span class="token punctuation">)</span>  <span class="token comment"># add agent to environment</span>
+</code></pre><p>You can review the <code>run_vacuum_demo()</code> function in <code>co2114_lab.py</code> to see the set up sequence.</p>
 <p>To see your simulation in action, simply run the <code>co2114_lab.py</code> script with the <code>--demo</code> flag:</p>
-<pre class="hljs"><code><div>&gt; python co2114_lab02.py --demo
-</div></code></pre>
-<p>Once the environment is set up, you will be prompted in the terminal to start the simulation. Simply press Enter.</p>
-<pre class="hljs"><code><div>Press enter to start simulation
-</div></code></pre>
-<p>You should see the following outcome. Check that this behaviour is as you expected it.</p>
-<pre class="hljs"><code><div>▞: Adding 🤖 to list of agents.
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab02.py <span class="token parameter variable">--demo</span>
+</code></pre><p>Once the environment is set up, you will be prompted in the terminal to start the simulation. Simply press Enter.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>Press enter to start simulation
+</code></pre><p>You should see the following outcome. Check that this behaviour is as you expected it.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>▞: Adding 🤖 to list of agents.
 Press enter to start simulation
 ▞: Running for 2 iterations.
 🤖: moved to 1
 🤖: cleaning floor at 1
 ▞: Task environment complete. No further actions.
-</div></code></pre>
-<blockquote>
+</code></pre><blockquote>
 <p><em>Optionally, you can import the <code>run_vacuum_demo</code> method from <code>co2114_lab02.py</code> in <code>ipython</code> and call <code>run_vaccum_demo()</code></em></p>
 </blockquote>
-<h2 id="3-taking-a-blind-dog-for-a-walk">3. Taking a Blind Dog for a Walk</h2>
+<h2 id="3-taking-a-blind-dog-for-a-walk">3. Taking a Blind Dog for a Walk </h2>
 <p>In this section, we will create a simple reflex agent.</p>
 <p>We will mimic the behaviour of a <em>blind</em> dog in a park that contains some food and water. The blind dog cannot see, but if there is food or water at its current location, it will eat or drink it, respectively.</p>
 <p>Our blind dog will need the capacity to <em>eat</em>, <em>drink</em> and <em>move</em>. Our environment will need to provide the information of what is at the current location, and remove any food that is eaten or water that has been drunk.</p>
-<h3 id="contents">Contents</h3>
+<h3 id="contents-3">Contents </h3>
 <ul>
 <li><a href="#31-editing-co2114_lab02py">3.1 Editting <code>co2114_lab02.py</code></a></li>
 <li><a href="#32-blind-dog">3.2 Blind Dog</a></li>
@@ -635,123 +230,113 @@ Press enter to start simulation
 <li><a href="#36-see-it-run">3.6 See It Run</a></li>
 <li><a href="#37-giving-direction">3.7 Giving Direction</a></li>
 </ul>
-<h3 id="31-editing-co2114lab02py">3.1 Editing <code>co2114_lab02.py</code></h3>
+<h3 id="31-editing-co2114_lab02py">3.1 Editing <code>co2114_lab02.py</code> </h3>
 <p>In this exercise, we will be writing code into the <code>co2114_lab02.py</code> file. Open it in your preferred editor (I use Visual Studio Code, you can installed on the lab machines via Software Centre), and you should see the following:</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">from</span> agent.environment <span class="hljs-keyword">import</span> *
-<span class="hljs-keyword">from</span> agent.things <span class="hljs-keyword">import</span> *
-<span class="hljs-keyword">from</span> agent.colors <span class="hljs-keyword">import</span> *
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> agent<span class="token punctuation">.</span>environment <span class="token keyword keyword-import">import</span> <span class="token operator">*</span>
+<span class="token keyword keyword-from">from</span> agent<span class="token punctuation">.</span>things <span class="token keyword keyword-import">import</span> <span class="token operator">*</span>
+<span class="token keyword keyword-from">from</span> agent<span class="token punctuation">.</span>colors <span class="token keyword keyword-import">import</span> <span class="token operator">*</span>
 
-<span class="hljs-comment">## Write your class definitions here</span>
+<span class="token comment">## Write your class definitions here</span>
 
 
-<span class="hljs-comment">## </span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">(graphical=True)</span>:</span>
-    <span class="hljs-string">""" Main method for running script code """</span>
-    <span class="hljs-comment"># write your non-class code here</span>
-    <span class="hljs-built_in">NotImplemented</span>
-</div></code></pre>
-<p>Here, you can write your class definitions and simulation code. When you call <code>python co2114_lab02.py</code> (with no flags), the code in the <code>main()</code> method will be executed.</p>
+<span class="token comment">## </span>
+<span class="token keyword keyword-def">def</span> <span class="token function">main</span><span class="token punctuation">(</span>graphical<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Main method for running script code """</span>
+    <span class="token comment"># write your non-class code here</span>
+    NotImplemented
+</code></pre><p>Here, you can write your class definitions and simulation code. When you call <code>python co2114_lab02.py</code> (with no flags), the code in the <code>main()</code> method will be executed.</p>
 <p>For now, you can ignore the <code>graphical</code> keyword. This will be explained in the <a href="#see-it-run">See It Run</a> section.</p>
 <blockquote>
 <p>There is some other code below this which defines the robot vacuum demo and handles functionality for running the file as a script.</p>
-<p><strong>You should avoid editting below <code>if __name__ == &quot;__main__&quot;</code> unless you are comfortable with what the code is doing</strong></p>
+<p><strong>You should avoid editting below <code>if __name__ == "__main__"</code> unless you are comfortable with what the code is doing</strong></p>
 </blockquote>
-<h3 id="32-blind-dog">3.2 Blind Dog</h3>
+<h3 id="32-blind-dog">3.2 Blind Dog </h3>
 <p>We are defining the functionality our blind dog. Recall that it should be able to move (in a direction), eat and drink.</p>
 <p>We can inherit from the <code>RationalAgent</code> class to define our <code>BlindDog</code>.</p>
 <p>We can add declarations for methods <code>move</code> which takes a <code>direction</code>; <code>eat</code> which takes a <code>thing</code>; and <code>drink</code> which takes a <code>thing</code>. We will leave their behaviour unimplemented for now, and come back after we have designed the environment.</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlindDog</span><span class="hljs-params">(Dog, RationalAgent)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span><span class="hljs-params">(self, direction)</span>:</span>
-        <span class="hljs-string">""" perform move action """</span>
-        <span class="hljs-built_in">NotImplemented</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">eat</span><span class="hljs-params">(self, thing)</span>:</span>
-        <span class="hljs-string">""" eat thing (if possible) """</span>
-        <span class="hljs-built_in">NotImplemented</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">drink</span><span class="hljs-params">(self, thing)</span>;
-        """ <span class="hljs-title">drink</span> <span class="hljs-title">thing</span> <span class="hljs-params">(if possible)</span> """
-        <span class="hljs-title">NotImplemented</span>
-</span></div></code></pre>
-<p>We also inherited from the <code>Dog</code> class from <code>agent.things</code>. This gives it some visual identity: our blind dog is indeed a dog... Some related info is described in the section <a href="#things">Things</a>, below.</p>
-<h3 id="33-park-environment">3.3 Park Environment</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">BlindDog</span><span class="token punctuation">(</span>Dog<span class="token punctuation">,</span> RationalAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> direction<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" perform move action """</span>
+        NotImplemented
+    <span class="token keyword keyword-def">def</span> <span class="token function">eat</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> thing<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" eat thing (if possible) """</span>
+        NotImplemented
+    <span class="token keyword keyword-def">def</span> <span class="token function">drink</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> thing<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token triple-quoted-string string">""" drink thing (if possible) """</span>
+        NotImplemented
+</code></pre><p>We also inherited from the <code>Dog</code> class from <code>agent.things</code>. This gives it some visual identity: our blind dog is indeed a dog... Some related info is described in the section <a href="#things">Things</a>, below.</p>
+<h3 id="33-park-environment">3.3 Park Environment </h3>
 <p>The park environment will be defined as a 2-D environment which can contain things, including agents. Initially, we'll define the <code>ParkEnvironment</code> class as a subclass of <code>XYEnvironment</code>. We'll give it a basic string representation, to identify it in the output logs.</p>
 <blockquote>
 <p><strong>Add the following class definition to your Python file <code>co2114_lab02.py</code>.</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParkEnvironment</span><span class="hljs-params">(XYEnvironment)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"🏞️"</span>  <span class="hljs-comment"># give it a string representation</span>
-</div></code></pre>
-<p>The <code>XYEnvironment</code> is a special subclass of <code>Environment</code>, to represent a 2-dimensional spatial environment which has some width and height. The constructor takes in an integer value for the width and the height,<code>XYEnvironment(width, height)</code>, such that the environment has locations $(x,y)$ where $x\in [0,\text{width})$ and $y\in [0,\text{height})$.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">ParkEnvironment</span><span class="token punctuation">(</span>XYEnvironment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string">"🏞️"</span>  <span class="token comment"># give it a string representation</span>
+</code></pre><p>The <code>XYEnvironment</code> is a special subclass of <code>Environment</code>, to represent a 2-dimensional spatial environment which has some width and height. The constructor takes in an integer value for the width and the height,<code>XYEnvironment(width, height)</code>, such that the environment has locations <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mtext>width</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x\in [0,\text{width})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">width</span></span><span class="mclose">)</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mtext>height</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y\in [0,\text{height})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">height</span></span><span class="mclose">)</span></span></span></span>.</p>
 <blockquote>
-<p>$ x \in [a,b)$ is notation for $x$ can take a value from $a$ to $b$, but not take the value $b$. This is equivalent to <code>x in set(range(a,b))</code> where $max(x) = b-1$.</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \in [a,b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span> is notation for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> can take a value from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>, but not take the value <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>. This is equivalent to <code>x in set(range(a,b))</code> where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">max(x) = b-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>.</p>
 </blockquote>
 <p>Things added to the environment must have a location <code>add_thing(thing, location)</code>. The location must exist within the limits defined by the width and height of the environment.</p>
 <blockquote>
 <p>There is also the option to add things to random (valid) location. This can be done by calling the method <code>environment.add_thing_randomly(thing)</code>.</p>
 </blockquote>
-<h4 id="things">Things</h4>
+<h4 id="things">Things </h4>
 <blockquote>
-<p><em>&quot;But what is a thing? How do we define it?&quot;</em></p>
+<p><em>"But what is a thing? How do we define it?"</em></p>
 </blockquote>
-<p>The concept of things just refers to abstract (or physical) objects within the environment. Any object can be a &quot;thing&quot;, a blind dog is a &quot;thing&quot;, food and water are &quot;things&quot;. However, things can be nontangible, we will see later how when a dog reaches a boundary, the &quot;bump&quot; it receives can be treated a thing.</p>
+<p>The concept of things just refers to abstract (or physical) objects within the environment. Any object can be a "thing", a blind dog is a "thing", food and water are "things". However, things can be nontangible, we will see later how when a dog reaches a boundary, the "bump" it receives can be treated a thing.</p>
 <p>In our approach to implementing agents and environments, we codify the concept of <em>things</em> with the Python class <code>Thing</code>, implemented in <code>agent.things</code>. Everything we add to our environment inherits from the <code>Thing</code> class, including <code>RationalAgent</code> objects.</p>
 <blockquote>
 <p><strong>Use IPython if you want to try out things from this section</strong></p>
 </blockquote>
 <p>You can explore the <code>Thing</code> class in IPython (<code>&gt; ipython</code>).</p>
-<pre class="hljs"><code><div>: <span class="hljs-keyword">from</span> agent <span class="hljs-keyword">import</span> things
-: ?thing.Thing
-</div></code></pre>
-<p>You should see the following, which shows the basic properties of the <code>Thing</code> class. Note that there are some subclasses, including <code>Animal</code>. If you query <code>?thing.Animal</code> you will see that the <code>Dog</code> class we inherited from in our definition of <code>BlindDog</code>.</p>
-<pre class="hljs"><code><div>Init signature: things.Thing()
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token punctuation">:</span> <span class="token keyword keyword-from">from</span> agent <span class="token keyword keyword-import">import</span> things
+<span class="token punctuation">:</span> ?thing<span class="token punctuation">.</span>Thing
+</code></pre><p>You should see the following, which shows the basic properties of the <code>Thing</code> class. Note that there are some subclasses, including <code>Animal</code>. If you query <code>?thing.Animal</code> you will see that the <code>Dog</code> class we inherited from in our definition of <code>BlindDog</code>.</p>
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>Init signature: things.Thing()
 Docstring:      The base class for all things
 File:           \path\to\things.py
 Type:           type
 Subclasses:     Obstacle, Food, Water, Animal, Agent
-</div></code></pre>
-<blockquote>
+</code></pre><blockquote>
 <p><strong>Reminder</strong>: make sure you have activated the <code>co2114_lab02</code> environment</p>
 </blockquote>
 <p>We can instantiate classes by calling their constructors. For example, to create an instance of <code>Water</code>, we simply call the following:</p>
-<pre class="hljs"><code><div>: water = things.Water()
-: print(water)
-: isinstance(water, Water)  <span class="hljs-comment"># yes</span>
-</div></code></pre>
-<p>When we print the variable <code>water</code>, we should see that it is represented by the 💧 character. We can check that our class an instance of type <code>Water</code> (which of course it is). You can also check that it is a <code>Thing</code> using <code>isinstance(water, Thing)</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token punctuation">:</span> water <span class="token operator">=</span> things<span class="token punctuation">.</span>Water<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">:</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>water<span class="token punctuation">)</span>
+<span class="token punctuation">:</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>water<span class="token punctuation">,</span> Water<span class="token punctuation">)</span>  <span class="token comment"># yes</span>
+</code></pre><p>When we print the variable <code>water</code>, we should see that it is represented by the 💧 character. We can check that our class an instance of type <code>Water</code> (which of course it is). You can also check that it is a <code>Thing</code> using <code>isinstance(water, Thing)</code>.</p>
 <p>Similarly, we can create some food by calling the constructor for the class <code>Food</code>. Printing variable <code>food</code> will show it is represented by character 🍔.</p>
-<pre class="hljs"><code><div>: food = things.Food()
-: print(food)
-: isinstance(food, Water)  <span class="hljs-comment"># no ...</span>
-</div></code></pre>
-<p>If we check whether <code>food</code> is an example of <code>Water</code>, we will see that clearly this is false.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token punctuation">:</span> food <span class="token operator">=</span> things<span class="token punctuation">.</span>Food<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">:</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>food<span class="token punctuation">)</span>
+<span class="token punctuation">:</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>food<span class="token punctuation">,</span> Water<span class="token punctuation">)</span>  <span class="token comment"># no ...</span>
+</code></pre><p>If we check whether <code>food</code> is an example of <code>Water</code>, we will see that clearly this is false.</p>
 <p>In our implementation of our park environment, we will provide it with things that include <code>Food</code> and <code>Water</code> for our <code>BlindDog</code> to <code>eat</code> and <code>drink</code> respectively. We will use <code>isinstance</code> to implement the behaviour of our dog in identifying whether it can eat or drink something (such that it can only eat food and drink water).</p>
 <p>If you are interested in defining your own things, you can subclass one or multiple <code>Thing</code>s. For example, we may want to define special food for our dog, e.g.</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DogFood</span><span class="hljs-params">(Food)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"🦴"</span>
-</div></code></pre>
-<p>Our <code>DogFood</code> type, a 🦴, is a type of <code>Food</code> and <code>Thing</code>. If we allowed our <code>BlindDog</code> to eat any type of <code>Food</code>, it would of course eat <code>DogFood</code>. The converse, however, would not be true.</p>
-<h4 id="adding-things">Adding Things</h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">DogFood</span><span class="token punctuation">(</span>Food<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string">"🦴"</span>
+</code></pre><p>Our <code>DogFood</code> type, a 🦴, is a type of <code>Food</code> and <code>Thing</code>. If we allowed our <code>BlindDog</code> to eat any type of <code>Food</code>, it would of course eat <code>DogFood</code>. The converse, however, would not be true.</p>
+<h4 id="adding-things">Adding Things </h4>
 <p>So now we have our definition of things, and our implementation of the <code>Thing</code> class and its subclasses, we can add them to the environment.</p>
 <p>We have seen before that we can call <code>environment.add_thing(thing)</code> will allow us to add a thing to the environment. This will be stored in the set <code>environment.things</code>.</p>
 <p>In our <code>ParkEnvironment</code>, which is an <code>XYEnvironment</code>, we should provide it with a location tuple.</p>
 <p>For example, the following line will create an instance of <code>Food</code> and add it to the environment at location <code>(0, 1)</code>.</p>
-<pre class="hljs"><code><div>environment.add_thing(Food(), location=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>))
-</div></code></pre>
-<blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>add_thing<span class="token punctuation">(</span>Food<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> location<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><blockquote>
 <p>If you forget to instantiate your thing with <code>()</code>, the <code>add_thing</code> method will handle it by creating a new instance if provided instead with a type that inherits from <code>Thing</code>. You should generally try and avoid this.</p>
 </blockquote>
-<h4 id="perceiving-things">Perceiving Things</h4>
+<h4 id="perceiving-things">Perceiving Things </h4>
 <p>Returning to our implementation of the park, we want to provide to our blind dog a <em>things</em> at its location. The <code>XYEnvironment</code> has a method <code>things_at(location)</code>, that returns the set of <code>Thing</code> objects at a given location, so we can provide this set to our agent to define the percept functionality.</p>
 <blockquote>
 <p><strong>Add the following <code>percept</code> method to your <code>ParkEnvironment</code> class</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">percept</span><span class="hljs-params">(self, agent)</span>:</span>
-    things = self.things_at(agent.location)
-    <span class="hljs-keyword">return</span> things
-</div></code></pre>
-<p>As an agent is itself a <code>Thing</code>, it has a <code>location</code> in an <code>XYEnvironment</code>.</p>
-<h4 id="executing-actions">Executing actions</h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">percept</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    things <span class="token operator">=</span> self<span class="token punctuation">.</span>things_at<span class="token punctuation">(</span>agent<span class="token punctuation">.</span>location<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> things
+</code></pre><p>As an agent is itself a <code>Thing</code>, it has a <code>location</code> in an <code>XYEnvironment</code>.</p>
+<h4 id="executing-actions">Executing actions </h4>
 <p>We have defined the percept step of the simulation, which will be passed to the agent. The agent will respond to the percepts and return an action.</p>
 <p>We have defined our task environment, with the behaviours of the blind dog to either</p>
 <ul>
@@ -775,21 +360,21 @@ Subclasses:     Obstacle, Food, Water, Animal, Agent
 <tbody>
 <tr>
 <td>Move</td>
-<td><code>&quot;move&quot;</code></td>
+<td><code>"move"</code></td>
 <td>direction</td>
-<td><code>(&quot;move&quot;, &quot;forward&quot;)</code></td>
+<td><code>("move", "forward")</code></td>
 </tr>
 <tr>
 <td>Eat</td>
-<td><code>&quot;eat&quot;</code></td>
+<td><code>"eat"</code></td>
 <td><code>Food</code></td>
-<td><code>(&quot;eat&quot;, thing)</code></td>
+<td><code>("eat", thing)</code></td>
 </tr>
 <tr>
 <td>Drink</td>
-<td><code>&quot;drink&quot;</code></td>
+<td><code>"drink"</code></td>
 <td><code>Water</code></td>
-<td><code>(&quot;drink&quot;, thing)</code></td>
+<td><code>("drink", thing)</code></td>
 </tr>
 </tbody>
 </table>
@@ -797,133 +382,122 @@ Subclasses:     Obstacle, Food, Water, Animal, Agent
 <blockquote>
 <p><strong>Define then <code>execute_action</code> in <code>ParkEnvironment</code> as below:</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">execute_action</span><span class="hljs-params">(self, agent, action)</span>:</span>
-        <span class="hljs-string">""" Executes an action (action, thing/direction)"""</span>
-        direction = thing = action[<span class="hljs-number">1</span>]  <span class="hljs-comment"># thing</span>
-        match action[<span class="hljs-number">0</span>]:  <span class="hljs-comment"># action string</span>
-            case <span class="hljs-string">"move"</span>:
-                <span class="hljs-keyword">if</span> direction <span class="hljs-keyword">in</span> {<span class="hljs-string">"forward"</span>}:
-                    prev, curr = agent.move(direction)
-                <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.is_inbounds(curr):
-                    print(<span class="hljs-string">f"<span class="hljs-subst">{self}</span>: <span class="hljs-subst">{agent}</span> out of bounds, returning to position <span class="hljs-subst">{prev}</span>"</span>)
-                    agent.location = prev
-            case <span class="hljs-string">"eat"</span>:
-                <span class="hljs-keyword">if</span> agent.eat(thing):  <span class="hljs-comment"># success</span>
-                    self.delete_thing(thing)  <span class="hljs-comment"># remove from environment</span>
-            case <span class="hljs-string">"drink"</span>:
-                <span class="hljs-keyword">if</span> agent.drink(thing):  <span class="hljs-comment"># success</span>
-                    self.delete_thing(thing)  <span class="hljs-comment"># remove from environment</span>
-</div></code></pre>
-<p>Note that we currently only allow our <code>BlindDog</code> to move &quot;forward&quot;, whatever that means (we haven't defined the behaviour of the agent, only how the environment is affected). However, we can see that if the agent successfully eats or drinks, we can remove the <code>thing</code> from the environment using <code>delete_thing</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">execute_action</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" Executes an action (action, thing/direction)"""</span>
+        direction <span class="token operator">=</span> thing <span class="token operator">=</span> action<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>  <span class="token comment"># thing</span>
+        <span class="token keyword keyword-match">match</span> action<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">:</span>  <span class="token comment"># action string</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"move"</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-if">if</span> direction <span class="token keyword keyword-in">in</span> <span class="token punctuation">{</span><span class="token string">"forward"</span><span class="token punctuation">}</span><span class="token punctuation">:</span>
+                    prev<span class="token punctuation">,</span> curr <span class="token operator">=</span> agent<span class="token punctuation">.</span>move<span class="token punctuation">(</span>direction<span class="token punctuation">)</span>
+                <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> self<span class="token punctuation">.</span>is_inbounds<span class="token punctuation">(</span>curr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>agent<span class="token punctuation">}</span></span><span class="token string"> out of bounds, returning to position </span><span class="token interpolation"><span class="token punctuation">{</span>prev<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+                    agent<span class="token punctuation">.</span>location <span class="token operator">=</span> prev
+            <span class="token keyword keyword-case">case</span> <span class="token string">"eat"</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-if">if</span> agent<span class="token punctuation">.</span>eat<span class="token punctuation">(</span>thing<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># success</span>
+                    self<span class="token punctuation">.</span>delete_thing<span class="token punctuation">(</span>thing<span class="token punctuation">)</span>  <span class="token comment"># remove from environment</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"drink"</span><span class="token punctuation">:</span>
+                <span class="token keyword keyword-if">if</span> agent<span class="token punctuation">.</span>drink<span class="token punctuation">(</span>thing<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># success</span>
+                    self<span class="token punctuation">.</span>delete_thing<span class="token punctuation">(</span>thing<span class="token punctuation">)</span>  <span class="token comment"># remove from environment</span>
+</code></pre><p>Note that we currently only allow our <code>BlindDog</code> to move "forward", whatever that means (we haven't defined the behaviour of the agent, only how the environment is affected). However, we can see that if the agent successfully eats or drinks, we can remove the <code>thing</code> from the environment using <code>delete_thing</code>.</p>
 <blockquote>
 <p>We also have some trivial bounds checking that prevents an agent from moving outside the environment by returning it to its previous known location</p>
 </blockquote>
 <p>We must ensure that the behaviour of our agent's actuators reflects the expectation of the environment, i.e. <code>move()</code> must return the previous and current locations, <code>eat()</code> must return a bool indicating whether it has eaten some <code>Food</code>, and <code>drink()</code> must return a bool indicating whether it has drunk some <code>Water</code>.</p>
-<h4 id="when-are-we-done">When are we done?</h4>
+<h4 id="when-are-we-done">When are we done? </h4>
 <p>The final thing to define in our environment is the stopping condition, i.e. when is the simulation done.</p>
 <p>As we discussed before, having no agents is a good reason to stop. However we will also stop the simulation if there are no instances of <code>Food</code> or <code>Water</code> in the environment. In other words, if there is no dog or if there is nothing for the dog to eat or drink.</p>
 <blockquote>
 <p><strong>Add the <code>is_done</code> <code>@property</code> to your <code>ParkEnvironment</code> definition</strong>:</p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-meta">@property</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_done</span><span class="hljs-params">(self)</span>:</span>
-    <span class="hljs-keyword">if</span> len(self.agents) == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>  <span class="hljs-comment"># if there are no agents</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">not</span> any(
-        isinstance(thing, Food) <span class="hljs-keyword">or</span>
-            isinstance(thing, Water)
-        <span class="hljs-keyword">for</span> thing <span class="hljs-keyword">in</span> self.things)  <span class="hljs-comment"># or if there isn't any Food or Water</span>
-</div></code></pre>
-<h3 id="34-revisiting-the-blind-dog">3.4 Revisiting the Blind Dog</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token decorator annotation punctuation">@property</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">is_done</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>agents<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword keyword-return">return</span> <span class="token boolean">True</span>  <span class="token comment"># if there are no agents</span>
+    <span class="token keyword keyword-return">return</span> <span class="token keyword keyword-not">not</span> <span class="token builtin">any</span><span class="token punctuation">(</span>
+        <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Food<span class="token punctuation">)</span> <span class="token keyword keyword-or">or</span>
+            <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Water<span class="token punctuation">)</span>
+        <span class="token keyword keyword-for">for</span> thing <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>things<span class="token punctuation">)</span>  <span class="token comment"># or if there isn't any Food or Water</span>
+</code></pre><h3 id="34-revisiting-the-blind-dog">3.4 Revisiting the Blind Dog </h3>
 <p>Now we have our <code>ParkEnvironment</code> set up, which defines the percepts sent to the dog and its allowable actions, we can define those behaviours in the <code>BlindDog</code>.</p>
-<h4 id="moving">Moving</h4>
+<h4 id="moving">Moving </h4>
 <p>The first possible actuator action is to <code>move</code>.</p>
-<p>Our agent has a location, $(x,y)$. As we saw in our definition, the <code>move()</code> method receives a direction and returns the previous and current (after it has moved) location of the agent.</p>
-<p>We also currently only have the option to move <em>forward</em> (we will expand this later), which we will define as moving one step in the $x$ direction. The new location then, after moving one step forward, is $(x+1,y)$.</p>
+<p>Our agent has a location, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>. As we saw in our definition, the <code>move()</code> method receives a direction and returns the previous and current (after it has moved) location of the agent.</p>
+<p>We also currently only have the option to move <em>forward</em> (we will expand this later), which we will define as moving one step in the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> direction. The new location then, after moving one step forward, is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x+1,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>.</p>
 <blockquote>
 <p><strong>In your definition of <code>BlindDog</code>, replace the <code>NotImplemented</code> definition of <code>move()</code> with the code below</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span><span class="hljs-params">(self, direction)</span>:</span>
-    <span class="hljs-string">""" perform move action """</span>
-    x,y = self.location  <span class="hljs-comment"># previous location</span>
-    msg = <span class="hljs-string">f"<span class="hljs-subst">{self}</span>: Moving <span class="hljs-subst">{direction}</span> from <span class="hljs-subst">{(x,y)}</span> to "</span>
-    match direction:
-        case <span class="hljs-string">"forward"</span>:
-            self.location = (x+<span class="hljs-number">1</span>, y)  <span class="hljs-comment"># (new) current location</span>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> direction<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" perform move action """</span>
+    x<span class="token punctuation">,</span>y <span class="token operator">=</span> self<span class="token punctuation">.</span>location  <span class="token comment"># previous location</span>
+    msg <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: Moving </span><span class="token interpolation"><span class="token punctuation">{</span>direction<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> to "</span></span>
+    <span class="token keyword keyword-match">match</span> direction<span class="token punctuation">:</span>
+        <span class="token keyword keyword-case">case</span> <span class="token string">"forward"</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span>  <span class="token comment"># (new) current location</span>
         
-    print(msg + <span class="hljs-string">f"<span class="hljs-subst">{self.location}</span>"</span>)
-    <span class="hljs-keyword">return</span> ((x,y),(self.location))  <span class="hljs-comment"># return previous and current</span>
-</div></code></pre>
-<h4 id="eating-and-drinking">Eating and Drinking</h4>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>msg <span class="token operator">+</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>location<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># return previous and current</span>
+</code></pre><h4 id="eating-and-drinking">Eating and Drinking </h4>
 <p>We also need to define what happens (to the agent) when it tries to eat or drink a thing. Obviously, we want to define the behaviour such that the agent will only eat <code>Food</code> and drink <code>Water</code>. We know, from our definition of <code>execute_action</code> that <code>eat()</code> and <code>drink()</code> should receive a <code>Thing</code> and return a <code>bool</code> (<code>True</code> or <code>False</code>) indicating success.</p>
 <p>We can use <code>isinstance</code> to determine whether the <code>thing</code> is <code>Food</code> or <code>Water</code>, and if so, mark the action as a success. We an also increment our <em>performance measure</em>.</p>
 <blockquote>
 <p><strong>In your class <code>BlindDog</code>, replace the <code>NotImplemented</code> methods of <code>eat</code> and <code>drink</code> with the implementations below:</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">eat</span><span class="hljs-params">(self, thing)</span>:</span>
-    <span class="hljs-string">""" eat thing (if possible) """</span>
-    <span class="hljs-keyword">if</span> isinstance(thing, Food):
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self}</span>: Ate <span class="hljs-subst">{thing}</span> at <span class="hljs-subst">{self.location}</span>"</span>)
-        self.performance += <span class="hljs-number">1</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-</div></code></pre>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">drink</span><span class="hljs-params">(self, thing)</span>:</span>
-    <span class="hljs-string">""" drink thing (if possible) """</span>
-    <span class="hljs-keyword">if</span> isinstance(thing, Water):
-        print(<span class="hljs-string">f"<span class="hljs-subst">{str(self)}</span>: Drank <span class="hljs-subst">{thing}</span> at <span class="hljs-subst">{self.location}</span>"</span>)
-        self.performance += <span class="hljs-number">1</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-</div></code></pre>
-<h3 id="35-simulate-the-environment">3.5 Simulate the Environment</h3>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">eat</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> thing<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" eat thing (if possible) """</span>
+    <span class="token keyword keyword-if">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Food<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: Ate </span><span class="token interpolation"><span class="token punctuation">{</span>thing<span class="token punctuation">}</span></span><span class="token string"> at </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>performance <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword keyword-return">return</span> <span class="token boolean">True</span>
+    <span class="token keyword keyword-return">return</span> <span class="token boolean">False</span>
+</code></pre><pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">drink</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> thing<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" drink thing (if possible) """</span>
+    <span class="token keyword keyword-if">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Water<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">str</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">: Drank </span><span class="token interpolation"><span class="token punctuation">{</span>thing<span class="token punctuation">}</span></span><span class="token string"> at </span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>performance <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword keyword-return">return</span> <span class="token boolean">True</span>
+    <span class="token keyword keyword-return">return</span> <span class="token boolean">False</span>
+</code></pre><h3 id="35-simulate-the-environment">3.5 Simulate the Environment </h3>
 <p>Now we have defined the program environment and agent behaviour. We now want to create our simulation.</p>
 <blockquote>
 <p><strong>Put this code in <code>main()</code> of <code>co2114_lab02.py</code> or import your class definitions in IPython</strong></p>
 </blockquote>
 <p>We first create an environment. Since our blind dog can only move forward, we will create a very narrow park (with height = 1).</p>
 <p>Initialise the environment by calling the constructor with <code>width=10</code> and <code>height=1</code>:</p>
-<pre class="hljs"><code><div>environment = ParkEnvironment(width=<span class="hljs-number">10</span>, height=<span class="hljs-number">1</span>)
-</div></code></pre>
-<h4 id="setting-the-scene">Setting the Scene</h4>
-<p>We can now start by adding objects. We will add two instances of <code>Food</code> and one of <code>Water</code> at $(4,0)$, $(5,0)$ and $(8,0)$, using the code below:</p>
-<pre class="hljs"><code><div>environment.add_thing(Food(), location=(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>))
-environment.add_thing(Water(), location=(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>))
-environment.add_thing(Food(), location=(<span class="hljs-number">8</span>,<span class="hljs-number">0</span>))
-</div></code></pre>
-<p>Note because that we can only index between $0$ and $9$ in the $x$ direction because the width is $10$. In the $y$ direction, there is only one possible value, $0$. We essentially have a 1-D park environment with these paramters.</p>
-<h4 id="agent-program">Agent Program</h4>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment <span class="token operator">=</span> ParkEnvironment<span class="token punctuation">(</span>width<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> height<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre><h4 id="setting-the-scene">Setting the Scene </h4>
+<p>We can now start by adding objects. We will add two instances of <code>Food</code> and one of <code>Water</code> at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>4</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(4,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>5</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(5,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>8</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(8,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, using the code below:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>add_thing<span class="token punctuation">(</span>Food<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> location<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>add_thing<span class="token punctuation">(</span>Water<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> location<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>add_thing<span class="token punctuation">(</span>Food<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> location<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><p>Note because that we can only index between <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span></span></span></span> in the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> direction because the width is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn></mrow><annotation encoding="application/x-tex">10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>. In the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> direction, there is only one possible value, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. We essentially have a 1-D park environment with these paramters.</p>
+<h4 id="agent-program-1">Agent Program </h4>
 <p>Finally we want to give agency to our blind dog, i.e. give it an <em>agent program</em>, and then add it to the environment.</p>
 <p>We want our dog to move forward unless there is food or drink at its location, in which case it will respectively eat or drink it.</p>
 <p>This is an example of a simple reflex program: if thing is food, eat it; if thing is water, drink it; otherwise move forward.</p>
 <p>This can be implemented as below (remember that <code>percepts</code> is provided from the enviroment as a set of things at the agent's current location).</p>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">program</span><span class="hljs-params">(percepts)</span>:</span>
-    <span class="hljs-keyword">for</span> thing <span class="hljs-keyword">in</span> percepts:           <span class="hljs-comment"># things an location</span>
-        <span class="hljs-keyword">if</span> isinstance(thing, Food):  <span class="hljs-comment"># if thing is food</span>
-            <span class="hljs-keyword">return</span> (<span class="hljs-string">"eat"</span>, thing)    <span class="hljs-comment">#   eat it</span>
-        <span class="hljs-keyword">if</span> isinstance(thing, Water): <span class="hljs-comment"># if thing is drink</span>
-            <span class="hljs-keyword">return</span> (<span class="hljs-string">"drink"</span>, thing)  <span class="hljs-comment">#   drink it</span>
-                                     <span class="hljs-comment"># if nothing to eat or drink</span>
-    <span class="hljs-keyword">return</span> (<span class="hljs-string">"move"</span>, <span class="hljs-string">"forward"</span>)       <span class="hljs-comment">#   move forward</span>
-</div></code></pre>
-<p>We can create a new instance of a <code>BlindDog</code> with this program with the following line:</p>
-<pre class="hljs"><code><div>agent = BlindDog(program)
-</div></code></pre>
-<h4 id="adding-the-agent">Adding the Agent</h4>
-<p>We can finally add the agent to the environment. We will add it at location $(0,0)$ as it current can't move backwards...</p>
-<pre class="hljs"><code><div>environment.add_agent(agent, location=(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>))
-</div></code></pre>
-<blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> thing <span class="token keyword keyword-in">in</span> percepts<span class="token punctuation">:</span>           <span class="token comment"># things an location</span>
+        <span class="token keyword keyword-if">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Food<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># if thing is food</span>
+            <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">"eat"</span><span class="token punctuation">,</span> thing<span class="token punctuation">)</span>    <span class="token comment">#   eat it</span>
+        <span class="token keyword keyword-if">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>thing<span class="token punctuation">,</span> Water<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># if thing is drink</span>
+            <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">"drink"</span><span class="token punctuation">,</span> thing<span class="token punctuation">)</span>  <span class="token comment">#   drink it</span>
+                                     <span class="token comment"># if nothing to eat or drink</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">"move"</span><span class="token punctuation">,</span> <span class="token string">"forward"</span><span class="token punctuation">)</span>       <span class="token comment">#   move forward</span>
+</code></pre><p>We can create a new instance of a <code>BlindDog</code> with this program with the following line:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>agent <span class="token operator">=</span> BlindDog<span class="token punctuation">(</span>program<span class="token punctuation">)</span>
+</code></pre><h4 id="adding-the-agent">Adding the Agent </h4>
+<p>We can finally add the agent to the environment. We will add it at location <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span> as it current can't move backwards...</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> location<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><blockquote>
 <p><em>The <code>add_agent</code> method is a utility alias for <code>add_thing</code>: its behaviour is equivalent to <code>add_thing</code></em></p>
 </blockquote>
-<h4 id="running-the-simulation">Running the Simulation</h4>
+<h4 id="running-the-simulation">Running the Simulation </h4>
 <p>Now we can run our simulation. Add the following line:</p>
-<pre class="hljs"><code><div>environment.run(steps=<span class="hljs-number">20</span>)
-</div></code></pre>
-<blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>run<span class="token punctuation">(</span>steps<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+</code></pre><blockquote>
 <p><strong>If you have implemented this in the script provided, you can run the simulation with <code>co2114_lab02.py</code></strong></p>
 </blockquote>
 <p>You should see the outcome of the simulation. Track the messages with the what you expect to have happened: is this correct?</p>
-<pre class="hljs"><code><div>🏞️: Adding 🍔 at (4, 0)
+<pre data-role="codeBlock" data-info="" class="language-text text"><code>🏞️: Adding 🍔 at (4, 0)
 🏞️: Adding 💧 at (5, 0)
 🏞️: Adding 🍔 at (8, 0)
 🏞️: Adding 🐶 at (0, 0)
@@ -943,114 +517,104 @@ Press enter to start simulation
 🐶: Ate 🍔 at (8, 0)
 🏞️: Task environment complete. No further actions.
 🏞️: Stopping after 11 of 20 iterations.
-</div></code></pre>
-<blockquote>
+</code></pre><blockquote>
 <p><em>The command line on the Windows PCs in the David Wilson lab may not have capability to display the emojis fully: you might see <code>�</code> characters instead.</em></p>
 </blockquote>
-<h3 id="36-see-it-run">3.6 See It Run</h3>
+<h3 id="36-see-it-run">3.6 See It Run </h3>
 <p>The <code>agent</code> package also has graphical functionality for environments. We can visualise the agent in an <code>XYEnvironment</code>. The <code>GraphicEnvironment</code> is a special case of <code>XYEnvironment</code> that runs the simulation in a GUI window.</p>
 <p>We can provide the graphic functionality by inheriting from <code>GraphicEnvironment</code> instead of <code>XYEnvironment</code>.</p>
 <blockquote>
 <p><strong>Replace the line <code>class ParkEnvironment(XYEnvironment)</code> with the following two lines of code as in the following code</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParkEnvironment</span><span class="hljs-params">(GraphicEnvironment)</span>:</span>
-    color = COLOR_GREEN_GRASS  <span class="hljs-comment"># imported from agent.colors</span>
-</div></code></pre>
-<p>The <code>color</code> variable sets the background colour of environment. It will default to black if not set.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">ParkEnvironment</span><span class="token punctuation">(</span>GraphicEnvironment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    color <span class="token operator">=</span> COLOR_GREEN_GRASS  <span class="token comment"># imported from agent.colors</span>
+</code></pre><p>The <code>color</code> variable sets the background colour of environment. It will default to black if not set.</p>
 <p>Add the <code>graphical=graphical</code> argument to <code>environment.run</code> (where <code>graphical</code> is the variable in <code>main()</code> mentioned before), as below:</p>
-<pre class="hljs"><code><div>environment.run(graphical=graphical)
-</div></code></pre>
-<p>The final step is top run the <code>co2114_lab02</code> script with this new graphical environment.</p>
-<pre class="hljs"><code><div>&gt; python co2114_lab02.py
-</div></code></pre>
-<p><em>You can disable the GUI use the <code>-g</code> or <code>--disable_gui</code> flag</em>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>run<span class="token punctuation">(</span>graphical<span class="token operator">=</span>graphical<span class="token punctuation">)</span>
+</code></pre><p>The final step is top run the <code>co2114_lab02</code> script with this new graphical environment.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab02.py
+</code></pre><p><em>You can disable the GUI use the <code>-g</code> or <code>--disable_gui</code> flag</em>.</p>
 <p>Alongside the simulation running in the terminal, you should see a window opening, visualising your simulation:</p>
 <p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/ParkEnvironment.png" alt="Screenshot of graphical simulation running"></p>
 <blockquote>
 <p>When using the graphical mode, the simulation is slowed down to improve visualisation. You can control the rate of the simulation using the <code>lps</code> (loops per second), passed to <code>run()</code>. By default, it is set to one simulation loop per second (<code>lps=1</code>).</p>
 </blockquote>
-<h3 id="37-giving-direction">3.7 Giving Direction</h3>
+<h3 id="37-giving-direction">3.7 Giving Direction </h3>
 <p>We have now implemented our simple reflex agent, which can eat and drink things in its location, and move forward.</p>
 <p>For the final exercise, you'll implement a model based reflex agent that can move in any direction. To enable this, we have to expand the functionality of the environment and agent.</p>
-<p>First, we'll expand what happens when the <code>move</code> action is executed in the <code>ParkEnvironment</code>. In <code>execute_actions()</code>, within the <code>match action[0]</code> statement, update the <code>&quot;move&quot;</code> case with the following code:</p>
-<pre class="hljs"><code><div>case <span class="hljs-string">"move"</span>:
-    <span class="hljs-keyword">if</span> direction <span class="hljs-keyword">in</span> {<span class="hljs-string">"forward"</span>, <span class="hljs-string">"backward"</span>, <span class="hljs-string">"left"</span>, <span class="hljs-string">"right"</span>}:
-        prev, curr = agent.move(direction)
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.is_inbounds(curr):
-        print(<span class="hljs-string">f"<span class="hljs-subst">{self}</span>: <span class="hljs-subst">{agent}</span> out of bounds, returning to position <span class="hljs-subst">{prev}</span>"</span>)
-        agent.location = prev
-        self.bumped.add(agent)
-</div></code></pre>
-<p>We have no expanded the possible directions to include &quot;backward&quot;, &quot;left&quot; and &quot;right&quot;. We have also extended the behaviour of the environment to remember an agent going over the boundary.</p>
+<p>First, we'll expand what happens when the <code>move</code> action is executed in the <code>ParkEnvironment</code>. In <code>execute_actions()</code>, within the <code>match action[0]</code> statement, update the <code>"move"</code> case with the following code:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-case">case</span> <span class="token string">"move"</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> direction <span class="token keyword keyword-in">in</span> <span class="token punctuation">{</span><span class="token string">"forward"</span><span class="token punctuation">,</span> <span class="token string">"backward"</span><span class="token punctuation">,</span> <span class="token string">"left"</span><span class="token punctuation">,</span> <span class="token string">"right"</span><span class="token punctuation">}</span><span class="token punctuation">:</span>
+        prev<span class="token punctuation">,</span> curr <span class="token operator">=</span> agent<span class="token punctuation">.</span>move<span class="token punctuation">(</span>direction<span class="token punctuation">)</span>
+    <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> self<span class="token punctuation">.</span>is_inbounds<span class="token punctuation">(</span>curr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>agent<span class="token punctuation">}</span></span><span class="token string"> out of bounds, returning to position </span><span class="token interpolation"><span class="token punctuation">{</span>prev<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        agent<span class="token punctuation">.</span>location <span class="token operator">=</span> prev
+        self<span class="token punctuation">.</span>bumped<span class="token punctuation">.</span>add<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+</code></pre><p>We have no expanded the possible directions to include "backward", "left" and "right". We have also extended the behaviour of the environment to remember an agent going over the boundary.</p>
 <blockquote>
 <p><code>self.bumped</code> is a set belonging to an <code>XYEnvironment</code> that keeps state of agents that have reached a boundary. This can be used later to convey boundaries to an agent as a percept</p>
 </blockquote>
 <p>We also have to extend the behaviour of our <code>BlindDog</code>. We will create a new class that inherits the behaviour of <code>BlindDog</code> but implements more complex <code>move</code> functionality. The functions <code>eat()</code> and <code>drink()</code> are unchanged -- both types of dog eat and drink the same way.</p>
-<p>Define the new class, as below. We can match the <code>direction</code> variable to move in different directions along the $x,y$ axis:</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnergeticDog</span><span class="hljs-params">(BlindDog)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span><span class="hljs-params">(self, direction)</span>:</span>
-        <span class="hljs-string">""" perform move action """</span>
-        x,y = self.location
-        msg = <span class="hljs-string">f"<span class="hljs-subst">{self}</span>: Moving <span class="hljs-subst">{direction}</span> from <span class="hljs-subst">{(x,y)}</span> to "</span>
-        match direction:
-            case <span class="hljs-string">"forward"</span>:
-                self.location = (x+<span class="hljs-number">1</span>, y)
-            case <span class="hljs-string">"backward"</span>:
-                self.location = (x<span class="hljs-number">-1</span>, y)
-            case <span class="hljs-string">"left"</span>:
-                self.location = (x, y<span class="hljs-number">-1</span>)
-            case <span class="hljs-string">"right"</span>:
-                self.location = (x, y+<span class="hljs-number">1</span>)
+<p>Define the new class, as below. We can match the <code>direction</code> variable to move in different directions along the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo separator="true">,</mo><mi>y</mi></mrow><annotation encoding="application/x-tex">x,y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span> axis:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">EnergeticDog</span><span class="token punctuation">(</span>BlindDog<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">move</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> direction<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" perform move action """</span>
+        x<span class="token punctuation">,</span>y <span class="token operator">=</span> self<span class="token punctuation">.</span>location
+        msg <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: Moving </span><span class="token interpolation"><span class="token punctuation">{</span>direction<span class="token punctuation">}</span></span><span class="token string"> from </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> to "</span></span>
+        <span class="token keyword keyword-match">match</span> direction<span class="token punctuation">:</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"forward"</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"backward"</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"left"</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-case">case</span> <span class="token string">"right"</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
     
-        print(msg + <span class="hljs-string">f"<span class="hljs-subst">{self.location}</span>"</span>)
-        <span class="hljs-keyword">return</span> ((x,y),(self.location))
-</div></code></pre>
-<h2 id="exercise-model-based-reflex-agent">Exercise: Model-Based Reflex Agent</h2>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>msg <span class="token operator">+</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">.</span>location<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>location<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><h2 id="exercise-model-based-reflex-agent">Exercise: Model-Based Reflex Agent </h2>
 <blockquote>
 <p><strong>You should ensure you have worked through creating your first agent in <a href="#3-taking-a-blind-dog-for-a-walk">Section 3</a></strong></p>
 </blockquote>
-<h3 id="a-a-random-energetic-dog">(a) A random energetic dog</h3>
+<h3 id="a-a-random-energetic-dog">(a) A random energetic dog </h3>
 <p>Create a new environment instance of the <code>ParkEnvironment</code>, with <code>width=5</code> and <code>height=5</code> (or bigger, if you want), and add some objects randomly, e.g. with <code>environment.add_thing_randomly(Food())</code>:</p>
 <p>For example,</p>
-<pre class="hljs"><code><div>environment = ParkEnvironment(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>)
-<span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>):
-    environment.add_thing_randomly(Food())
-    environment.add_thing_randomly(Water())
-</div></code></pre>
-<blockquote>
-<p><strong>Create a simple reflex program for an <code>EnergeticDog</code> that moves in a random direction if there is no <code>Food</code> or <code>Water</code> at its location</strong>.
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment <span class="token operator">=</span> ParkEnvironment<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-for">for</span> _ <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    environment<span class="token punctuation">.</span>add_thing_randomly<span class="token punctuation">(</span>Food<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    environment<span class="token punctuation">.</span>add_thing_randomly<span class="token punctuation">(</span>Water<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><blockquote>
+<p><strong>Create a simple reflex program for an <code>EnergeticDog</code> that moves in a random direction if there is no <code>Food</code> or <code>Water</code> at its location</strong>.<br>
 <em>It should otherwise behave like the <code>BlindDog</code> and eat/drink any <code>Food</code>/<code>Water</code> at its location.</em></p>
 </blockquote>
 <p>You can add the program as below:</p>
-<pre class="hljs"><code><div>agent = EnergeticDog(program)
-environment.add_agent(agent, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>))  <span class="hljs-comment"># middle spot</span>
-</div></code></pre>
-<blockquote>
-<p>You may want to set the number of simulation steps to a high number, e.g. <code>steps=100</code> to see the random behaviour
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>agent <span class="token operator">=</span> EnergeticDog<span class="token punctuation">(</span>program<span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># middle spot</span>
+</code></pre><blockquote>
+<p>You may want to set the number of simulation steps to a high number, e.g. <code>steps=100</code> to see the random behaviour<br>
 e.g. <code>environment.run(graphical=graphical, steps=100)</code></p>
 </blockquote>
-<h3 id="b-a-model-based-energetic-dog">(b) A Model-Based Energetic Dog</h3>
+<h3 id="b-a-model-based-energetic-dog">(b) A Model-Based Energetic Dog </h3>
 <blockquote>
 <p><strong>Update the <code>percept</code> method in <code>ParkEnvironment</code> with the code below</strong></p>
 </blockquote>
-<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">percept</span><span class="hljs-params">(self, agent)</span>:</span>
-    things = self.things_at(agent.location)
-    <span class="hljs-keyword">if</span> agent <span class="hljs-keyword">in</span> self.bumped:
-        self.bumped.remove(agent)
-        things.append(Bump())
-    <span class="hljs-keyword">return</span> things
-</div></code></pre>
-<p>The above code expands the things an agent can perceive in the environment. As well as all <em>things</em> at its location, it will also receive a &quot;bump&quot; (in the form of a <code>Bump</code>) if it has hit the boundary in its last action. <em>(Recall the functionality added to <code>&quot;move&quot;</code> in <code>execute_action()</code>)</em>. The <code>Bump</code> class is another subclass of <code>Thing</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">percept</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    things <span class="token operator">=</span> self<span class="token punctuation">.</span>things_at<span class="token punctuation">(</span>agent<span class="token punctuation">.</span>location<span class="token punctuation">)</span>
+    <span class="token keyword keyword-if">if</span> agent <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>bumped<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>bumped<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+        things<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Bump<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> things
+</code></pre><p>The above code expands the things an agent can perceive in the environment. As well as all <em>things</em> at its location, it will also receive a "bump" (in the form of a <code>Bump</code>) if it has hit the boundary in its last action. <em>(Recall the functionality added to <code>"move"</code> in <code>execute_action()</code>)</em>. The <code>Bump</code> class is another subclass of <code>Thing</code>.</p>
 <p>To create a model-based agent, you can create an agent that inherits the <code>ModelBasedAgent</code> class. This is an example of a <code>RationalAgent</code> that has an internal program that can access its state (i.e. <code>self</code>). Whereas previously we passed <code>program</code> as an argument to the constructor, in a <code>ModelBasedAgent</code>, we define the <code>program</code> as a class method.</p>
 <p>The <code>ModelBasedAgent</code> class looks like this:</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModelBasedAgent</span><span class="hljs-params">(RationalAgent)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        super().__init__(self.program)
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">ModelBasedAgent</span><span class="token punctuation">(</span>RationalAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>self<span class="token punctuation">.</span>program<span class="token punctuation">)</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">program</span><span class="hljs-params">(self, percepts)</span>:</span>
-        <span class="hljs-built_in">NotImplemented</span>
-</div></code></pre>
-<blockquote>
+    <span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+</code></pre><blockquote>
 <p><strong>Create a model-based reflex agent version of the <code>EnergeticDog</code>, that maintains its direction as a state and has the following behaviour:</strong></p>
 </blockquote>
 <p>The <code>ModelBasedEnergetic</code> dog should:</p>
@@ -1068,14 +632,22 @@ e.g. <code>environment.run(graphical=graphical, steps=100)</code></p>
 <p>You can use the <code>random.choices</code> Python function to create a weighted selection, e.g. <code>choices(options, weights)[0]</code>. Note that choices returns a list, so you should index the first element.</p>
 </blockquote>
 <p>You can make a model-based energetic dog by inheriting from both <code>EnergeticDog</code> and <code>ModelBasedAgent</code>, this will save you having to reimplement the <code>move</code>, <code>eat</code> and <code>drink</code> method.</p>
-<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ModelBasedEnergeticDog</span><span class="hljs-params">(EnergeticDog, ModelBasedAgent)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
-        super().__init__()
-        self.direction = <span class="hljs-string">"forward"</span>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">ModelBasedEnergeticDog</span><span class="token punctuation">(</span>EnergeticDog<span class="token punctuation">,</span> ModelBasedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>direction <span class="token operator">=</span> <span class="token string">"forward"</span>
     
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">program</span><span class="hljs-params">(self, percepts)</span>:</span>
-        <span class="hljs-built_in">NotImplemented</span>
-</div></code></pre>
-
-</body>
-</html>
+    <span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
