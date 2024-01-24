@@ -18,7 +18,7 @@ class BreadthFirstAgent(MazeRunner, GoalBasedAgent):
     @property
     def at_goal(self):
         success = self.location.is_goal
-        return self.location.is_goal
+        return success
 
     def move_to(self, tile):
         if tile.is_passable:
@@ -157,9 +157,9 @@ def main(graphical=False, maze_preset=0):
     # agent = DepthFirstAgent()
     # agent = GreedyInformedAgent(goal)
     agent = AStarAgent(goal)
-    environment.add_agent(
-        agent, 
-        location=PRESET_STARTS[maze_preset])
+    # environment.add_agent(
+    #     agent, 
+    #     location=PRESET_STARTS[maze_preset])
 
     if graphical:
         environment.run(graphical=graphical, track_agent=True)
