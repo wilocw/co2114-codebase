@@ -171,7 +171,7 @@ class MazeEnvironment(GraphEnvironment):
             if node in self.maze:
                 self.success = agent.move_to(node)
     
-    def run(self, *args, **kwargs):
+    def run(self, track_agent=False, *args, **kwargs):
         super().run(10000, *args, **kwargs)
 
     @classmethod
@@ -204,7 +204,6 @@ class MazeApp(App):
 
         nx = self.environment.width
         fs = min(35, max(10, self.width//nx))
-        print(fs)
         self.thing_font = pygame.font.SysFont("segoe-ui-symbol", fs)
         self.counter = -1
         self._flag = True
