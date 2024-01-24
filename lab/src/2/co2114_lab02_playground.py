@@ -167,7 +167,7 @@ def main(graphical=True):
 
         environment.run(steps=20, graphical=graphical)
     
-    blind_dog_in_park()
+    # blind_dog_in_park()
 
     def energetic_dog_in_big_park():
 
@@ -179,14 +179,8 @@ def main(graphical=True):
         # environment.add_thing(Water(), location=(5,1))
         # environment.add_thing(Food(), location=(8,2))
         for _ in range(3):
-            environment.add_thing(
-                Food, (
-                    choice(range(environment.width)),
-                    choice(range(environment.height))))
-            environment.add_thing(
-                Water, (
-                    choice(range(environment.width)),
-                    choice(range(environment.height))))
+            environment.add_thing_randomly(Food())
+            environment.add_thing_randomly(Water())
 
         def program(percepts):
             for thing in percepts:
@@ -205,7 +199,7 @@ def main(graphical=True):
 
         environment.run(steps=100, graphical=graphical)
     
-    # energetic_dog_in_big_park()
+    energetic_dog_in_big_park()
 
 
 #########################################################
