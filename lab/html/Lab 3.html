@@ -1,0 +1,594 @@
+<!DOCTYPE html><html><head>
+      <title>Lab 3</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\wocw2\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.11\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/0/uol_banner_red.png" alt=""></p>
+<h1 id="co2114br-foundations-in-artificial-intelligence">CO2114<br>Foundations in Artificial Intelligence </h1>
+<h1 id="lab-exercise-3---search">Lab Exercise 3 - Search </h1>
+<p>This lab will look at implementing rational agents. Agents are a concept that is central to artificial intelligence design. The concept of rational is one that acts to improve its performance.</p>
+<p>In this lab, you will:</p>
+<ul>
+<li>Setup the <code>co2114_lab02</code> conda environment</li>
+<li></li>
+</ul>
+<h2 id="contents">Contents </h2>
+<ul>
+<li><strong>1. Getting Started</strong></li>
+<li><strong>2. Uninformed Search</strong></li>
+<li><strong>3. Informed Search</strong></li>
+</ul>
+<h2 id="1-getting-started">1. Getting Started </h2>
+<p>We will be using Anaconda for this lab.</p>
+<p>You should download the <code>lab03.environment.yml</code> and <code>co2114_lab03.py</code> files and run <strong>Anaconda Prompt</strong>.</p>
+<p>You can create the environment using the <code>conda env create</code> command. This may take several minutes.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> conda <span class="token function">env</span> create <span class="token parameter variable">-f</span> lab03.environment.yml
+</code></pre><h3 id="contents-1">Contents </h3>
+<ul>
+<li><strong>1.1 Testing the Environment</strong></li>
+<li><strong>1.2 Graph Environment</strong></li>
+<li><strong>1.3 Maze Environment</strong></li>
+<li><strong>1.4 Graphical Maze</strong></li>
+<li><strong>1.5 Maze Runner</strong></li>
+<li><strong>1.6 Maze Template</strong></li>
+</ul>
+<h3 id="11-testing-the-environment">1.1 Testing the Environment </h3>
+<p>To test that the environment, you can run the script in test-mode. Simply <strong>activate the <code>co2114_lab02</code> environment</strong> and run the script with the <code>--test</code> flag, as below:</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> conda activate co2114_lab03
+<span class="token operator">&gt;</span> python co2114_lab03.py <span class="token parameter variable">--test</span>
+</code></pre><p>If everything is working and has been set up properly, you should see a window open, with a clock, like the screenshot below.</p>
+<p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/2/ClockApp.png" alt="Screenshot of ClockApp running"></p>
+<blockquote>
+<p><strong>If you do not see this, you should check your environment and seek assistance.</strong></p>
+</blockquote>
+<h3 id="12-graph-environment">1.2 Graph Environment </h3>
+<blockquote>
+<p><strong>You don't need to implement these yourself, they are accessible by importing <code>search.graph</code>, e.g. <code>from search.graph import Node, Graph</code></strong></p>
+</blockquote>
+<p>When conducting search problems, the problem is most commonly treated as agent traversing a graph or tree. As we have seen in Tutorial 3, we can solve search problems by visiting nodes.</p>
+<p>In our environment, we will have a graph comprising nodes, defined respectively in the <code>Graph</code> and <code>Node</code> classes.</p>
+<p>The <code>Node</code> class acts as the <code>location</code> in our system. Whereas last week, our locations were <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span> coordinates, these graphs exist in relation to their neighbours. A <code>Node</code> is connected to to neighbouring <code>Node</code> by an edge. This is maintained implicitly: if a node is in the set of another nodes neighbours, there is an edge between them.</p>
+<p>In the backend library, the <code>Node</code> is defined as a <code>Thing</code>, with properties <code>neighbours</code>, a set containing other <code>Node</code> objects, and <code>weights</code>, a dictionary that contains weights of the edges between the node and its <code>neighbours</code>. Both are initially empty.</p>
+<p>Below is the (simplified) source code for the <code>Node</code> class in <code>search.graph</code>. The <code>add_neighbour</code> method takes a node and ats it to the neighbours, with an optional edge weight:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>Thing<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">""" Node, an element of a graph """</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>neighbours <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>weights <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">add_neighbour</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">,</span> weight<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-not">not</span> <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>neighbours<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>neighbours<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>weights<span class="token punctuation">[</span>node<span class="token punctuation">]</span> <span class="token operator">=</span> weight
+            node<span class="token punctuation">.</span>add_neighbour<span class="token punctuation">(</span>self<span class="token punctuation">,</span> weight<span class="token punctuation">)</span>
+</code></pre><p>As our nodes are defined with neighbours, we can treat the <code>Graph</code> object as a collection of nodes. The basic functionality of the <code>Graph</code> is defined below:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Graph</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" Create empty set of nodes """</span>
+        self<span class="token punctuation">.</span>nodes <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">add_node</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" recursively add node and any neighbours to graph """</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-not">not</span> <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>nodes<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>nodes<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+            <span class="token keyword keyword-for">for</span> neighbour <span class="token keyword keyword-in">in</span> node<span class="token punctuation">.</span>neighbours<span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span>neighbour<span class="token punctuation">)</span>
+</code></pre><blockquote>
+<p><strong>We only need to add one node to add all its connected nodes</strong></p>
+</blockquote>
+<p>Within the <code>search.graph.Graph</code> class, there are some additional utility functions, including <code>plot_nodes()</code>. You can review the source code if you are interested.</p>
+<p>Finally we create an <code>GraphEnvironment</code> class to simulate our search agents. The <code>ShortestPathEnvironment</code>, from Tutorial 3, is an example of a <code>GraphEnvironment</code>.</p>
+<p>Our <code>GraphEnvironment</code> is a subclass of <code>Environment</code>, as defined in Lab 2. A <code>GraphEnvironment</code> contains a <code>Graph</code>, to which we can add nodes. Adding an agent to the environment involves giving it a location on the graph, i.e. a node.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">GraphEnvironment</span><span class="token punctuation">(</span>Environment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> graph<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" Create environment with graph """</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>  <span class="token comment"># call super constructor</span>
+        self<span class="token punctuation">.</span>graph <span class="token operator">=</span> graph
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">add_node</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" Adding node to environment adds it to graph """</span>
+        self<span class="token punctuation">.</span>graph<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">add_agent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" Add an agent to the environment at a given node """</span>
+        self<span class="token punctuation">.</span>things<span class="token punctuation">.</span>add<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>agents<span class="token punctuation">.</span>add<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+        agent<span class="token punctuation">.</span>location <span class="token operator">=</span> node
+</code></pre><blockquote>
+<p>Recall an environment has to implement <code>execute_action</code>, <code>percept</code> and <code>is_done</code>. <strong>If you are unfamiliar with the <code>Environment</code> class, you should review Lab 2.</strong></p>
+</blockquote>
+<p>Generally, when using <code>GraphEnvironment</code> environments, our agents will traverse the graph by travelling to the neighbours of its current. However, an agent in principle can travel to any node in the graph.</p>
+<h3 id="13-maze-environment">1.3 Maze Environment </h3>
+<blockquote>
+<p><em><strong>All the classes discussed in this section are already implemented in <code>search.maze</code> so you don't need to do this yourself. This section is to familiarise yourself with how the environments are implemented.</strong></em></p>
+</blockquote>
+<p>In this lab, we will be developing agents to solve mazes. The <code>MazeEnvironment</code> is a subclass of <code>GraphEnvironment</code>, as we will be treating the mazes as examples of graphs, as seen in the lecture.</p>
+<p>First, we consider what a <code>Maze</code> looks like: in 2-dimensions, it is simply a grid of tiles that are either passable or not. In our search system, each tile is a node in a wider graph.</p>
+<p>In <code>search.maze</code>, the <code>MazeTile</code> is simply implemented as a special case of a <code>Node</code> with the properties <code>is_passable</code>, indicating whether it is passable, as well as boolean flags <code>is_goal</code> and <code>visited</code>, representing whether the tile is considered a goal and whether it has been visited by an agent, respectively.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MazeTile</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> passable<span class="token punctuation">:</span><span class="token builtin">bool</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>is_passable <span class="token operator">=</span> passable
+        self<span class="token punctuation">.</span>is_goal <span class="token operator">=</span> <span class="token boolean">False</span>
+        self<span class="token punctuation">.</span>visited <span class="token operator">=</span> <span class="token boolean">False</span>
+</code></pre><blockquote>
+<p><em>In the default implementation, the <code>visited</code> parameter is predominantly used for visualisation, as the agent itself will keep track of which nodes it has visited</em></p>
+</blockquote>
+<h4 id="creating-a-maze">Creating a Maze </h4>
+<p>To simplify creating maze environments, a basic list-of-strings template system has been implemented. A number of presets have been included, to generate maze environments</p>
+<blockquote>
+<p><strong>Details for creating your own mazes are given in <a href="#16-maze-templates">1.6 Maze Templates</a>.</strong></p>
+</blockquote>
+<p>The <code>Maze</code> is an example of a graph, where adjacent tiles are nodes, of type <code>MazeTile</code>, with adjacent tiles in their set of  <code>neighbours</code>.</p>
+<p>Consider the example maze from this week's lecture.</p>
+<p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/3/maze_template_0.png" alt="Maze template diagram"></p>
+<p>The template for this can be denoted using a list of strings, representing rows, such as below:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>template <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">" xxx o"</span><span class="token punctuation">,</span>
+    <span class="token string">"    x "</span><span class="token punctuation">,</span>
+    <span class="token string">"x x   "</span><span class="token punctuation">,</span>
+    <span class="token string">"  x xx"</span>
+<span class="token punctuation">]</span>
+</code></pre><blockquote>
+<p><strong>This is equivalent to <code>PRESET_MAZE[0]</code>, which will run by default. You can control presets with the <code>-m</code> flag when running <code>python co2114_lab03.py</code></strong></p>
+</blockquote>
+<p>The <code>Maze</code> class, which subclasses <code>Graph</code> is implemented like below. The <code>maze</code> is generated with a template string, in the format shown above. As a grid, it has a <code>height</code> and <code>width</code>.</p>
+<p>It also implemented the <code>generate_from_template()</code> method, which creates a grid of <code>MazeTile</code> nodes based on the strings provided. Each <code>MazeTile</code> is assigned neighbours based on their adjacency in the grid.</p>
+<blockquote>
+<p><strong>Remember: you don't need to implement this yourself</strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Maze</span><span class="token punctuation">(</span>Graph<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> template<span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>template <span class="token operator">=</span> template
+        self<span class="token punctuation">.</span>height<span class="token punctuation">,</span> self<span class="token punctuation">.</span>width <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>template<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>size <span class="token operator">=</span> self<span class="token punctuation">.</span>width<span class="token punctuation">,</span> self<span class="token punctuation">.</span>height
+        self<span class="token punctuation">.</span>generate_from_template<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">generate_from_template</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>grid <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token comment"># will allow us to index graph by location</span>
+
+        <span class="token keyword keyword-for">for</span> i<span class="token punctuation">,</span> row <span class="token keyword keyword-in">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>template<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            grid_row <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+            <span class="token keyword keyword-for">for</span> j<span class="token punctuation">,</span> tile <span class="token keyword keyword-in">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                node <span class="token operator">=</span> MazeTile<span class="token punctuation">(</span>tile <span class="token operator">!=</span> <span class="token string">"x"</span><span class="token punctuation">)</span>  <span class="token comment"># check is passable (not x)</span>
+                <span class="token keyword keyword-if">if</span> tile <span class="token operator">==</span> <span class="token string">"o"</span><span class="token punctuation">:</span>  <span class="token comment"># set goal tile(s)</span>
+                    node<span class="token punctuation">.</span>is_goal <span class="token operator">=</span> <span class="token boolean">True</span>
+                node<span class="token punctuation">.</span>location <span class="token operator">=</span> <span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>  <span class="token comment"># give spatial location (index on grid)</span>
+                grid_row<span class="token punctuation">.</span>append<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># add node to row</span>
+                <span class="token keyword keyword-if">if</span> i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>  <span class="token comment"># after first row</span>
+                    <span class="token comment"># add adjacent neighbour from previous row</span>
+                    node<span class="token punctuation">.</span>add_neighbour<span class="token punctuation">(</span>self<span class="token punctuation">.</span>grid<span class="token punctuation">[</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> 
+                <span class="token keyword keyword-if">if</span> j <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span>  <span class="token comment"># after first column</span>
+                    <span class="token comment"># add adjacent neighbour from previous column</span>
+                    node<span class="token punctuation">.</span>add_neighbour<span class="token punctuation">(</span>grid_row<span class="token punctuation">[</span>j<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> 
+            self<span class="token punctuation">.</span>grid<span class="token punctuation">.</span>append<span class="token punctuation">(</span>grid_row<span class="token punctuation">)</span>  <span class="token comment"># add row to grid</span>
+        self<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span>self<span class="token punctuation">.</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment"># cascade adding nodes</span>
+</code></pre><h4 id="constructing-an-environment">Constructing an Environment </h4>
+<p>As with last week, with the <code>ParkEnvironment</code>, and the tutorial, with the <code>ShortestPathEnvironment</code>, we create an <code>Environment</code> based on the <code>Maze</code> that interacts with our agent.</p>
+<blockquote>
+<p><strong>Reminder</strong>: an environment has a set of <code>things</code> and <code>agents</code>, and should implement the <code>is_done()</code>, <code>percept()</code> and <code>execute_actions()</code> code.</p>
+</blockquote>
+<p>In our <code>MazeEnvironment</code>, we can pass the neighbours of an agent's location to it for percepts:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    node <span class="token operator">=</span> agent<span class="token punctuation">.</span>location
+    <span class="token keyword keyword-return">return</span> node<span class="token punctuation">.</span>neighbours
+</code></pre><p>This will inform an agent of what tiles are adjacent to it.</p>
+<p>We consider the only action that a search agent can make: to move to a given node.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">execute_action</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    command<span class="token punctuation">,</span> node <span class="token operator">=</span> action  <span class="token comment"># e.g. ("move", node)</span>
+    <span class="token keyword keyword-if">if</span> command <span class="token operator">==</span> <span class="token string">"move"</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>success <span class="token operator">=</span> agent<span class="token punctuation">.</span>move_to<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+</code></pre><p>Our measure of success will be defined by the agent, but we will track this in the implementation of <code>is_done()</code> method:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token decorator annotation punctuation">@property</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">is_done</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>agents<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword keyword-return">return</span> <span class="token boolean">True</span>  <span class="token comment"># if no agents</span>
+    <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>success
+</code></pre><blockquote>
+<p>When we implement our agents, we will consider <em>success</em> to be whether the agent is at its goal.</p>
+</blockquote>
+<p>The implementation of <code>MazeEnvironment</code> in <code>search.maze</code> is shown below:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MazeEnvironment</span><span class="token punctuation">(</span>GraphEnvironment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> maze<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>maze<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>size <span class="token operator">=</span> self<span class="token punctuation">.</span>width<span class="token punctuation">,</span> self<span class="token punctuation">.</span>height <span class="token operator">=</span> maze<span class="token punctuation">.</span>size
+        self<span class="token punctuation">.</span>success <span class="token operator">=</span> <span class="token boolean">False</span>  <span class="token comment"># maze is solved</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">maze</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>graph
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">grid</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>maze<span class="token punctuation">.</span>grid
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">is_done</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>agents<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword keyword-return">return</span> <span class="token boolean">True</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>success
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">goal</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token punctuation">{</span>node <span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>maze<span class="token punctuation">.</span>nodes <span class="token keyword keyword-if">if</span> node<span class="token punctuation">.</span>is_goal<span class="token punctuation">}</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">percept</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        node <span class="token operator">=</span> agent<span class="token punctuation">.</span>location
+        <span class="token keyword keyword-return">return</span> node<span class="token punctuation">.</span>neighbours
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">execute_action</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> agent<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        command<span class="token punctuation">,</span> node <span class="token operator">=</span> action
+        <span class="token keyword keyword-if">if</span> command <span class="token operator">==</span> <span class="token string">"move"</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>success <span class="token operator">=</span> agent<span class="token punctuation">.</span>move_to<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@classmethod</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">from_template</span><span class="token punctuation">(</span>MazeEnvironment<span class="token punctuation">,</span> template<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        maze <span class="token operator">=</span> Maze<span class="token punctuation">(</span>template<span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> MazeEnvironment<span class="token punctuation">(</span>maze<span class="token punctuation">)</span>
+</code></pre><blockquote>
+<p><strong>The <code>from_template</code> class method is a utility function to create a new MazeEnvironment from a given template</strong></p>
+</blockquote>
+<h3 id="14-graphical-maze">1.4 Graphical Maze </h3>
+<blockquote>
+<p><em><strong>As with last week, we will be using PyGame to visualise our agent simulations</strong>.</em></p>
+</blockquote>
+<p>The <code>GraphicMaze</code> environment is a wrapper for the <code>MazeEnvironment</code> that runs a GUI version of the agent simulation, similar to the <code>GraphicEnvironment</code> version of <code>ParkEnvironment</code> in Lab 2.</p>
+<p>The <code>GraphicMaze</code> class creates an new environment, from a maze template, and can be simulated using the <code>run()</code> method, e.g.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment <span class="token operator">=</span> GraphicMaze<span class="token punctuation">.</span>from_template<span class="token punctuation">(</span>template<span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><p>You can visualise the maze using the default preset by running</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab03.py
+</code></pre><p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/3/maze_template_gui_0.png" alt=""></p>
+<p>You can view over maze presets using the <code>--preset</code> flag and setting the preset number. E.g.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab03.py <span class="token parameter variable">--preset</span> <span class="token number">2</span>
+</code></pre><blockquote>
+<p><strong>We will implement agents to solve these mazes</strong></p>
+</blockquote>
+<h3 id="15-maze-runner">1.5 Maze Runner </h3>
+<p>When implementing our maze solving agents, we will subclass the <code>MazeRunner</code> class. This is an example of an <code>Agent</code> represented with 👾. We use this to render the agent in a <code>GraphicalMaze</code>.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MazeRunner</span><span class="token punctuation">(</span>Agent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__repr__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string">"👾"</span>
+</code></pre><p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/3/maze_runner.png" alt=""></p>
+<h3 id="16-maze-templates">1.6 Maze Templates </h3>
+<blockquote>
+<p><strong>There are several maze templates provided in <code>search.maze.PRESET_MAZES</code></strong>.</p>
+</blockquote>
+<p>You can set your maze preset when running the script using the <code>--preset</code> flag. For example, the following command will run the maze preset <code>2</code>.</p>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab03.py <span class="token parameter variable">--preset</span> <span class="token number">2</span>
+</code></pre><blockquote>
+<p>You can view all the possible preset choices by running the script with the <code>--help</code> flag.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab03.py <span class="token parameter variable">--help</span>
+</code></pre><p>This will print out possible choices for <code>--preset</code>.</p>
+<h4 id="design-your-own-maze">Design your own maze </h4>
+<p>You can also define your own maze by redefining the <code>template</code>.</p>
+<p>The template should comprise a list of strings <strong>of equal length</strong> containing only the following characters corresponding to tiles: <code>'x'</code>, <code>' '</code>, and <code>'o'</code>. The properties of tiles of each tile are given in the following table:</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th><code>is_passable</code></th>
+<th><code>is_goal</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>' '</code></td>
+<td><code>True</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>'x'</code></td>
+<td><code>False</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>'o'</code></td>
+<td><code>True</code></td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p>The length of the list represents the number of rows in the maze, i.e. the <code>height</code>. The length of the strings corresponds to the number of columns, i.e. the <code>width</code>.</p>
+<p>For example the following definition would create a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>×</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">4\times 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> maze (width x height), with <strong>three</strong> impassable tiles and one goal.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>template <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">"x xx"</span><span class="token punctuation">,</span>
+    <span class="token string">"   o"</span>
+<span class="token punctuation">]</span>
+</code></pre><p>Creating a maze environment involves simply passing the <code>template</code> variable to the <code>from_template()</code> method:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment <span class="token operator">=</span> GraphicMaze<span class="token punctuation">.</span>from_template<span class="token punctuation">(</span>template<span class="token punctuation">)</span>
+</code></pre><h4 id="adding-an-agent">Adding an Agent </h4>
+<p>When using the preset mazes, the agent will be added at preset locations, defined in <code>search.maze.PRESET_SEARCH</code>. However, when you are defining your own template, you will need to set the location manually when adding an agent to the maze:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> location<span class="token punctuation">)</span>
+</code></pre><p>The <code>location</code> variable indicates the row index and the column index, <em>in that order</em>. <strong>It should not be (x,y)</strong>.</p>
+<p>In the above example, if we wanted to put the agent in the bottom left, we would use the following location:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>location <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment"># row then column</span>
+</code></pre><p>Alternatively, if you have a <code>MazeTile</code> object you want to set as the agent's location, you can pass this as <code>location</code> instead.</p>
+<h2 id="2-uninformed-search">2. Uninformed Search </h2>
+<p>In this section, we will design search agents to solve the maze using <em>uninformed search</em> approaches. In other words, the agent does not know anything about the goal, apart from whether it has reached it or not.</p>
+<h3 id="content">Content </h3>
+<ul>
+<li><a href="#21-goal-based-agent"><strong>2.1 Goal-based Agent</strong></a></li>
+<li><a href="#22-breadth-first-search"><strong>2.2 Breadth-First Search</strong></a></li>
+<li><a href="#exercise-depth-first-search"><strong>Exercise: Depth-First Search</strong></a></li>
+</ul>
+<h3 id="21-goal-based-agent">2.1 Goal-based Agent </h3>
+<p>A goal-based agent is a model-based agent with some goal that defines its success. A model-based agent will act to reach its goal, and it is considered successful if it has reached that goal.</p>
+<p>In <code>search.things</code>, the <code>GoalBasedAgent</code> is implemented as a subclass of <code>ModelBasedAgent</code>. It has the property <code>at_goal</code> which should return <code>True</code> or <code>False</code> based on whether the agent has reached the goal.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">GoalBasedAgent</span><span class="token punctuation">(</span>ModelBasedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">at_goal</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+</code></pre><blockquote>
+<p><em>Recall from Lab 2 that a <code>ModelBasedAgent</code> must implement <code>program(self, percepts)</code> within its class definition.</em></p>
+</blockquote>
+<h3 id="22-breadth-first-search">2.2 Breadth-First Search </h3>
+<p>We will first implement a <code>MazeRunner</code> <code>GoalBasedAgent</code> that implements the breadth-first search algorithm.</p>
+<p>A breadth-first search agent should add all (valid) neighbouring nodes to its frontier <em>queue</em>, and then navigate to the next node in the queue. The queue is an example of a first-in-first-out data structure. An implementation has been provided in <code>search.util</code>.</p>
+<p>The class definition of a <code>BreadthFirstAgent</code> is shown below. We will work through the implementations of <code>at_goal</code>, our actuator <code>move_to</code> (called from a <code>MazeEnvironment</code>) and the agent <code>program</code>.</p>
+<blockquote>
+<p><strong>You should implement this in <code>co2114_lab03.py</code></strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">BreadthFirstAgent</span><span class="token punctuation">(</span>MazeRunner<span class="token punctuation">,</span> GoalBasedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>frontier <span class="token operator">=</span> queue<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># frontier is a FIFO queue</span>
+        self<span class="token punctuation">.</span>visited <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># set of visited nodes</span>
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">at_goal</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">move_to</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tile<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># actuator</span>
+        NotImplemented
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+</code></pre><h4 id="goal">Goal </h4>
+<p>The first thing we should consider is what does success look like?. For a maze search, success is reaching the goal node.</p>
+<p>We can thus define <code>at_goal</code> as <code>True</code> if the current location is a goal. <code>is_goal</code> is a property of <code>MazeTile</code>: marked by <code>'o'</code> in the template.</p>
+<blockquote>
+<p><strong>Add this implementation of <code>at_goal</code> to your <code>BreadthFirstAgent</code> implementation, replacing the <code>NotImplemented</code> version.</strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token decorator annotation punctuation">@property</span>
+<span class="token keyword keyword-def">def</span> <span class="token function">at_goal</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    success <span class="token operator">=</span> self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>is_goal
+    <span class="token keyword keyword-return">return</span> success
+</code></pre><h4 id="actuator">Actuator </h4>
+<p>Our actuator is the ability to move to any valid tile.</p>
+<p>Consider what tiles are valid: is it passable? If yes, the agent can move to it.</p>
+<blockquote>
+<p><strong>Add this definition of <code>move_to()</code> to your definition of <code>BreadthFirstAgent</code></strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">move_to</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tile<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> tile<span class="token punctuation">.</span>is_passable<span class="token punctuation">:</span>  <span class="token comment"># then can move to it</span>
+        self<span class="token punctuation">.</span>visited<span class="token punctuation">.</span>add<span class="token punctuation">(</span>self<span class="token punctuation">.</span>location<span class="token punctuation">)</span>  <span class="token comment"># add node to visited set</span>
+        self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>visited <span class="token operator">=</span> <span class="token boolean">True</span>  <span class="token comment"># tell node its been visited</span>
+        self<span class="token punctuation">.</span>location <span class="token operator">=</span> tile  <span class="token comment"># move to new tile</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: visiting </span><span class="token interpolation"><span class="token punctuation">{</span>tile<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>at_goal  <span class="token comment"># success ?</span>
+</code></pre><p>We implement the agent to remember where it has visited, and to tell the tile it has been visited (for visualisation). The new location of the agent is the new <code>MazeTile</code>.</p>
+<h4 id="program">Program </h4>
+<p>Finally, we want to define our search program. The <code>program</code> receives, from the environment, <em>all</em> neighbouring tiles, including those that are impassable and have been visited.</p>
+<p>A breadth-first search agent should push nodes to its frontier.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> percepts<span class="token punctuation">:</span>
+    <span class="token comment"># conditions?</span>
+    self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>push<span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: adding </span><span class="token interpolation"><span class="token punctuation">{</span>node<span class="token punctuation">}</span></span><span class="token string"> to frontier"</span></span><span class="token punctuation">)</span>
+</code></pre><p>The important thing to consider is <em>what</em> nodes can be added to the frontier.</p>
+<ul>
+<li>is it impassable?</li>
+<li>has it been visited?</li>
+<li>is it already in the frontier?</li>
+</ul>
+<p>In any of these cases, the node should <strong>not</strong> be added to the frontier. Otherwise, we can add neighbours:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> percepts<span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> node<span class="token punctuation">.</span>is_passable<span class="token punctuation">:</span>  <span class="token comment"># not valid</span>
+        <span class="token keyword keyword-continue">continue</span>
+    <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>visited<span class="token punctuation">:</span>  <span class="token comment"># been there</span>
+        <span class="token keyword keyword-continue">continue</span>
+    <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">:</span> <span class="token comment"># already on the list</span>
+        <span class="token keyword keyword-continue">continue</span>
+    self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>push<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># otherwise add to frontier</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: adding </span><span class="token interpolation"><span class="token punctuation">{</span>node<span class="token punctuation">}</span></span><span class="token string"> to frontier"</span></span><span class="token punctuation">)</span>
+</code></pre><p>Finally, once all neighbours have been added to the frontier, we simply pop the first node from the frontier queue and state the intended action:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>node <span class="token operator">=</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># first in queue</span>
+<span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">"move"</span><span class="token punctuation">,</span> node<span class="token punctuation">)</span>  <span class="token comment"># action</span>
+</code></pre><blockquote>
+<p><strong>Your <code>BreadthFirstAgent</code> <code>program</code> should look like this:</strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> percepts<span class="token punctuation">:</span>  <span class="token comment"># update frontier</span>
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> node<span class="token punctuation">.</span>is_passable<span class="token punctuation">:</span>  <span class="token comment"># not valid</span>
+            <span class="token keyword keyword-continue">continue</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>visited<span class="token punctuation">:</span>  <span class="token comment"># been there</span>
+            <span class="token keyword keyword-continue">continue</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">:</span> <span class="token comment"># already on the list</span>
+            <span class="token keyword keyword-continue">continue</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-is">is</span> self<span class="token punctuation">.</span>location<span class="token punctuation">:</span> <span class="token comment"># am there</span>
+            <span class="token keyword keyword-continue">continue</span>
+        self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>push<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># otherwise add to frontier</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: adding </span><span class="token interpolation"><span class="token punctuation">{</span>node<span class="token punctuation">}</span></span><span class="token string"> to frontier"</span></span><span class="token punctuation">)</span>
+    <span class="token comment"># then move to next in frontier</span>
+    node <span class="token operator">=</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># first in queue</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token string">"move"</span><span class="token punctuation">,</span> node<span class="token punctuation">)</span>  <span class="token comment"># action</span>
+</code></pre><blockquote>
+<p><strong>You can add a <code>BreadthFirstAgent</code> to the <code>GraphicalMaze</code> environment by adding the following line to the <code>main()</code> method in <code>co2114_lab03.py</code></strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>agent <span class="token operator">=</span> BreadthFirstAgent<span class="token punctuation">(</span><span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> start_loc<span class="token punctuation">)</span>
+</code></pre><blockquote>
+<p><em>The <code>start_loc</code> variable is automatically set by the preset choice.</em></p>
+</blockquote>
+<p>Running <code>python co2114_lab03.py</code> should open a maze and you will see your agent solve it using breadth-first search.</p>
+<p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/3/breadth_first_solve.png" alt="breadth first search"></p>
+<blockquote>
+<p><strong>Try your breadth-first agent on differnt maze presets. Which mazes does it work well with? Which mazes does it not?</strong></p>
+</blockquote>
+<h3 id="exercise-depth-first-search">Exercise: Depth-First Search </h3>
+<p>You should now adapt the agent to implement <em>depth-first search</em> instead of <em>breadth-first</em>.</p>
+<p>Whereas a breadth-first search uses a first-in-first-out frontier, the depth-first approach uses a <em>last-in-first-out</em>.</p>
+<p>You should create a new class <code>DepthFirstAgent</code> and use it to solve the maze.</p>
+<blockquote>
+<p><strong>Hint: you can <em>inherit</em> much of the code used to implement <code>BreadthFirstAgent</code></strong>.</p>
+</blockquote>
+<h2 id="3-informed-search">3. Informed Search </h2>
+<p>So far, we have implemented search agents that have no knowledge about their goal. We will now look at implementations of <em>informed</em> search, where we have some metric for which choices are better based on the information we have about the goal.</p>
+<h3 id="31-utility-agent">3.1 Utility Agent </h3>
+<p>Consider the utility-based agent. Where a goal-based agent determined success as having reached the goal, it did not otherwise care about how it made decisions.</p>
+<p>A utility-based agent is one that has some metric of "happiness": which action would be better for the agent. This is called a utility function, which the agent seeks to maximise with every action.</p>
+<p>The implementation of the <code>UtilityBasedAgent</code> provides an interface for this behaviour. Extending from a <code>GoalBasedAgent</code>, it now has a <code>utility(action)</code> method, which should return the perceived utility, or value, of any action.</p>
+<p>A <code>UtilityBasedAgent</code> also has a <code>maximise_utility</code> function that will return the action with the highest utility from a list of actions:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">UtilityBasedAgent</span><span class="token punctuation">(</span>GoalBasedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">maximise_utility</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> actions<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">""" calculates maximum utility from list of actions """</span>
+        max_u <span class="token operator">=</span> <span class="token operator">-</span>inf  <span class="token comment"># negative infinity</span>
+        <span class="token keyword keyword-for">for</span> action <span class="token keyword keyword-in">in</span> actions<span class="token punctuation">:</span>
+            u <span class="token operator">=</span> self<span class="token punctuation">.</span>utility<span class="token punctuation">(</span>action<span class="token punctuation">)</span>
+            <span class="token keyword keyword-if">if</span> u <span class="token operator">&gt;</span> max_u<span class="token punctuation">:</span>
+                max_u <span class="token operator">=</span> u
+                output <span class="token operator">=</span> action
+        <span class="token keyword keyword-return">return</span> output
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">utility</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        NotImplemented
+</code></pre><blockquote>
+<p>As a <code>GoalBasedAgent</code>, which is itself a <code>ModelBasedAgent</code>, we still have to implement the <code>program()</code> and <code>at_goal</code> functionality in our <code>UtilityBasedAgent</code> subclasses</p>
+</blockquote>
+<p>In our <code>UtilityBasedAgent</code> program, we will be able to select an action by calling <code>maximise_utility</code>, e.g.:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>action <span class="token operator">=</span> self<span class="token punctuation">.</span>maximise_utility<span class="token punctuation">(</span>self<span class="token punctuation">,</span> actions<span class="token punctuation">)</span>
+</code></pre><h3 id="32-heuristic">3.2 Heuristic </h3>
+<p>A heuristic is a measure to rank possible choices when searching. In the maze, we will use the Manhattan distance, which essentially tells us how many tiles away (ignoring whether they are passable or not) from the goal are.</p>
+<p>The Manhattan distance is defined as follows:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi></mrow><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>B</mi></msub><mo>−</mo><msub><mi>x</mi><mi>A</mi></msub><mi mathvariant="normal">∣</mi><mo>+</mo><mi mathvariant="normal">∣</mi><msub><mi>y</mi><mi>B</mi></msub><mo>−</mo><msub><mi>y</mi><mi>A</mi></msub><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">\mathrm{dist}(A,B) = |x_B - x_A| + |y_B - y_A|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">dist</span></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span></span></span></p>
+<p>Essentially, this is the number of tiles along the <code>x</code> access plus the number of tiles along the <code>y</code> access.</p>
+<p>The Manhattan distance is implemented in <code>search.util</code>:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">manhattan</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    ax<span class="token punctuation">,</span> ay <span class="token operator">=</span> a  <span class="token comment"># (x, y)</span>
+    bx<span class="token punctuation">,</span> by <span class="token operator">=</span> b  <span class="token comment"># (x, y)</span>
+    <span class="token keyword keyword-return">return</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>bx<span class="token operator">-</span>ax<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>by<span class="token operator">-</span>ay<span class="token punctuation">)</span>
+</code></pre><p>We want to make choices that minimise the distance. We can use this when defining the <code>utility</code> of our agents.</p>
+<h3 id="33--greedy-search">3.3  Greedy Search </h3>
+<p>We will implement a greedy search agent that seeks to choose the closest possible tile to the goal at any time.</p>
+<p>We will do this by using the Manhattan distance between a node and the goal as its heuristic <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>. To do this, the agent must have know its goal. We will reuse the <code>at_goal</code> and <code>move_to</code> behaviour the same as our <code>BreadthFirstAgent</code>.</p>
+<blockquote>
+<p><strong>Add the following implementation to <code>co2114_lab03.py</code></strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">GreedyInformedAgent</span><span class="token punctuation">(</span>MazeRunner<span class="token punctuation">,</span> UtilityBasedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> goal<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>frontier <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>visited <span class="token operator">=</span> <span class="token builtin">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>goal <span class="token operator">=</span> goal
+
+    <span class="token decorator annotation punctuation">@property</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">at_goal</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        success <span class="token operator">=</span> self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>is_goal
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>is_goal
+    
+    <span class="token keyword keyword-def">def</span> <span class="token function">move_to</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tile<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> tile<span class="token punctuation">.</span>is_passable<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>visited<span class="token punctuation">.</span>add<span class="token punctuation">(</span>self<span class="token punctuation">.</span>location<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>visited <span class="token operator">=</span> <span class="token boolean">True</span>
+            self<span class="token punctuation">.</span>location <span class="token operator">=</span> tile
+            self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>tile<span class="token punctuation">)</span>  <span class="token comment"># new</span>
+            utility <span class="token operator">=</span> self<span class="token punctuation">.</span>utility<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">"move"</span><span class="token punctuation">,</span> tile<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: visiting </span><span class="token interpolation"><span class="token punctuation">{</span>tile<span class="token punctuation">}</span></span><span class="token string"> with utility=</span><span class="token interpolation"><span class="token punctuation">{</span>utility<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>at_goal
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">heuristic</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> node<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> manhattan<span class="token punctuation">(</span>node<span class="token punctuation">.</span>location<span class="token punctuation">,</span> self<span class="token punctuation">.</span>goal<span class="token punctuation">.</span>location<span class="token punctuation">)</span>
+
+</code></pre><blockquote>
+<p>Note we have updated the <code>move_to</code> slightly to remove the tile from the frontier here, since we are not using a queue</p>
+</blockquote>
+<p>We can add the update frontier code, which performs the checks we need for valid tiles and adds possible nodes to the <code>frontier</code>. Note that this is now a <code>set</code> because we don't care about the order, only the options that maximuse utility.</p>
+<blockquote>
+<p><strong>Add the following method to your implementation of <code>GreedyInformedAgent</code></strong>.</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">update_frontier</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> percepts<span class="token punctuation">:</span>  <span class="token comment"># update frontier</span>
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> node<span class="token punctuation">.</span>is_passable<span class="token punctuation">:</span>  <span class="token comment"># not valid</span>
+            <span class="token keyword keyword-continue">continue</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>visited<span class="token punctuation">:</span>  <span class="token comment"># been there</span>
+            <span class="token keyword keyword-continue">continue</span>
+        <span class="token keyword keyword-if">if</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">:</span> <span class="token comment"># already on the list</span>
+            <span class="token keyword keyword-continue">continue</span>
+        self<span class="token punctuation">.</span>frontier<span class="token punctuation">.</span>add<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># add to set</span>
+        <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>self<span class="token punctuation">}</span></span><span class="token string">: adding </span><span class="token interpolation"><span class="token punctuation">{</span>node<span class="token punctuation">}</span></span><span class="token string"> to frontier"</span></span><span class="token punctuation">)</span>
+</code></pre><p>We must now define our utility function. As an agent, we are seeking to maximise the utility, and as an informed search, we are seeking to minimise the heuristic, e.g. the distance. We can define the utility of an action as a the negative of the distance of that node to the goal.</p>
+<blockquote>
+<p><em><strong>Minimising a value is the same as maximising its negative</strong></em></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">utility</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    node <span class="token operator">=</span> action<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token keyword keyword-return">return</span> <span class="token operator">-</span>self<span class="token punctuation">.</span>heuristic<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># negative distance</span>
+</code></pre><p>Our program is now relatively straightforward: we simply update the frontier and choose the action that maximises the utility from the possible actions, i.e. moving to any node in the frontier.</p>
+<blockquote>
+<p><strong>Add this <code>program</code> to your <code>GreedyInformedAgent</code></strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">program</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>update_frontier<span class="token punctuation">(</span>percepts<span class="token punctuation">)</span>
+    actions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">"move"</span><span class="token punctuation">,</span> node<span class="token punctuation">)</span> <span class="token keyword keyword-for">for</span> node <span class="token keyword keyword-in">in</span> self<span class="token punctuation">.</span>frontier<span class="token punctuation">]</span>
+    action <span class="token operator">=</span> self<span class="token punctuation">.</span>maximise_utility<span class="token punctuation">(</span>actions<span class="token punctuation">)</span>
+    <span class="token keyword keyword-return">return</span> action <span class="token comment"># action</span>
+</code></pre><h4 id="adding-the-greedy-agent">Adding the Greedy Agent </h4>
+<p>In our uninformed search, the agent had no knowledge of the goal. We now need to provide information about the goal to the agent We do this in the constructor. You can now create an agent by passing it <code>environment.goal</code>. You can then add the agent to the <code>environment</code> at the <code>start_loc</code> as before.</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>agent <span class="token operator">=</span> GreedyInformedAgent<span class="token punctuation">(</span>environment<span class="token punctuation">.</span>goal<span class="token punctuation">)</span>
+environment<span class="token punctuation">.</span>add_agent<span class="token punctuation">(</span>agent<span class="token punctuation">,</span> start_loc<span class="token punctuation">)</span>
+</code></pre><blockquote>
+<p><strong>Comment out the line where you add your <code>BreadthFirstAgent</code> or <code>DepthFirstAgent</code> as you only want agent in your environment.</strong></p>
+</blockquote>
+<p>You can now run <code>co2114_lab03.py</code> again to try out your greedy informed search agent.</p>
+<blockquote>
+<p><strong>If you run --preset 2, you will get the example maze from the lecture</strong></p>
+</blockquote>
+<pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token operator">&gt;</span> python co2114_lab03.py <span class="token parameter variable">--preset</span> <span class="token number">2</span>
+</code></pre><p><img src="https://raw.githubusercontent.com/wilocw/co2114-codebase/2024/static/3/informed_search_solve.png" alt="Greedy informed search path"></p>
+<h3 id="exercise-a-search">Exercise: A* Search </h3>
+<p>As discussed in the lecture, taking a greedy approach can often lead to sub-optimal paths. Expand your implementation of the <code>GreedyInformedAgent</code> to implement A* search, where the path that minimises <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>+</mo><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n) + h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> is chosen. Here, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">h(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">h</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> is the heuristic based on Manhattan distance, and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> is the number of steps it would take from the start to reach a node.</p>
+<p>You can use the following code to start your implementation:</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">AStarAgent</span><span class="token punctuation">(</span>GreedyInformedAgent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token operator">*</span>args<span class="token punctuation">,</span> <span class="token operator">**</span>kwargs<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>moved <span class="token operator">=</span> <span class="token number">0</span>
+        self<span class="token punctuation">.</span>g_n <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">update_frontier</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> percepts<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># hint: reimplement</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">utility</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># hint: reimplement</span>
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
