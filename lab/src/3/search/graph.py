@@ -1,15 +1,20 @@
 import math
+import warnings
+import json
+
+from matplotlib import pyplot as plt
 
 from agent.things import Thing, Agent
 from agent.environment import Environment
 
 
 class Node(Thing):
-    def __init__(self):
+    def __init__(self, label=""):
+        self.label = label
         self.neighbours = set()
         self.weights = {}
     def __repr__(self):
-        return ""
+        return self.label
     def add_neighbour(self, node, weight=None):
         if not isinstance(node, Node):
             raise TypeError(f"{self}: {node} is not a Node")
@@ -71,7 +76,7 @@ class Graph:
         for node, loc in locs.items():
             name = str(node) if labels is None else labels[node]
             ax.plot(*loc, 'ko', ms=20)
-            ax.text(loc[0], loc[1]+0.1, name)
+            ax.text(loc[0]+0.1, loc[1]+0.1, name)
         
         for edge in edges:
             a,b, weight = locs[edge[0]], locs[edge[1]], edge[2]
@@ -89,6 +94,13 @@ class GraphEnvironment(Environment):
 
     def add_node(self, node):
         self.graph.add_node(node)
+
+    def percept(self, agent):
+        node = agent.location
+        if len(node.weights) == 0:
+            return node.neighbours
+        else:
+            return [(n, node.weights[n]) for n in node.neighbours]
 
     def add_agent(self, agent, location=None, node=None):
             if not isinstance(agent, Agent):
@@ -113,4 +125,37 @@ class GraphEnvironment(Environment):
                 super().add_agent(agent)
 
     def show(self, *args, **kwargs):
-        self.graph.plot_nodes(*args, **kwargs).show()
+        with warnings.catch_warnings(action="ignore"):
+            self.graph.plot_nodes(*args, **kwargs).show()
+
+    @classmethod
+    def from_dict(ShortestPathEnvironment, graph_dict):
+        if "vertices" not in graph_dict and "edges" not in graph_dict:
+            raise ValueError(f"No vertices in json string {graph_dict}")
+        if "edges" not in graph_dict:
+            raise ValueError(f"No edges in json string {graph_dict}")
+        vertices = graph_dict['vertices' if 'vertices' in graph_dict else 'nodes']
+        edges = graph_dict['edges']
+        for edge in edges:
+            if len(edge) != 2:
+                raise ValueError(f"Edges must comprise two nodes, {edge} does not")
+            if any(v not in vertices for v in edge):
+                raise ValueError(f"Edges must map between valid vertices, {edge} does not")
+        
+        nodes = {v: Node(v) for v in vertices}
+        if 'weights' in graph_dict:
+            weights = graph_dict['weights']
+        else:
+            weights = [None]*len(edges)
+        for edge, weight in zip(edges, weights):
+            a, b = edge
+            nodes[a].add_neighbour(nodes[b], weight)
+
+        environment = ShortestPathEnvironment()
+        for _,node in nodes.items():
+            environment.add_node(node)
+        return environment
+    
+    @classmethod
+    def from_json(ShortestPathEnvironment, json_str):
+        return ShortestPathEnvironment.from_dict(json.loads(json_str))

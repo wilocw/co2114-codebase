@@ -19,3 +19,9 @@ class queue:
 class stack(queue):
     def pop(self):
         return self.data.pop()
+    
+
+def manhattan(a, b):
+    ax, ay = a  # (x, y)
+    bx, by = b  # (x, y)
+    return abs(bx-ax) + abs(by-ay)

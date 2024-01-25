@@ -5,7 +5,7 @@ Use this file to edit your Python code and
 """
 from search.things import *
 from search.maze import *
-from search.util import queue, stack
+from search.util import queue, stack, manhattan
 
 ## Write your class definitions here
 

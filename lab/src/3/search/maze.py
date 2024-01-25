@@ -150,7 +150,10 @@ class MazeEnvironment(GraphEnvironment):
 
     @property
     def goal(self):
-        return {node for node in self.maze.nodes if node.is_goal}
+        goal = {node for node in self.maze.nodes if node.is_goal}
+        if len(goal) == 1:
+            goal = next(iter(goal))
+        return goal
 
     def show_graph(self, *args, **kwargs):
         return self.show(*args, **kwargs)
