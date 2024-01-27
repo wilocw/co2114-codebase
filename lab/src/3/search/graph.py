@@ -4,8 +4,8 @@ import json
 
 from matplotlib import pyplot as plt
 
-from agent.things import Thing, Agent
 from agent.environment import Environment
+from .things import Thing, Agent, UtilityBasedAgent
 
 
 class Node(Thing):
@@ -159,3 +159,106 @@ class GraphEnvironment(Environment):
     @classmethod
     def from_json(ShortestPathEnvironment, json_str):
         return ShortestPathEnvironment.from_dict(json.loads(json_str))
+
+
+class ShortestPathEnvironment(GraphEnvironment):
+    def get_node(self, node):
+        if isinstance(node, Node):
+            assert node in self.graph
+        else:
+            for vertex in self.graph:
+                if node == vertex.label:
+                    node = vertex
+                    break
+            assert isinstance(vertex, Node)
+        return node
+    
+    def add_agent(self, agent, init, target):
+        init = self.get_node(init)
+        target = self.get_node(target)
+        super().add_agent(agent, node=init)
+        agent.initialise(init, target)
+
+    @property
+    def is_done(self):
+        return (hasattr(self, "delivered") and self.delivered)
+
+    
+    def execute_action(self, agent, action):
+        command, node = action
+        match command:
+            case "explore":
+                agent.explore(node)
+            case "deliver":
+                if not hasattr(self, "shortest_path"):
+                    self.shortest_path = {}
+                self.shortest_path[agent.init] = {node: agent.deliver(node)}
+                self.delivered = True
+
+
+class ShortestPathAgent(UtilityBasedAgent):
+    def __init__(self):
+        super().__init__()
+        self.dist = {}
+        self.prev = {}
+        self.visited = set()
+
+    @property
+    def at_goal(self):
+        return self.location is self.target
+
+    def initialise(self, node, target):
+        self.init = node
+        self.target = target
+        self.dist[node] = 0
+    
+    def explore(self, node):  #actuator
+        print(f"{self}: exploring {node}")
+        print(f"      distance from {self.init}: {self.dist}")
+        print(f"      previous node: {self.prev}")
+        self.visited.add(self.location)
+        self.location = node
+
+    def deliver(self, node):
+        path = []
+        curr = node
+        path.append(curr)
+        while curr is not self.init:
+            curr = self.prev[curr]
+            path.append(curr)
+        path = list(reversed(path))
+        print(f"{self}: delivering shortest path between {self.init} and {node}")
+        print(f"     {path}")
+        print(f"  length: {self.dist[node]}")
+        return path, self.dist[node]
+        
+    def program(self, percepts):
+        if self.at_goal:
+            return ("deliver", self.target)
+        
+        if isinstance(percepts, set):
+            percepts = zip(nodes, [1]*len(nodes))
+            
+        for neighbour, weight in percepts:
+            if neighbour in self.visited:
+                continue
+            if neighbour not in self.dist:
+                self.dist[neighbour] = self.dist[self.location] + weight
+                self.prev[neighbour] = self.location
+            else:
+                alt = self.dist[self.location] + weight
+                if alt < self.dist[neighbour]:
+                    self.dist[neighbour] = alt
+                    self.prev[neighbour] = self.location
+                    
+        action = self.maximise_utility(
+            [("explore", node) 
+                 for node in self.dist if (
+                     node is not self.location and
+                     node not in self.visited)])
+        
+        return action
+
+    def utility(self, action):
+        value = self.dist[action[1]]
+        return -value
