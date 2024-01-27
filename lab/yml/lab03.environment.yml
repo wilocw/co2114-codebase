@@ -6,7 +6,7 @@ dependencies:
   - ipython
   - jupyter
   - matplotlib
-  - numpym
+  - numpy
   - pip
   - pip:
     - pygame
