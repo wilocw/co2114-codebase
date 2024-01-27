@@ -6,7 +6,8 @@ import time
 from datetime import datetime
 from collections.abc import *
 
-with warnings.catch_warnings(action="ignore"):
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
     import pygame
 
 if __name__ == "__main__":

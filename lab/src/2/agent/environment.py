@@ -6,7 +6,8 @@ import math
 import random
 from collections.abc import *
 
-with warnings.catch_warnings(action="ignore"):
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
     import pygame
 
 from .engine import App

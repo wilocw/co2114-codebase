@@ -3,7 +3,8 @@ import warnings
 from matplotlib import pyplot as plt
 from collections import deque
 
-with warnings.catch_warnings(action="ignore"):
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
     import pygame
 
 from agent.engine import App
