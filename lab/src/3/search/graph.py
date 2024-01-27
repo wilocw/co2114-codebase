@@ -125,7 +125,8 @@ class GraphEnvironment(Environment):
                 super().add_agent(agent)
 
     def show(self, *args, **kwargs):
-        with warnings.catch_warnings(action="ignore"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
             self.graph.plot_nodes(*args, **kwargs).show()
 
     @classmethod
