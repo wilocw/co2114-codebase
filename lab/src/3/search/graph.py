@@ -7,6 +7,24 @@ from matplotlib import pyplot as plt
 from agent.environment import Environment
 from .things import Thing, Agent, UtilityBasedAgent
 
+UK_CITIES_GRAPH = {
+    "nodes": ["Edinburgh", "Glasgow", "Manchester", "Liverpool",
+             "Newcastle", "York", "Sheffield", "Leicester", 
+             "London", "Bath", "Bristol", "Exeter", "Cardiff", "Birmingham"],
+    "edges": [("Edinburgh", "Glasgow"), ("Glasgow", "Newcastle"),
+             ("Edinburgh", "Newcastle"), ("Newcastle", "York"),
+             ("Glasgow", "Manchester"), ("Manchester", "Liverpool"),
+             ("York", "Sheffield"), ("York", "Leicester"),
+             ("Sheffield", "Leicester"), ("Sheffield", "Birmingham"),
+             ("Sheffield", "London"), ("Manchester", "Sheffield"),
+             ("Manchester", "Birmingham"),  ("Birmingham", "Liverpool"),
+             ("Birmingham", "Cardiff"), ("Leicester", "London"),
+              ("Birmingham", "Leicester"),
+             ("Birmingham", "London"), ("Birmingham", "Bristol"),
+             ("London", "Bristol"), ("Cardiff", "Bristol")],
+    "weights": [2,4,1,1,4,1,1,2,1,3,3,2,1,2,5,1,2,2,3,2,1]          
+}
+
 
 class Node(Thing):
     def __init__(self, label=""):
@@ -43,8 +61,21 @@ class Graph:
             {node for node in self.nodes if condition(node)}
         if len(nodes) == 0:
             return plt.figure(figsize=(8,8))
-        if init is None or init not in nodes:
-            init = next(iter(nodes))  # random node
+        if not isinstance(init, Node):
+            if init is None:
+                init = next(iter(nodes))  # random node
+            else:
+                _flag = True
+                for node in nodes:
+                    if init == node.label:
+                        init = node
+                        _flag = False
+                        break
+                if _flag:
+                    init = next(iter(nodes))
+        elif init not in nodes:
+            init = next(iter(nodes))
+        
         locs = {init: (0,0)}
         tree = {0: {init}}
         dist = 1  # dist from init
