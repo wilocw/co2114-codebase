@@ -12,15 +12,28 @@ from search.util import queue, stack, manhattan
 
 
 ##
-def main(graphical=False, maze_preset=0):
+def main(graphical=True, maze_preset=0):
     """ Main method for running script code """
-    # write your non-class code here
-    NotImplemented  # remove this line
+    environment, start_loc = generate_preset_maze(maze_preset)
+    
+    # initialise your agents and add to environment here
+
+    environment.run(graphical=graphical, track_agent=True)
+
 
 #########################################################
 ##        DEMONSTRATION CODE                           ##
-##                                                     ##
-
+##          Generate maze from preset                  ##
+def generate_preset_maze(preset):
+    if preset not in PRESET_MAZES:
+        opts = list(PRESET_MAZES.keys())
+        raise ValueError(
+            f"{preset} not a valid preset, cannot create maze\n options:{opts}")
+    template = PRESET_MAZES[preset]
+    environment = GraphicMaze.from_template(template)
+    
+    start_point = PRESET_STARTS[preset]
+    return environment, start_point
 
 #########################################################
 ## DO NOT EDIT BELOW THIS LINE                         ##
@@ -33,7 +46,11 @@ if __name__ == "__main__":
     parser.add_argument("--test", action="store_true")
     parser.add_argument("-d", "--demo", action="store_true")
     parser.add_argument("-g", "--disable_gui", action="store_true")
-    parser.add_argument("-m", "--preset", type=int, default=0)
+    parser.add_argument(
+        "-m", "--preset",
+        type=int, default=0,
+        choices=list(PRESET_MAZES.keys())
+        )
     args = parser.parse_args()
     if args.test:
         from agent.engine import ClockApp
