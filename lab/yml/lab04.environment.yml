@@ -1,0 +1,15 @@
+name: co2114_lab04
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - ipython
+  - jupyter
+  - matplotlib
+  - numpy
+  - pip
+  - pip:
+    - pygame
+    - "git+https://github.com/wilocw/co2114-codebase.git@2024#egg=agent&subdirectory=lab/src/2"
+    - "git+https://github.com/wilocw/co2114-codebase.git@2024#egg=search&subdirectory=lab/src/3"
+    - "git+https://github.com/wilocw/co2114-codebase.git@2024#egg=optimisation&subdirectory=lab/src/4"
