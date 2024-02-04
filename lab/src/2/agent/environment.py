@@ -118,8 +118,22 @@ class XYEnvironment(Environment):
         self.width, self.height = width, height
         self.observers = []
         self.bumped = set()
-        self.x_start, self.x_end = 0, width
-        self.y_start, self.y_end = 0, height
+        self.x_start_offset = self.x_end_offset = 0
+        self.y_start_offset = self.y_end_offset = 0
+    
+    @property
+    def x_start(self):
+        return 0 + self.x_start_offset
+    @property
+    def x_end(self):
+        return self.width - self.x_end_offset
+    @property
+    def y_start(self):
+        return 0 + self.y_start_offset
+    @property
+    def y_end(self):
+        return self.height - self.y_end_offset
+
 
     def things_near(self, location, radius=1):
         # TODO
@@ -143,9 +157,11 @@ class XYEnvironment(Environment):
                 self._add_wall((x, 0))
                 if self.height > 1:
                     self._add_wall((x, self.height - 1))
-            self.y_start, self.y_end = 1, self.height - 1
+            self.y_start_offset += 1
+            self.y_end_offset += 1
         if self.width > 2:
-            self.x_start, self.x_end = 1, self.width - 1
+            self.x_start_offset += 1
+            self.x_end_offset += 1
     
     def is_valid(self, location):
         if not isinstance(location, Iterable): return False
@@ -176,8 +192,8 @@ class XYEnvironment(Environment):
         assert thing in self.things_at(location)
 
     def add_thing_randomly(self, thing:Thing):
-        x = random.randint(self.x_start, self.x_end)
-        y = random.randint(self.y_start, self.y_end)
+        x = random.randint(self.x_start, self.x_end-1)
+        y = random.randint(self.y_start, self.y_end-1)
         self.add_thing(thing, (x,y))
 
 class GraphicEnvironment(XYEnvironment):
