@@ -21,7 +21,6 @@ def main(graphical=True, steps=100, **kwargs):
 
     # agent = ...
     # environment.add_agent(agent)
-
     if graphical:
         # change lps to change simulation loops per second
         environment.run(steps=steps, graphical=graphical, lps=8)
@@ -60,7 +59,6 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(prog="co2114_lab03")
     parser.add_argument("--test", action="store_true")
-    parser.add_argument("-d", "--demo", action="store_true")
     parser.add_argument("-g", "--disable_gui", action="store_true")
     parser.add_argument(
         "--houses", type=int, help="number of houses in environment")
@@ -79,8 +77,6 @@ if __name__ == "__main__":
         from agent.engine import ClockApp
         print("Running Demo Code")
         ClockApp.run_default()
-    elif args.demo:
-        NotImplemented
     else:
         if args.hospitals and args.houses:
             main(not args.disable_gui, steps=args.steps,
@@ -88,7 +84,7 @@ if __name__ == "__main__":
                 houses=args.houses,
                 height=args.height,
                 width=args.width)
-        if args.preset:
+        elif args.preset:
             main(not args.disable_gui, steps=args.steps, preset=args.preset, hospitals=args.hospitals)
         else:
             main(not args.disable_gui, args.steps)
