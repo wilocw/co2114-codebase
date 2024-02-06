@@ -2,9 +2,10 @@ from numpy import inf as infinity
 from .things import *
 from agent.environment import GraphicEnvironment
 from search.util import manhattan
-
+import random
 
 PRESET_STATES = {
+    "empty": None,
     '0': {
         "hospitals": [(2, 4)],
         "houses": [(2,1),(1,3),(8,0),(6,4)],
@@ -20,7 +21,6 @@ PRESET_STATES = {
         "houses": [(2,1),(1,3),(8,0),(6,4)],
         "height": 5, 
         "width": 10},
-    "empty": None,
     '3': {
         "houses": [(1, 2), (5, 1), (12, 2), (13, 2), (4, 0), (8, 5), (15, 1), (12, 4), (1, 7), (6, 5), (15, 3), (0, 1), (0, 0), (10, 5), (5, 3), (3, 6), (6, 3), (0, 7)],
         "hospitals": [(11,6), (5,2), (4,1)],
@@ -106,6 +106,20 @@ class HospitalPlacement(GraphicEnvironment):
         if not isinstance(agent, Agent):
             raise TypeError(f"{self}: {agent} is not an Agent.")
         self.agents.add(agent)
+
+    def add_thing_randomly(self, thing):
+        x = random.randint(self.x_start, self.x_end-1)
+        y = random.randint(self.y_start, self.y_end-1)
+        lim, count = 10, 0
+        while not self.is_inbounds((x,y)):
+            count += 1
+            if count > lim:
+                print(f"Tried and failed to add {thing} to environment")
+                return     
+            x = random.randint(self.x_start, self.x_end-1)
+            y = random.randint(self.y_start, self.y_end-1)
+        self.add_thing(thing, (x,y))
+
 
     def initialise_state(self, state_dict):
         if state_dict is None:
