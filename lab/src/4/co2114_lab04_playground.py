@@ -10,6 +10,8 @@ import math
 import random
 
 
+
+
 ## Write your class definitions here
 class HillClimbOptimiser(HospitalOptimiser):
         
@@ -81,7 +83,10 @@ def main(graphical=True, steps=100, **kwargs):
     agent = SimulatedAnnealingOptimiser(steps)
 
     environment.add_agent(agent)
-    environment.run(steps=steps, graphical=graphical, lps=8)
+    if graphical:
+        environment.run(steps=steps, graphical=graphical, lps=8)
+    else:
+        environment.run(steps=steps, graphical=graphical)
 
 
 #########################################################
