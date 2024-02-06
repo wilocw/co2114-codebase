@@ -47,9 +47,7 @@ def generate_hospital_placement_env(
     else:
         environment = HospitalPlacement(PRESET_STATES[preset])
         match preset:
-            case '0':
-               pass  # already has hospitals
-            case '1':
+            case '2':
                for _ in range(2 if not hospitals else hospitals):
                     environment.add_thing_randomly(Hospital())
     return environment
