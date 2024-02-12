@@ -8,6 +8,7 @@ import random
 import numpy as np
 from copy import deepcopy
 
+from agent.environment import *
 from constraints.csp import *
 from constraints.magic import *
 from constraints.sudoku import *
@@ -20,7 +21,7 @@ class Timetabling(ConstraintSatisfactionProblem):
             id: Variable(domain, name=id)
                 for id in ['A','B','C','D','E','F','G']}
 
-        neq = lambda x: x[0] != x[1]
+        neq = lambda a,b: a != b
 
         edges = [
             ('A','B'), ('A','C'), ('B','C'),
@@ -106,6 +107,31 @@ class BackTrackingAgent(CSPAgent):
         print(f"{self}: backtracking")
         return None
 
+class CSPRunnerEnvironment(Environment):
+    def __init__(self, csp, solution=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.csp = csp
+        self.solution = solution
+        self.__done = False
+
+    @property
+    def is_done(self):
+        return self.__done
+
+    def execute_action(self, agent, action):
+        
+        print(f"initial state:\n{self.csp}")
+        input("Press enter to start solver")
+
+        solution = agent.solve(self.csp)
+        if solution:
+            print(f"final solution:\n{solution}")
+            if self.solution is not None:
+                print(f"correct solution:\n{self.solution}")
+        else:
+            print("no solution found")
+        self.__done = True
+
 ##
 def main(
         graphical=True, problem="timetable",
@@ -130,14 +156,18 @@ def main(
             key = random.choice(list(templates.keys()))
             csp = Sudoku(templates[key])
 
-    solution = agent.solve(csp)
-    print(f"final solution:\n{solution}")
+    # solution = agent.solve(csp)
     
-    if problem == "sudoku":
+    if problem == "sudok" and key in SUDOKU_SOLUTIONS[difficulty]:
         answers = SUDOKU_SOLUTIONS[difficulty]
-        if key in answers:
-            print("correct solution:")
-            print(np.matrix(answers[key]))
+        _solution = np.matrix(answers[key])
+        environment = CSPRunnerEnvironment(csp, _solution)
+    else:
+        environment = CSPRunnerEnvironment(csp)
+        
+    environment.add_agent(agent)
+
+    environment.run()
     
 #########################################################
 ##        DEMONSTRATION CODE                           ##
@@ -168,6 +198,6 @@ if __name__ == "__main__":
     elif args.demo:
         main(not args.disable_gui, problem="timetable")
     elif args.magic:
-        main(not args.disable_gui, args.steps, args.size, problem="magic")
+        main(not args.disable_gui, n=args.size, problem="magic")
     else:
         main(not args.disable_gui, difficulty=args.sudoku, problem="sudoku")

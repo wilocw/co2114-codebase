@@ -1,10 +1,16 @@
 import numpy as np
 import random
 from agent.things import Thing, Agent
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 
 
-def alldiff(variables):
+def alldiff(*variables):
+    if len(variables) == 1:
+        if not isinstance(variables[0], Iterable):
+            return True
+        print(variables[0])
+        print("something")
+        variables = variables[0]
     values = [
         variable.value for variable in variables 
             if variable.is_assigned]
@@ -17,6 +23,12 @@ def aslist(npcol):
 class CSPAgent(Agent):
     def __repr__(self):
         return "🤖"
+    
+    def program(self, percept):
+        pass
+
+    def solve(self):
+        raise NotImplementedError
 
 
 class ConstraintSatisfactionProblem:
@@ -36,20 +48,87 @@ class ConstraintSatisfactionProblem:
     def constraints(self):
         return self.__constraints
     
+    @property
+    def is_consistent(self):
+        return all(constraint.is_satisfied for constraint in self.constraints)
+    
+    @property
+    def is_complete(self):
+        return all(variable.is_assigned for variable in self.variables) \
+                    and self.is_consistent
+    
 
-class Variable(Thing):
+class __Variable(Thing):
+    @property
+    def value(self):
+        return self.__value
+    
+    @property
+    def is_assigned(self):
+        return hasattr(self, '__value') and self.__value is not None
+
+    def __eq__(self, x):
+        return (x == self.value)
+    
+    def __ne__(self, x):
+        return (x != self.value)
+    
+    def __lt__(self, x):
+        return self.value < x if self.is_assigned else True
+
+    def __gt__(self, x):
+        return self.value > x if self.is_assigned else True
+    
+    def __le__(self, x):
+        return self.__eq__(x) or self.__lt__(x)
+    
+    def __ge__(self, x):
+        return self.__eq__(x) or self.__gt__(x)
+    
+    def __add__(self, x):
+        return self.value + x if self.is_assigned else self
+    
+    def __mul__(self, x):
+        return self.value * x if self.is_assigned else self
+    
+    def __mod__(self, x):
+        return self.value % x if self.is_assigned else self
+
+    def __or__(self, x):
+        return self.value | x if self.is_assigned else self
+    
+    def __and__(self, x):
+        return self.value & x if self.is_assigned else self
+    
+    def __pow__(self, x):
+        return self.value ** x if self.is_assigned else self
+
+    def __neg__(self):
+        return -self.value if self.is_assigned else self
+
+    def __truediv__(self, x):
+        return self.value/x if self.is_assigned else self
+    
+    def __floordiv__(self, x):
+        return self.value//x if self.is_assigned else self
+    
+    def __abs__(self):
+        return abs(self.value) if self.is_assigned else self
+
+
+class Variable(__Variable):
     def __init__(self, domain, name=None):
         self.__domain = domain
         self.__value = None
         self.name = name
-        # self.__hash = name if name else random.random()
+        self.__hash = random.random()
+
+    def __hash__(self):
+        return hash(self.__hash)
 
     @property
     def is_assigned(self):
         return self.__value is not None
-
-    # def __hash__(self):
-    #     return hash(self.__hash)
 
     @property
     def value(self):
@@ -62,25 +141,22 @@ class Variable(Thing):
         else:
             raise ValueError(f"{self.name}: {x} not in domain {self.domain}")
 
-    def __repr__(self):
-        return "?"
-
     @property
     def domain(self):
         return self.__domain
     
-    # /def __eq__(self, x):
-    #     return self.value == (x.value if isinstance(x, Variable) else x)
-
     def __repr__(self):
-        return str(self.value) if self.is_assigned else super().__repr__()
-
+        return str(self.value) if self.is_assigned else "?"
 
 class Factor(Thing):
     def __init__(self, constraint, variables):
         assert isinstance(constraint, Callable), "constraint must be callable"
         self.__function = constraint
+        if not isinstance(variables, Iterable):
+            variables = [variables]
         self.__variables = np.array(variables).ravel().tolist()
+        if self.__xnary < 1:
+            raise ValueError(f"{self}: number of variables must be >1")
 
     def __call__(self, *args, **kwargs):
         return self.__function(*args, **kwargs)
@@ -90,10 +166,30 @@ class Factor(Thing):
 
     @property
     def is_satisfied(self):
-        return self(self.__variables)
+        if all(v.is_assigned for v in self.__variables):
+            return self(*self.__variables) 
+        else:
+            return True
     
     def __repr__(self):
         return str(tuple([str(v.name) for v in self.variables]))
+
+    @property
+    def __xnary(self):
+        return len(self.variables)
+    
+    @property
+    def is_unary(self):
+        return self.__xnary == 1
+    
+    @property
+    def is_binary(self):
+        return self.__xnary == 2
+    
+    @property
+    def is_global(self):
+        return self.__xnary > 2
+
 
     @property
     def variables(self):

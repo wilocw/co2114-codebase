@@ -40,7 +40,7 @@ class MagicSquare(ConstraintSatisfactionProblem):
         self.__grid = grid
         variables = np.array(grid).ravel().tolist()
         
-        def magic_constraint(variables):
+        def magic_constraint(*variables):
             return (np.sum(variables) <= self.M)
 
         row_constraints = {Factor(magic_constraint, grid[i,:])
