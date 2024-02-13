@@ -3,18 +3,19 @@ from collections import deque
 from copy import deepcopy
 
 
-class alldiff:
-    def __call__(self, *variables):
-        if len(variables) == 1:
-            if not isinstance(variables[0], Iterable):
-                return True
-            print(variables[0])
-            print("something")
-            variables = variables[0]
-        values = [
-            variable.value for variable in variables 
-                if variable.is_assigned]
-        return len(set(values)) == len(values)
+# class alldiff:
+    # def __call__(self, *variables):
+def alldiff(*variables)
+    if len(variables) == 1:
+        if not isinstance(variables[0], Iterable):
+            return True
+        print(variables[0])
+        print("something")
+        variables = variables[0]
+    values = [
+        variable.value for variable in variables 
+            if variable.is_assigned]
+    return len(set(values)) == len(values)
 
 
 def aslist(npcol):

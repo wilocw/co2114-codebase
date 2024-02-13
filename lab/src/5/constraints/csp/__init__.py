@@ -167,8 +167,8 @@ class Factor(Thing):
     def is_satisfied(self):
         if all(v.is_assigned for v in self.__variables):
             return self(*self.__variables) 
-        elif isinstance(self.__function, alldiff):
-            return self(*self.__variables)
+        # elif isinstance(self.__function, alldiff):
+        #     return self.__function(*self.__variables)
         else:
             return True
     
