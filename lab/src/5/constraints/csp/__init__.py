@@ -2,23 +2,16 @@ import numpy as np
 import random
 from agent.things import Thing, Agent
 from collections.abc import Callable, Iterable
+from copy import deepcopy
 
+from .util import alldiff
 
-def alldiff(*variables):
-    if len(variables) == 1:
-        if not isinstance(variables[0], Iterable):
-            return True
-        print(variables[0])
-        print("something")
-        variables = variables[0]
-    values = [
-        variable.value for variable in variables 
-            if variable.is_assigned]
-    return len(set(values)) == len(values)
-
-
-def aslist(npcol):
-    return np.array(npcol).ravel().tolist()
+__all__ = [
+    'util',
+    'CSPAgent',
+    'ConstraintSatisfactionProblem',
+    'Variable',
+    'Factor']
 
 class CSPAgent(Agent):
     def __repr__(self):
@@ -56,6 +49,11 @@ class ConstraintSatisfactionProblem:
     def is_complete(self):
         return all(variable.is_assigned for variable in self.variables) \
                     and self.is_consistent
+    
+    @property
+    def arcs(self):
+        return [arc for constraint in self.constraints if constraint.is_binary
+                        for arc in constraint.arcs]
     
 
 class __Variable(Thing):
@@ -118,7 +116,7 @@ class __Variable(Thing):
 
 class Variable(__Variable):
     def __init__(self, domain, name=None):
-        self.__domain = domain
+        self.__domain = deepcopy(domain)  # domain belongs only to one variable
         self.__value = None
         self.name = name
         self.__hash = random.random()
@@ -168,6 +166,8 @@ class Factor(Thing):
     def is_satisfied(self):
         if all(v.is_assigned for v in self.__variables):
             return self(*self.__variables) 
+        elif isinstance(self.constraint, alldiff):
+            return self(*self.__variables)
         else:
             return True
     
@@ -190,6 +190,12 @@ class Factor(Thing):
     def is_global(self):
         return self.__xnary > 2
 
+    @property
+    def arcs(self):
+        if not self.is_binary:
+            raise TypeError(f"{self}: constraint is not binary")
+        L,R = self.variables
+        return [(self, L, R), (self, R, L)]
 
     @property
     def variables(self):
