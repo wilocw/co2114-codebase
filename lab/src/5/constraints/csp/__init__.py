@@ -146,6 +146,7 @@ class Variable(__Variable):
     def __repr__(self):
         return str(self.value) if self.is_assigned else "?"
 
+
 class Factor(Thing):
     def __init__(self, constraint, variables):
         assert isinstance(constraint, Callable), "constraint must be callable"
@@ -166,7 +167,7 @@ class Factor(Thing):
     def is_satisfied(self):
         if all(v.is_assigned for v in self.__variables):
             return self(*self.__variables) 
-        elif isinstance(self.constraint, alldiff):
+        elif isinstance(self.__function, alldiff):
             return self(*self.__variables)
         else:
             return True
