@@ -5,5 +5,5 @@ setup(
     version="0.1",
     description="codebase for lab 5 co2114",
     author="wil ward",
-    packages=['constraints']
+    packages=['constraints', 'constraints.csp']
 )
