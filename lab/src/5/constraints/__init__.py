@@ -1,1 +1,3 @@
-__all__ = ["csp", "magic"]
+from .csp import *
+
+__all__ = ["csp", "magic", "sudoku"]
