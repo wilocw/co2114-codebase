@@ -1,3 +1,4 @@
+from .csp.util import *
 
 SUDOKU_TEMPLATES = {}
 SUDOKU_TEMPLATES['SIMPLE'] = {

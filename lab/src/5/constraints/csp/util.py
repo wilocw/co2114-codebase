@@ -2,6 +2,7 @@ from collections.abc import Iterable
 from collections import deque
 from copy import deepcopy
 
+import numpy as np
 
 def alldiff(*variables):
     if len(variables) == 1:
