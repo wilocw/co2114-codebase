@@ -3,7 +3,7 @@ from collections import deque
 from copy import deepcopy
 
 
-def alldiff(*variables)]
+def alldiff(*variables):
     if len(variables) == 1:
         if not isinstance(variables[0], Iterable):
             return True
