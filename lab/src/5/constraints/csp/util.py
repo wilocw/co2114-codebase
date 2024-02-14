@@ -3,15 +3,13 @@ from collections import deque
 from copy import deepcopy
 
 
-# class alldiff:
-    # def __call__(self, *variables):
-def alldiff(*variables)
+def alldiff(*variables)]
     if len(variables) == 1:
         if not isinstance(variables[0], Iterable):
             return True
-        print(variables[0])
-        print("something")
         variables = variables[0]
+    # variables = [
+    #     variable.value for variabl in variable if variable.is_assigned]
     values = [
         variable.value for variable in variables 
             if variable.is_assigned]
