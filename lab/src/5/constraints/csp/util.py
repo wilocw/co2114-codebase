@@ -56,7 +56,7 @@ def ac3(csp, log=False, inplace=True):
                         and A in constraint\
                             and B not in constraint:
                     for arc in constraint.arcs:
-                        arcs.push(arc)
+                        arcs.append(arc)
         elif log:
             print(f"after: {A.name} in {A.domain}, {B.name} in {B.domain} (no change)")
     return True if inplace else csp

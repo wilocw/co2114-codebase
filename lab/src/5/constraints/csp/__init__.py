@@ -203,6 +203,9 @@ class Factor(Thing):
         return self.__variables
     
 
+class Constraint(Factor):
+    pass
+
 
 ## NOT CURRENTLY VIABLE DO NOT USE
 # from agent.environment import Environment 

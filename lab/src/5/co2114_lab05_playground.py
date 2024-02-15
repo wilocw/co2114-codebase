@@ -10,6 +10,7 @@ from copy import deepcopy
 
 from agent.environment import *
 from constraints.csp import *
+from constraints.csp.util import *
 from constraints.magic import *
 from constraints.sudoku import *
 
@@ -39,44 +40,65 @@ class Timetabling(ConstraintSatisfactionProblem):
     def __repr__(self):
         return str({v.name: v.value for v in self.variables})
     
-
 class Sudoku(ConstraintSatisfactionProblem):
+    """ For exercise 3 """
     def __init__(self, init=None):
         if not init:
             init = SUDOKU_TEMPLATES['EASY']['0']
         
+        template = self.validate_template(init)
+
+        self.create_variables(template)
+        variables = aslist(self.grid)
+
+        constraints = self.create_constraints(self.grid)
+
+        super().__init__(variables, constraints)
+    
+    def validate_template(self, init):
         template = np.matrix(init)
         n = template.shape[0]
         assert n in [4,9], f"Sudoku template must be 4x4 or 9x9"
-        assert template.shape == (n,n), f"Sudoku template not valid: {template}"
-
-        domain = set(range(1, n+1))
-        self.grid = np.matrix([
-            [Variable(domain, name=str((i,j))) for j in range(n)]
-                for i in range(n)])
-        for i in range(n):
-            for j in range(n):
+        assert template.shape==(n,n), f"Sudoku template invalid: {template}"
+        
+        self.n = n
+        return template
+    
+    def create_variables(self, template):
+        domain = set(range(1,self.n+1))
+        self.grid = np.matrix([[Variable(domain, name=str((i,j))) 
+                                    for j in range(self.n)]
+                                for i in range(self.n)])
+        for i in range(self.n):
+            for j in range(self.n):
                 if template[i,j] != 0: self.grid[i,j].value = template[i,j]
-
-        constraints = set()
-        m = int(math.sqrt(n))
-        for i in range(m):
-            for j in range(m):
-                subgrid = self.grid[m*i:m*(i+1),m*j:m*(j+1)]
-                constraints.add(
-                    Factor(alldiff, aslist(subgrid)))
-        for i in range(n):
-            constraints.add(
-                Factor(alldiff, aslist(self.grid[i,:])))
-            constraints.add(
-                Factor(alldiff, aslist(self.grid[:,i])))
-
-        variables = aslist(self.grid)
-        super().__init__(variables, constraints)
 
     def __repr__(self):
         return str(self.grid)
 
+    def create_constraints(self, grid):
+        def alldiff_as_binary(variables):
+            variables = aslist(variables)  # order
+            constraints = set()
+            for i,x in enumerate(variables):
+                for y in variables[(i+1):]:
+                    constraints.add(Factor(lambda a,b: a != b, (x, y)))
+            return constraints
+                    
+
+        m = int(math.sqrt(self.n))
+        constraints = set()
+        for i in range(m):
+            for j in range(m):
+                constraints |= alldiff_as_binary(
+                                        grid[m*i:m*(i+1),m*j:m*(j+1)])
+                
+        for i in range(self.n):
+            constraints |= alldiff_as_binary(self.grid[i,:])
+            constraints |= alldiff_as_binary(self.grid[:,i])
+        # print(len(constraints))
+        return constraints
+    
 
 class BackTrackingAgent(CSPAgent):
     def solve(self, csp):
@@ -98,10 +120,12 @@ class BackTrackingAgent(CSPAgent):
             if all(constraint.is_satisfied 
                     for constraint in csp.constraints 
                       if variable in constraint):
-                print(f"{self}: \n{csp}")
-                result = self.backtrack(deepcopy(csp))
-                if result:
-                    return result
+                new_csp = deepcopy(csp)
+                if ac3(new_csp):
+                    print(f"{self}: \n{csp}")
+                    result = self.backtrack(new_csp)
+                    if result:
+                        return result
             # print(f"{self}: backtracking")
             variable.value = None
         print(f"{self}: backtracking")
@@ -153,8 +177,6 @@ def main(
      
     # environment = MagicSquareEnvironment(n)
     # initialise your agents and add to environment here
-
-
 
     agent = BackTrackingAgent()
 
