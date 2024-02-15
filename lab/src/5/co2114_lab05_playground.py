@@ -132,6 +132,19 @@ class CSPRunnerEnvironment(Environment):
             print("no solution found")
         self.__done = True
 
+    def run(self, steps=None, pause_for_user=False):
+        if pause_for_user:
+            input("Press enter to start simulation")
+        print(f"{self}: Running for {steps} iterations.")
+        for i in range(steps if steps else 1):
+            if self.is_done:
+                if steps:
+                    print(f"{self}: Simulation complete after {i} of {steps} iterations.")
+                return
+            self.step()
+        if steps:
+            print(f"{self}: Simulation complete after {steps} of {steps} iterations.")
+
 ##
 def main(
         graphical=True, problem="timetable",
@@ -158,7 +171,7 @@ def main(
 
     # solution = agent.solve(csp)
     
-    if problem == "sudok" and key in SUDOKU_SOLUTIONS[difficulty]:
+    if problem == "sudoku" and key in SUDOKU_SOLUTIONS[difficulty]:
         answers = SUDOKU_SOLUTIONS[difficulty]
         _solution = np.matrix(answers[key])
         environment = CSPRunnerEnvironment(csp, _solution)
