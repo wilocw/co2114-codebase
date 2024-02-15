@@ -111,39 +111,3 @@ SUDOKU_SOLUTIONS['HARD'] = {
 }
 
 
-class Sudoku(ConstraintSatisfactionProblem):
-    def __init__(self, init=None):
-        if not init:
-            init = SUDOKU_TEMPLATES['EASY']['0']
-        
-        template = np.matrix(init)
-        n = template.shape[0]
-        assert n in [4,9], f"Sudoku template must be 4x4 or 9x9"
-        assert template.shape == (n,n), f"Sudoku template not valid: {template}"
-
-        domain = set(range(1, n+1))
-        self.grid = np.matrix([
-            [Variable(domain, name=str((i,j))) for j in range(n)]
-                for i in range(n)])
-        for i in range(n):
-            for j in range(n):
-                if template[i,j] != 0: self.grid[i,j].value = template[i,j]
-
-        constraints = set()
-        m = int(math.sqrt(n))
-        for i in range(m):
-            for j in range(m):
-                subgrid = self.grid[m*i:m*(i+1),m*j:m*(j+1)]
-                constraints.add(
-                    Factor(alldiff, aslist(subgrid)))
-        for i in range(n):
-            constraints.add(
-                Factor(alldiff, aslist(self.grid[i,:])))
-            constraints.add(
-                Factor(alldiff, aslist(self.grid[:,i])))
-
-        variables = aslist(self.grid)
-        super().__init__(variables, constraints)
-
-    def __repr__(self):
-        return str(self.grid)
