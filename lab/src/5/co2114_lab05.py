@@ -17,8 +17,6 @@ def define_timetabling_csp():
     NotImplemented
 
 
-class Sudoku(ConstraintSatisfactionProblem):
-    """ For exercise 3 """
     def __init__(self, init=None):
         if not init:
             init = SUDOKU_TEMPLATES['EASY']['0']
@@ -28,7 +26,7 @@ class Sudoku(ConstraintSatisfactionProblem):
         self.create_variables(template)
         variables = aslist(self.grid)
 
-        constraints = self.create_constraints(grid)
+        constraints = self.create_constraints(self.grid)
 
         super().__init__(variables, constraints)
     
@@ -41,20 +39,19 @@ class Sudoku(ConstraintSatisfactionProblem):
         self.n = n
         return template
     
-    
     def create_variables(self, template):
         domain = set(range(1,self.n+1))
         self.grid = np.matrix([[Variable(domain, name=str((i,j))) 
-                                    for j in range(n)]
-                                for i in range(n)])
-        for i in range(n):
-            for j in range(n):
+                                    for j in range(self.n)]
+                                for i in range(self.n)])
+        for i in range(self.n):
+            for j in range(self.n):
                 if template[i,j] != 0: self.grid[i,j].value = template[i,j]
 
     def __repr__(self):
         return str(self.grid)
 
-    def create_constraints(self):
+    def create_constraints(self, grid):
         NotImplemented
 
 
@@ -141,7 +138,7 @@ if __name__ == "__main__":
     parser.add_argument("--test", action="store_true")
     # parser.add_argument("-g", "--disable_gui", action="store_true")
     parser.add_argument("-n", "--size", type=int, default=3)
-    parser.add_argument("--demo", action="store_true")
+    parser.add_argument("--timetable", action="store_true")
     parser.add_argument("-d", "--sudoku", type=str, default="EASY",
                         choices=list(SUDOKU_TEMPLATES.keys()))
     parser.add_argument(
@@ -151,7 +148,7 @@ if __name__ == "__main__":
         from agent.engine import ClockApp
         print("Running Demo Code")
         ClockApp.run_default()
-    elif args.demo:
+    elif args.timetable:
         main(problem="timetable")
     else:
         main(difficulty=args.sudoku, problem="sudoku")

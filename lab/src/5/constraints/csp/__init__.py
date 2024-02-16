@@ -55,6 +55,9 @@ class ConstraintSatisfactionProblem:
         return [arc for constraint in self.constraints if constraint.is_binary
                         for arc in constraint.arcs]
     
+    def __repr__(self):
+        return str({v.name: v.value for v in self.variables})
+    
 
 class __Variable(Thing):
     @property
