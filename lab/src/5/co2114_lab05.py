@@ -17,6 +17,8 @@ def define_timetabling_csp():
     NotImplemented
 
 
+class Sudoku(ConstraintSatisfactionProblem):
+    """ For exercise 3 """
     def __init__(self, init=None):
         if not init:
             init = SUDOKU_TEMPLATES['EASY']['0']
@@ -52,7 +54,7 @@ def define_timetabling_csp():
         return str(self.grid)
 
     def create_constraints(self, grid):
-        NotImplemented
+        NotImplemented  # implement me !
 
 
 
