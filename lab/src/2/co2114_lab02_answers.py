@@ -33,6 +33,53 @@ class BlindDog(Dog, RationalAgent):
             print(f"{str(self)}: Drank {thing} at {self.location}")
             return True
         return False
+    
+
+class EnergeticDog(BlindDog):
+    def move(self, direction):
+        """ perform move action """
+        self.direction = direction
+        x,y = self.location
+        msg = f"{self}: Moving {direction} from {(x,y)} to "
+        match direction:
+            case "forward":
+                self.location = (x+1, y)
+            case "backward":
+                self.location = (x-1, y)
+            case "left":
+                self.location = (x, y-1)
+            case "right":
+                self.location = (x, y+1)
+        print(msg + f"{self.location}")
+        return ((x,y),(self.location))
+    
+
+class ModelBasedEnergeticDog(EnergeticDog, ModelBasedAgent):
+    def __init__(self):
+        super().__init__()
+        self.direction = "forward"
+        self.ate = False
+    
+    def program(self, percepts):
+        for thing in percepts:
+            if isinstance(thing, Food):
+                self.ate = True
+                return ("eat", thing)
+            if isinstance(thing, Water):
+                return ("drink", thing)
+        weights = (1, 1, 1, 1)
+        directions = ("forward", "backward", "left", "right")
+        bump = any(isinstance(thing, Bump) for thing in percepts)
+        for i, d in enumerate(directions):
+            if d == self.direction:
+                weights[i] = 0.1 if bump else 10
+        if self.ate:        
+            direction = self.direction
+            self.ate = False 
+        else:
+            direction = choices(directions, weights)[0]
+        self.direction = direction
+        return ("move", direction)
 
 
 class ParkEnvironment(GraphicEnvironment):
@@ -73,6 +120,36 @@ class ParkEnvironment(GraphicEnvironment):
                 isinstance(thing, Water)
             for thing in self.things)  # or if there isn't any Food or Water
 
+
+class BigParkEnvironment(ParkEnvironment):
+    def execute_action(self, agent, action):
+        """ Executes an action (action, thing/direction)"""
+        direction = thing = action[1]  # thing
+        match action[0]:  # action string
+            case "move":
+                if direction in {"forward", "backward", "left", "right"}:
+                    prev, curr = agent.move(direction)
+                if not self.is_inbounds(curr):
+                    print(f"{self}: {agent} out of bounds, returning to position {prev}")
+                    agent.location = prev
+                    self.bumped.add(agent)
+            case "eat":
+                if agent.eat(thing):  # success
+                    self.delete_thing(thing)  # remove from environment
+            case "drink":
+                if agent.drink(thing):  # success
+                    self.delete_thing(thing)  # remove from environment
+    def percept(self, agent):
+        percepts = super().percept(agent)
+        if agent in self.bumped:
+            self.bumped.remove(agent)
+            percepts.append(Bump())
+        return percepts
+
+
+
+
+
 ## 
 def main(graphical=False):
     """ Main method for running script code """
@@ -97,9 +174,35 @@ def main(graphical=False):
 
         environment.run(steps=5, graphical=graphical)
     
-    blind_dog_in_park()
+    # blind_dog_in_park()
     
 
+    def energetic_dog_in_big_park():
+        environment = BigParkEnvironment(width=7, height=7)
+        
+        for _ in range(3):
+            environment.add_thing_randomly(Food())
+            environment.add_thing_randomly(Water())
+
+        def program(percepts):
+            for thing in percepts:
+                if isinstance(thing, Food):
+                    return ("eat", thing)
+                if isinstance(thing, Water):
+                    return ("drink", thing)
+            
+            direction = choices(
+                ("forward", "backward", "left", "right"),
+                (0.25, 0.25, 0.25, 0.25))[0]
+            return ("move", direction)
+
+        agent = EnergeticDog(program)
+        environment.add_agent(agent, location=(0,3))
+
+        environment.run(steps=100, graphical=graphical)
+
+
+    energetic_dog_in_big_park()
 
 #########################################################
 ##        DEMONSTRATION CODE FROM TUTORIAL 2           ##
